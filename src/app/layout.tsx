@@ -1,3 +1,5 @@
+import { Footer } from "@/components/molecules/footer";
+import { Header } from "@/components/molecules/header";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -14,8 +16,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Afshin Nahian Tripto",
-  description: "Crafting intelligent web experiences with AI & TypeScript. Passionate about RAG applications and full-stack innovation 🚀",
-  keywords: "software engineer, AI, RAG, retrieval-augmented generation, typescript, javascript, react, nextjs, nodejs, dhaka, bangladesh, fullstack developer, frontend, backend, mysql, postgresql, docker, github actions",
+  description:
+    "Crafting intelligent web experiences with AI & TypeScript. Passionate about RAG applications and full-stack innovation 🚀",
+  keywords:
+    "software engineer, AI, RAG, retrieval-augmented generation, typescript, javascript, react, nextjs, nodejs, dhaka, bangladesh, fullstack developer, frontend, backend, mysql, postgresql, docker, github actions",
   openGraph: {
     images: [
       {
@@ -50,9 +54,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
-        {children}
+        <Header />
+        <main className="flex flex-col flex-grow">{children}</main>
+        <Footer />
       </body>
     </html>
   );

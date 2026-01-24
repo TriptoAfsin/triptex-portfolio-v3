@@ -14,34 +14,62 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Afshin Nahian Tripto | AI & Full-Stack Developer",
+  metadataBase: new URL("https://triptex.me"),
+  title: {
+    default: "Tripto Afsin | AI & Full-Stack Engineer",
+    template: "%s | Tripto Afsin",
+  },
   description:
-    "Software Engineer specializing in AI/RAG systems, full-stack development with TypeScript, React, and Node.js. Building intelligent web experiences.",
-  keywords:
-    "software engineer, AI, RAG, retrieval-augmented generation, AI agents, typescript, javascript, react, nextjs, nodejs, fullstack developer, dhaka, bangladesh",
+    "Software Engineer with 3+ years of experience specializing in AI/RAG systems, AI agents, and full-stack development. Building intelligent web experiences with TypeScript, React, Next.js, and Node.js.",
+  keywords: [
+    "Tripto Afsin",
+    "software engineer",
+    "AI engineer",
+    "RAG systems",
+    "retrieval-augmented generation",
+    "AI agents",
+    "product engineer",
+    "TypeScript",
+    "JavaScript",
+    "React",
+    "Next.js",
+    "Node.js",
+    "full-stack developer",
+    "Dhaka",
+    "Bangladesh",
+  ],
+  authors: [{ name: "Tripto Afsin", url: "https://triptex.me" }],
+  creator: "Tripto Afsin",
   openGraph: {
-    title: "Afshin Nahian Tripto | AI & Full-Stack Developer",
-    description:
-      "Software Engineer specializing in AI/RAG systems and full-stack development.",
-    images: [
-      {
-        url: "/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        type: "image/png",
-      },
-    ],
     type: "website",
+    locale: "en_US",
+    url: "https://triptex.me",
+    siteName: "Tripto Afsin",
+    title: "Tripto Afsin | AI & Full-Stack Engineer",
+    description:
+      "Software Engineer specializing in AI/RAG systems, AI agents, and full-stack development. Building intelligent web experiences.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Afshin Nahian Tripto | AI & Full-Stack Developer",
+    title: "Tripto Afsin | AI & Full-Stack Engineer",
     description:
-      "Software Engineer specializing in AI/RAG systems and full-stack development.",
-    images: ["/opengraph-image.png"],
+      "Software Engineer specializing in AI/RAG systems, AI agents, and full-stack development.",
+    creator: "@triptoafsin",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   icons: {
     icon: "/favicon.png",
+    apple: "/favicon.png",
   },
 };
 

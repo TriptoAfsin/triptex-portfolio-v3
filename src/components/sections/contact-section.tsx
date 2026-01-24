@@ -73,8 +73,8 @@ export function ContactSection() {
               {/* <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" /> */}
             </div>
             {/* Decorative elements */}
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
-            <div className="absolute -top-4 -left-4 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl" />
+            {/* <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
+            <div className="absolute -top-4 -left-4 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl" /> */}
           </motion.div>
 
           {/* Contact Info */}

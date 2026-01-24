@@ -2,9 +2,15 @@
 
 import { skills } from "@/data/portfolio";
 import { motion } from "framer-motion";
-import { Brain, Code2, Database, Server, Wrench } from "lucide-react";
+import { Brain, Code2, Database, FileCode, Rocket, Server, Wrench } from "lucide-react";
 
 const skillCategories = [
+  {
+    title: "Languages",
+    icon: FileCode,
+    skills: skills.languages,
+    gradient: "from-primary to-emerald-400",
+  },
   {
     title: "AI & Machine Learning",
     icon: Brain,
@@ -119,35 +125,56 @@ export function AboutSection() {
           ))}
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-16 p-8 md:p-10 rounded-3xl bg-gradient-to-br from-primary/5 via-emerald-500/5 to-teal-500/5 border border-primary/10 relative overflow-hidden"
-        >
-          {/* Decorative elements */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        {/* Highlight boxes */}
+        <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="p-8 rounded-3xl bg-gradient-to-br from-primary/5 via-emerald-500/5 to-teal-500/5 border border-primary/10 relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
 
-          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 relative">
-            <div className="flex-shrink-0">
-              <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary to-emerald-400 flex items-center justify-center shadow-lg shadow-primary/20">
-                <Brain className="w-12 h-12 text-white" />
+            <div className="flex flex-col items-center md:items-start gap-4 relative">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-emerald-400 flex items-center justify-center shadow-lg shadow-primary/20">
+                <Brain className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h3 className="text-lg md:text-xl font-bold mb-2 text-center md:text-left">
+                  Specialized in AI & RAG Systems
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed text-center md:text-left">
+                  Building intelligent applications using RAG, AI agents, and modern LLM integrations. From vector databases to prompt engineering.
+                </p>
               </div>
             </div>
-            <div>
-              <h3 className="text-xl md:text-2xl font-bold mb-3 text-center md:text-left">
-                Specialized in AI & RAG Systems
-              </h3>
-              <p className="text-muted-foreground leading-relaxed text-center md:text-left">
-                I focus on building intelligent applications using Retrieval-Augmented
-                Generation (RAG), AI agents, and modern LLM integrations. From vector
-                databases to prompt engineering, I help bring AI capabilities to
-                production-ready web applications.
-              </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="p-8 rounded-3xl bg-gradient-to-br from-amber-500/5 via-orange-500/5 to-yellow-500/5 border border-amber-500/10 relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-amber-500/10 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+
+            <div className="flex flex-col items-center md:items-start gap-4 relative">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-400 flex items-center justify-center shadow-lg shadow-amber-500/20">
+                <Rocket className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h3 className="text-lg md:text-xl font-bold mb-2 text-center md:text-left">
+                  Product Engineer Mindset
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed text-center md:text-left">
+                  Growth mindset with strong communication and business acumen. I take ownership of products and bridge the gap between technical and business needs.
+                </p>
+              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

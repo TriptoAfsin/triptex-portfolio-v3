@@ -26,6 +26,13 @@ export const personalInfo = {
 };
 
 export const skills = {
+  languages: [
+    "TypeScript",
+    "JavaScript",
+    "Go",
+    "Python",
+    "Java",
+  ],
   ai: [
     "RAG Systems",
     "AI Agents",
@@ -38,7 +45,6 @@ export const skills = {
   frontend: [
     "React",
     "Next.js",
-    "TypeScript",
     "Tailwind CSS",
     "React Native",
   ],

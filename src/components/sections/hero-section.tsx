@@ -97,7 +97,7 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-wrap items-center justify-center gap-3 mb-12"
           >
-            {["RAG Systems", "AI Agents", "Full-Stack", "TypeScript"].map(
+            {["RAG Systems", "AI Agents", "Product Engineer", "Full-Stack"].map(
               (tag, index) => (
                 <motion.span
                   key={tag}

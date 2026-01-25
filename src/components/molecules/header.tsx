@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils/cn";
 import { navLinks, personalInfo } from "@/data/portfolio";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 export function Header() {
@@ -12,18 +12,27 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const ticking = useRef(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  const updateScrollState = useCallback(() => {
+    setIsScrolled(window.scrollY > 20);
+    ticking.current = false;
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      if (!ticking.current) {
+        requestAnimationFrame(updateScrollState);
+        ticking.current = true;
+      }
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [updateScrollState]);
 
   const toggleTheme = () => {
     setTheme(resolvedTheme === "dark" ? "light" : "dark");
@@ -32,9 +41,9 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 gpu-accelerate",
         isScrolled
-          ? "bg-background/80 backdrop-blur-lg border-b border-border shadow-sm"
+          ? "glass-optimized border-b border-border shadow-sm"
           : "bg-transparent"
       )}
     >

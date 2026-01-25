@@ -119,9 +119,42 @@ body {
 
 @keyframes float {
   0%, 100% {
-    transform: translateY(0);
+    transform: translateY(0) translateZ(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-10px) translateZ(0);
   }
+}
+
+/* Performance utilities */
+@utility gpu-accelerate {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@utility contain-paint {
+  contain: paint;
+}
+
+@utility contain-layout {
+  contain: layout;
+}
+
+@utility contain-content {
+  contain: content;
+}
+
+@utility content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* Optimized backdrop blur */
+@utility glass-optimized {
+  background: color-mix(in srgb, var(--card) 85%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  will-change: backdrop-filter;
+  transform: translateZ(0);
 }

@@ -131,7 +131,7 @@ export const experience = [
   {
     company: "Provision Capital",
     role: "Senior Full Stack Engineer",
-    period: "Oct 2024 - Present",
+    period: "Apr 2024 - Present",
     duration: "Current",
     description:
       "Building AI-powered internal solutions with focus on AI Agents and Agentic AI Development for financial technology applications.",

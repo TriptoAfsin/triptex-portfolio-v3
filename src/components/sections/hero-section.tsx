@@ -29,15 +29,18 @@ export function HeroSection() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16"
     >
       {/* Animated gradient orbs - Supabase-like green theme */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-gradient-to-r from-emerald-500/20 to-green-500/20 rounded-full blur-3xl animate-float opacity-60" />
+      <div className="absolute inset-0 overflow-hidden contain-paint">
         <div
-          className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-gradient-to-r from-teal-500/15 to-cyan-500/15 rounded-full blur-3xl animate-float opacity-50"
-          style={{ animationDelay: "-3s" }}
+          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-gradient-to-r from-emerald-500/20 to-green-500/20 rounded-full blur-3xl animate-float opacity-60 gpu-accelerate"
+          style={{ willChange: "transform" }}
         />
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-full blur-3xl animate-float opacity-40"
-          style={{ animationDelay: "-1.5s" }}
+          className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-gradient-to-r from-teal-500/15 to-cyan-500/15 rounded-full blur-3xl animate-float opacity-50 gpu-accelerate"
+          style={{ animationDelay: "-3s", willChange: "transform" }}
+        />
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-full blur-3xl animate-float opacity-40 gpu-accelerate"
+          style={{ animationDelay: "-1.5s", willChange: "transform" }}
         />
       </div>
 

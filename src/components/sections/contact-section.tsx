@@ -34,12 +34,12 @@ const contactLinks = [
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-24 md:py-32 bg-muted/30 relative overflow-hidden">
+    <section id="contact" className="py-24 md:py-32 bg-muted/30 relative overflow-hidden contain-content">
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
@@ -57,7 +57,7 @@ export function ContactSection() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6 }}
             className="relative flex-shrink-0"
           >
@@ -81,7 +81,7 @@ export function ContactSection() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="flex-1 w-full"
           >
@@ -118,7 +118,7 @@ export function ContactSection() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-8 text-center sm:text-left"
             >

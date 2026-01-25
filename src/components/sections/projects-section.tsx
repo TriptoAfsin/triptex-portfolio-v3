@@ -27,7 +27,7 @@ export function ProjectsSection() {
   const featuredProjects = projects.filter((p) => p.featured);
 
   return (
-    <section id="projects" className="py-24 md:py-32 relative">
+    <section id="projects" className="py-24 md:py-32 relative contain-content">
       {/* Background pattern */}
       <div className="absolute inset-0 bg-muted/30" />
       <div
@@ -42,7 +42,7 @@ export function ProjectsSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-16"
         >
@@ -59,7 +59,7 @@ export function ProjectsSection() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
           {featuredProjects.map((project) => (
@@ -134,7 +134,7 @@ export function ProjectsSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="mt-12 text-center"
         >

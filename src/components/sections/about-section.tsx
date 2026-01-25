@@ -64,7 +64,7 @@ const itemVariants = {
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-24 md:py-32 relative">
+    <section id="about" className="py-24 md:py-32 relative contain-content">
       {/* Subtle background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/30 to-transparent pointer-events-none" />
 
@@ -72,7 +72,7 @@ export function AboutSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-16"
         >
@@ -91,7 +91,7 @@ export function AboutSection() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {skillCategories.map((category) => (
@@ -130,7 +130,7 @@ export function AboutSection() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="p-8 rounded-3xl bg-gradient-to-br from-primary/5 via-emerald-500/5 to-teal-500/5 border border-primary/10 relative overflow-hidden"
           >
@@ -154,7 +154,7 @@ export function AboutSection() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="p-8 rounded-3xl bg-gradient-to-br from-amber-500/5 via-orange-500/5 to-yellow-500/5 border border-amber-500/10 relative overflow-hidden"
           >

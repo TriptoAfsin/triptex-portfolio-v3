@@ -26,7 +26,7 @@ const itemVariants = {
 
 export function CertificationsSection() {
   return (
-    <section id="certifications" className="py-24 md:py-32 bg-muted/30 relative">
+    <section id="certifications" className="py-24 md:py-32 bg-muted/30 relative contain-content">
       <div className="container mx-auto px-6">
         <SectionTitle
           title="Certifications &"
@@ -38,7 +38,7 @@ export function CertificationsSection() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
         >
           {certifications.map((cert) => (

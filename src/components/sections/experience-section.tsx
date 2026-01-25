@@ -58,12 +58,12 @@ export function ExperienceSection() {
   }, []);
 
   return (
-    <section id="experience" className="py-24 md:py-32">
+    <section id="experience" className="py-24 md:py-32 contain-content">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
@@ -80,7 +80,7 @@ export function ExperienceSection() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           className="max-w-3xl mx-auto"
         >
           {experience.map((exp) => (

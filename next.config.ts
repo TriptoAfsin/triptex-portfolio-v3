@@ -1,9 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   images: {
     remotePatterns: [
       {
@@ -14,11 +11,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "media.licdn.com",
       },
-      {
-        protocol: "https",
-        hostname: "**",
-      },
     ],
+  },
+  experimental: {
+    optimizePackageImports: ["framer-motion", "lucide-react"],
   },
 };
 

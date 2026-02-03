@@ -43,10 +43,10 @@ export function ContactSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">
             Get in <span className="gradient-text">Touch</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-pretty">
             I&apos;m always open to discussing new opportunities, interesting
             projects, or just having a chat about AI and technology.
           </p>
@@ -61,20 +61,15 @@ export function ContactSection() {
             transition={{ duration: 0.6 }}
             className="relative flex-shrink-0"
           >
-            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden border-2 border-border  shadow-primary/10">
+            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden border-2 border-border shadow-primary/10">
               <Image
                 src={personalInfo.profileImage}
                 alt={personalInfo.name}
                 fill
                 className="object-cover"
-                unoptimized
+                sizes="(max-width: 768px) 256px, 320px"
               />
-              {/* Gradient overlay */}
-              {/* <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" /> */}
             </div>
-            {/* Decorative elements */}
-            {/* <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
-            <div className="absolute -top-4 -left-4 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl" /> */}
           </motion.div>
 
           {/* Contact Info */}
@@ -89,11 +84,11 @@ export function ContactSection() {
               {contactLinks.map((link) => (
                 <div
                   key={link.label}
-                  className="p-6 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300"
+                  className="p-6 rounded-2xl bg-card border border-border hover:border-primary/50 transition-colors duration-200"
                 >
                   <div className="flex items-center gap-4">
                     <div className="p-3 rounded-xl bg-primary/10">
-                      <link.icon className="w-5 h-5 text-primary" />
+                      <link.icon className="w-5 h-5 text-primary" aria-hidden="true" />
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">{link.label}</p>
@@ -102,7 +97,7 @@ export function ContactSection() {
                           href={link.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-medium hover:text-primary transition-colors"
+                          className="font-medium hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
                         >
                           {link.value}
                         </a>
@@ -124,9 +119,9 @@ export function ContactSection() {
             >
               <a
                 href={personalInfo.social.email}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-xl font-medium hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-xl font-medium hover:opacity-90 transition-opacity focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-5 h-5" aria-hidden="true" />
                 Send me an email
               </a>
             </motion.div>

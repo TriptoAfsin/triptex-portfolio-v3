@@ -241,6 +241,21 @@ export const education = [
   },
 ];
 
+export const socialLinks = [
+  {
+    label: "GitHub",
+    href: personalInfo.social.github,
+  },
+  {
+    label: "LinkedIn",
+    href: personalInfo.social.linkedin,
+  },
+  {
+    label: "Email",
+    href: personalInfo.social.email,
+  },
+];
+
 export const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },

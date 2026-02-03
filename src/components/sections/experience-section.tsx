@@ -1,20 +1,10 @@
 "use client";
 
 import { experience, getYearsOfExperience } from "@/data/portfolio";
+import { sectionContainerVariants } from "@/lib/animations";
 import { motion } from "framer-motion";
-import { Briefcase } from "lucide-react";
 import Image from "next/image";
 import { useMemo, useState } from "react";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
 
 const itemVariants = {
   hidden: { opacity: 0, x: -20 },
@@ -44,7 +34,6 @@ function CompanyLogo({ logo, fallback, company }: { logo?: string; fallback?: st
         width={32}
         height={32}
         className="object-contain"
-        unoptimized
         onError={() => setImgError(true)}
       />
     </div>
@@ -67,17 +56,17 @@ export function ExperienceSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">
             Work <span className="gradient-text">Experience</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            <span className="text-primary font-semibold">{yearsOfExperience}+ years</span> of professional experience building products and leading technical
+          <p className="text-muted-foreground max-w-2xl mx-auto text-pretty">
+            <span className="text-primary font-semibold tabular-nums">{yearsOfExperience}+ years</span> of professional experience building products and leading technical
             initiatives across various companies and personal projects.
           </p>
         </motion.div>
 
         <motion.div
-          variants={containerVariants}
+          variants={{ ...sectionContainerVariants, visible: { ...sectionContainerVariants.visible, transition: { staggerChildren: 0.15 } } }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
@@ -93,7 +82,7 @@ export function ExperienceSection() {
 
               <div className="absolute left-0 top-1 w-2 h-2 -translate-x-[3.5px] rounded-full bg-primary ring-4 ring-background" />
 
-              <div className="group p-6 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300">
+              <div className="group p-6 rounded-2xl bg-card border border-border hover:border-primary/50 transition-colors duration-200">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
                   <div className="flex items-center gap-3">
                     <CompanyLogo logo={exp.logo} fallback={exp.logoFallback} company={exp.company} />
@@ -112,7 +101,7 @@ export function ExperienceSection() {
                   </div>
                 </div>
 
-                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                <p className="text-sm text-muted-foreground mb-4 leading-relaxed text-pretty">
                   {exp.description}
                 </p>
 

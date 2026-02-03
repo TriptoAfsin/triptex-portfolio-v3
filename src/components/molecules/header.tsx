@@ -57,7 +57,8 @@ export function Header() {
             alt="Logo"
             width={32}
             height={32}
-            className="rounded-lg group-hover:ring-2 ring-primary/50 transition-all"
+            priority
+            className="rounded-lg group-hover:ring-2 ring-primary/50 transition-shadow"
           />
           <span className="hidden sm:inline">
             {personalInfo.name.split(" ")[0]}
@@ -81,7 +82,7 @@ export function Header() {
           {mounted && (
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg hover:bg-muted transition-colors"
+              className="p-2 rounded-lg hover:bg-muted transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               aria-label="Toggle theme"
             >
               {resolvedTheme === "dark" ? (
@@ -96,14 +97,14 @@ export function Header() {
             href={personalInfo.resume}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:inline-flex px-4 py-2 text-sm font-medium bg-accent text-accent-foreground rounded-lg hover:opacity-90 transition-opacity"
+            className="hidden md:inline-flex px-4 py-2 text-sm font-medium bg-accent text-accent-foreground rounded-lg hover:opacity-90 transition-opacity focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             Resume
           </a>
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+            className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? (
@@ -116,7 +117,7 @@ export function Header() {
       </nav>
 
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border">
+        <div className="md:hidden bg-background border-b border-border">
           <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
             {navLinks.map((link) => (
               <a

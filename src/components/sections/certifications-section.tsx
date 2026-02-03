@@ -1,28 +1,10 @@
 "use client";
 
 import { certifications } from "@/data/portfolio";
+import { sectionContainerVariants, sectionItemVariants } from "@/lib/animations";
 import { motion } from "framer-motion";
-import { Award, ExternalLink } from "lucide-react";
+import { Award } from "lucide-react";
 import { SectionTitle } from "@/components/ui";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 },
-  },
-};
 
 export function CertificationsSection() {
   return (
@@ -35,7 +17,7 @@ export function CertificationsSection() {
         />
 
         <motion.div
-          variants={containerVariants}
+          variants={sectionContainerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
@@ -44,12 +26,12 @@ export function CertificationsSection() {
           {certifications.map((cert) => (
             <motion.div
               key={cert.title}
-              variants={itemVariants}
-              className="group p-6 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-500"
+              variants={sectionItemVariants}
+              className="group p-6 rounded-2xl bg-card border border-border hover:border-primary/30 transition-colors duration-300"
             >
               <div className="flex items-start gap-4 mb-4">
                 <div className="p-3 rounded-xl bg-primary/10 shrink-0">
-                  <Award className="w-5 h-5 text-primary" />
+                  <Award className="w-5 h-5 text-primary" aria-hidden="true" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="font-semibold text-sm leading-tight mb-1 group-hover:text-primary transition-colors">

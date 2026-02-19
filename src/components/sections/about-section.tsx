@@ -1,9 +1,21 @@
 "use client";
 
+import { GitHubContributions } from "@/components/organisms/github-contributions";
 import { skills } from "@/data/portfolio";
-import { sectionContainerVariants, sectionItemVariants } from "@/lib/animations";
+import {
+  sectionContainerVariants,
+  sectionItemVariants,
+} from "@/lib/animations";
 import { motion } from "framer-motion";
-import { Brain, Code2, Database, FileCode, Rocket, Server, Wrench } from "lucide-react";
+import {
+  Brain,
+  Code2,
+  Database,
+  FileCode,
+  Rocket,
+  Server,
+  Wrench,
+} from "lucide-react";
 
 const skillCategories = [
   {
@@ -69,6 +81,11 @@ export function AboutSection() {
           </p>
         </motion.div>
 
+        {/* GitHub Contributions */}
+        <div className="mb-12">
+          <GitHubContributions username="TriptoAfsin" />
+        </div>
+
         <motion.div
           variants={sectionContainerVariants}
           initial="hidden"
@@ -76,24 +93,31 @@ export function AboutSection() {
           viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {skillCategories.map((category) => (
+          {skillCategories.map(category => (
             <motion.div
               key={category.title}
               variants={sectionItemVariants}
               className="group relative p-6 rounded-2xl bg-card border border-border hover:border-accent/30 transition-colors duration-300 overflow-hidden"
             >
               {/* Gradient hover effect */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500`} />
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500`}
+              />
 
               <div className="relative">
-                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${category.gradient} mb-4`}>
-                  <category.icon className="w-6 h-6 text-white" aria-hidden="true" />
+                <div
+                  className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${category.gradient} mb-4`}
+                >
+                  <category.icon
+                    className="w-6 h-6 text-white"
+                    aria-hidden="true"
+                  />
                 </div>
                 <h3 className="text-lg font-semibold mb-4 group-hover:text-accent transition-colors">
                   {category.title}
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill) => (
+                  {category.skills.map(skill => (
                     <span
                       key={skill}
                       className="px-3 py-1.5 text-sm bg-muted/80 rounded-lg text-muted-foreground hover:text-foreground transition-colors border border-transparent hover:border-border/50"
@@ -127,7 +151,9 @@ export function AboutSection() {
                   Specialized in AI & RAG Systems
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed text-center md:text-left text-pretty">
-                  Building intelligent applications using RAG, AI agents, and modern LLM integrations. From vector databases to prompt engineering.
+                  Building intelligent applications using RAG, AI agents, and
+                  modern LLM integrations. From vector databases to prompt
+                  engineering.
                 </p>
               </div>
             </div>
@@ -151,7 +177,9 @@ export function AboutSection() {
                   Product-Minded Engineer
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed text-center md:text-left text-pretty">
-                  Growth mindset with strong communication and business acumen. I take ownership of products and bridge the gap between technical and business needs.
+                  Growth mindset with strong communication and business acumen.
+                  I take ownership of products and bridge the gap between
+                  technical and business needs.
                 </p>
               </div>
             </div>

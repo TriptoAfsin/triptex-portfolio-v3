@@ -3,6 +3,7 @@
 import { fetchGitHubContributions } from "@/server/actions/github.action";
 import { motion } from "framer-motion";
 import { Github } from "lucide-react";
+import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { ActivityCalendar, type Activity } from "react-activity-calendar";
 
@@ -19,6 +20,8 @@ export function GitHubContributions({ username }: GitHubContributionsProps) {
   const [contributions, setContributions] = useState<Activity[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(true);
+  const { resolvedTheme } = useTheme();
+  const calendarColorScheme = resolvedTheme === "dark" ? "dark" : "light";
 
   useEffect(() => {
     fetchGitHubContributions(username).then(data => {
@@ -30,8 +33,8 @@ export function GitHubContributions({ username }: GitHubContributionsProps) {
 
   if (loading) {
     return (
-      <div className="p-6 md:p-8 rounded-2xl bg-[#0d1117] border border-[#1b1f23] animate-pulse">
-        <div className="h-[140px] md:h-[160px] rounded bg-[#161b22]" />
+      <div className="p-6 md:p-8 rounded-2xl bg-card border border-border animate-pulse">
+        <div className="h-[140px] md:h-[160px] rounded bg-muted" />
       </div>
     );
   }
@@ -44,10 +47,10 @@ export function GitHubContributions({ username }: GitHubContributionsProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay: 0.1 }}
-      className="p-5 md:p-8 rounded-2xl bg-[#0a0a0a] border border-[#1b1f23] relative overflow-hidden"
+      className="p-5 md:p-8 rounded-2xl bg-card border border-border relative overflow-hidden"
     >
       {/* Subtle green glow */}
-      <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#39d353]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/10 dark:bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
         <div className="flex items-center gap-3">
@@ -55,10 +58,10 @@ export function GitHubContributions({ username }: GitHubContributionsProps) {
             <Github className="w-5 h-5 text-white" aria-hidden="true" />
           </div>
           <div>
-            <h3 className="text-base md:text-lg font-semibold text-[#e6edf3]">
+            <h3 className="text-base md:text-lg font-semibold text-foreground">
               GitHub Contributions
             </h3>
-            <p className="text-sm text-[#7d8590]">
+            <p className="text-sm text-muted-foreground">
               {totalCount.toLocaleString()} contributions in the last year
             </p>
           </div>
@@ -67,31 +70,33 @@ export function GitHubContributions({ username }: GitHubContributionsProps) {
           href={`https://github.com/${username}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-[#39d353] hover:text-[#26a641] transition-colors font-medium"
+          className="text-sm text-primary hover:text-primary/80 transition-colors font-medium"
         >
           @{username}
         </a>
       </div>
 
-      <div className="overflow-x-auto -mx-2 px-2 pb-2">
-        <ActivityCalendar
-          data={contributions}
-          theme={GREEN_THEME}
-          colorScheme="dark"
-          blockSize={11}
-          blockMargin={3}
-          blockRadius={2}
-          fontSize={12}
-          showColorLegend
-          showMonthLabels
-          showTotalCount={false}
-          labels={{
-            totalCount: "{{count}} contributions in {{year}}",
-          }}
-          style={{
-            color: "#7d8590",
-          }}
-        />
+      <div className="overflow-x-auto pb-2">
+        <div className="w-fit min-w-max mx-auto">
+          <ActivityCalendar
+            data={contributions}
+            theme={GREEN_THEME}
+            colorScheme={calendarColorScheme}
+            blockSize={11}
+            blockMargin={3}
+            blockRadius={2}
+            fontSize={12}
+            showColorLegend
+            showMonthLabels
+            showTotalCount={false}
+            labels={{
+              totalCount: "{{count}} contributions in {{year}}",
+            }}
+            style={{
+              color: "var(--muted-foreground)",
+            }}
+          />
+        </div>
       </div>
     </motion.div>
   );

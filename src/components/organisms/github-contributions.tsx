@@ -1,10 +1,10 @@
 "use client";
 
+import { fetchGitHubContributions } from "@/server/actions/github.action";
+import { motion } from "framer-motion";
+import { Github } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ActivityCalendar, type Activity } from "react-activity-calendar";
-import { motion } from "framer-motion";
-import { fetchGitHubContributions } from "@/server/actions/github.action";
-import { Github } from "lucide-react";
 
 const GREEN_THEME = {
   dark: ["#0d1117", "#0e4429", "#006d32", "#26a641", "#39d353"],
@@ -21,7 +21,7 @@ export function GitHubContributions({ username }: GitHubContributionsProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchGitHubContributions(username).then((data) => {
+    fetchGitHubContributions(username).then(data => {
       setContributions(data);
       setTotalCount(data.reduce((sum, day) => sum + day.count, 0));
       setLoading(false);
@@ -44,7 +44,7 @@ export function GitHubContributions({ username }: GitHubContributionsProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay: 0.1 }}
-      className="p-5 md:p-8 rounded-2xl bg-[#0d1117] border border-[#1b1f23] relative overflow-hidden"
+      className="p-5 md:p-8 rounded-2xl bg-[#0a0a0a] border border-[#1b1f23] relative overflow-hidden"
     >
       {/* Subtle green glow */}
       <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#39d353]/5 rounded-full blur-3xl pointer-events-none" />

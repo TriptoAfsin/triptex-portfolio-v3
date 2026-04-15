@@ -120,7 +120,7 @@ export function HeroSection() {
             variants={tagContainerVariants}
             className="flex flex-wrap items-center justify-center gap-3 mb-12"
           >
-            {["RAG Systems", "AI Agents", "Product Engineer", "Full-Stack"].map(
+            {["AI Agents", "Context Engineering", "Product Engineer", "Full-Stack"].map(
               (tag) => (
                 <motion.span
                   key={tag}

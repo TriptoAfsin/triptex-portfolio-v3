@@ -20,14 +20,14 @@ export const metadata: Metadata = {
     template: "%s | Tripto Afsin",
   },
   description:
-    "Software Engineer with 3+ years of experience specializing in AI/RAG systems, AI agents, and full-stack development. Building intelligent web experiences with TypeScript, React, Next.js, and Node.js.",
+    "Software Engineer with 4+ years of experience specializing in AI agents, context engineering, and full-stack development. Building intelligent web experiences with TypeScript, React, Next.js, and Node.js.",
   keywords: [
     "Tripto Afsin",
     "software engineer",
     "AI engineer",
-    "RAG systems",
-    "retrieval-augmented generation",
     "AI agents",
+    "context engineering",
+    "RAG systems",
     "product engineer",
     "TypeScript",
     "JavaScript",
@@ -47,13 +47,13 @@ export const metadata: Metadata = {
     siteName: "Tripto Afsin",
     title: "Tripto Afsin | AI & Full-Stack Engineer",
     description:
-      "Software Engineer specializing in AI/RAG systems, AI agents, and full-stack development. Building intelligent web experiences.",
+      "Software Engineer specializing in AI agents, context engineering, and full-stack development. Building intelligent web experiences.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Tripto Afsin | AI & Full-Stack Engineer",
     description:
-      "Software Engineer specializing in AI/RAG systems, AI agents, and full-stack development.",
+      "Software Engineer specializing in AI agents, context engineering, and full-stack development.",
     creator: "@triptoafsin",
   },
   robots: {

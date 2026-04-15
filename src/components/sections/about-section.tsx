@@ -75,9 +75,9 @@ export function AboutSection() {
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed text-pretty">
             I&apos;m a Software Engineer with a passion for building intelligent
-            systems. My expertise lies in AI/RAG applications and full-stack
-            development, bridging the gap between cutting-edge AI and practical
-            web solutions.
+            systems. My expertise lies in AI agents, context engineering, and
+            full-stack development, bridging the gap between cutting-edge AI and
+            practical web solutions.
           </p>
         </motion.div>
 
@@ -148,12 +148,12 @@ export function AboutSection() {
               </div>
               <div>
                 <h3 className="text-lg md:text-xl font-bold mb-2 text-center md:text-left text-balance">
-                  Specialized in AI & RAG Systems
+                  Specialized in AI & Agentic Systems
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed text-center md:text-left text-pretty">
-                  Building intelligent applications using RAG, AI agents, and
-                  modern LLM integrations. From vector databases to prompt
-                  engineering.
+                  Building intelligent applications using AI agents, context
+                  engineering, and modern LLM integrations. From prompt
+                  engineering to vector databases.
                 </p>
               </div>
             </div>

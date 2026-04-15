@@ -80,7 +80,7 @@ export default async function Image() {
               marginBottom: 40,
             }}
           >
-            {["RAG Systems", "AI Agents", "Product Engineer", "TypeScript"].map(
+            {["AI Agents", "Context Engineering", "Product Engineer", "TypeScript"].map(
               (tag) => (
                 <div
                   key={tag}

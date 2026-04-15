@@ -1,0 +1,56 @@
+# Tripto Afsin - AI & Full-Stack Engineer
+
+> Personal portfolio of Tripto Afsin (Afshin Nahian Tripto), a Software Engineer based in Dhaka, Bangladesh, specializing in AI agents, context engineering, and full-stack development.
+
+## About
+
+Tripto Afsin is a Software Engineer with 4+ years of experience building intelligent web experiences with AI and modern technologies. He is passionate about AI agents, context engineering, and crafting scalable full-stack solutions.
+
+- Location: Dhaka, Bangladesh
+- Email: AfsinTripto@gmail.com
+- GitHub: https://github.com/TriptoAfsin
+- LinkedIn: https://www.linkedin.com/in/triptoafsin/
+- Website: https://triptex.me
+
+## Skills
+
+- Languages: TypeScript, JavaScript, Go, Python, Java
+- AI/ML: AI Agents, Context Engineering, Prompt Engineering, LangChain, Vector DBs, RAG Systems, Fine-tuning, LoRA
+- Frontend: React, Next.js, Tailwind CSS, React Native
+- Backend: Node.js, Express, NestJS, FastAPI, Go (Gin/Fiber)
+- Databases: PostgreSQL, MySQL, Redis, MongoDB
+- Tools: Git, Docker, Linux, GitHub Actions
+
+## Projects
+
+- [BUTEX NoteBot](https://github.com/TriptoAfsin/notebot-engine-v1): A 24/7 Messenger chatbot serving thousands of students at Bangladesh University of Textiles with educational content delivery. Built with Node.js and MySQL.
+- [ts-stats](https://github.com/TriptoAfsin/ts-stats): TypeScript utility functions for statistical operations - mean, median, mode, standard deviation, and more. Available on [npm](https://www.npmjs.com/package/ts-stats).
+- [bang-utils](https://github.com/TriptoAfsin/bang-utils): A lightweight utility library for converting English numerals and dates to Bengali in TypeScript/JavaScript. Available on [npm](https://www.npmjs.com/package/bang-utils).
+- [chonkie-pdf](https://github.com/TriptoAfsin/chonkie-pdf): Python CLI tool for intelligent PDF chunking, optimized for RAG applications.
+- [docset-gen](https://github.com/t21dev/docset-gen): Documentation-to-dataset transformation tool for training AI models.
+- [notebot-analytics-go](https://github.com/TriptoAfsin/notebot-anlaytics-go): High-performance analytics service for the NoteBot platform, built with Go and MySQL.
+
+## Experience
+
+- **Senior Full Stack Engineer at Provision Capital** (Apr 2024 - Present): Building AI-powered internal solutions with focus on AI Agents and Agentic AI Development for financial technology applications.
+- **Software Engineer at REDQ Technologies Ltd.** (Apr 2024 - Present): Building TrueBeep - AI powered marketing platform. Integrated 7+ third-party platforms, built real-time collaboration with WebSocket, delivered production-grade RAG applications.
+- **Founder of BUTEX NoteBot** (Sep 2018 - Present): Founded educational chatbot serving thousands of students. Built backend with Node.js/Express, webhook-driven Messenger integration, and Go analytics APIs.
+- **Frontend Developer at Edison Communication Ltd.** (Jun 2023 - Apr 2024): Built WebManza - drag & drop e-commerce builder. Improved SEO with Next.js SSR, reduced network calls by ~40% with Redux RTK Query.
+- **JavaScript Developer at Delivery Hobe** (Oct 2021 - May 2023): Built DeliveryHobe e-commerce platform, AdsHobe B2B ads platform, and Rider App using React Native.
+
+## Education
+
+- MS Computer Science, United International University (Jan 2024 - Aug 2025, 3.97)
+- BS Industrial Engineering, Bangladesh University of Textiles (Jan 2018 - Dec 2023, CGPA: 3.75)
+
+## Certifications
+
+- Generative AI Engineering and Fine-Tuning Transformers - IBM (Jan 2026)
+- AI Agents Fundamentals - Hugging Face (Mar 2025)
+- Software Architecture Foundations - LinkedIn Learning (2024)
+- The AI Engineer Path - Scrimba (2024)
+- Ethical Hacker - Cisco (2023)
+
+## Resources
+
+- [Resume (PDF)](https://triptex.me/cv/Afshin%20Nahian%20Tripto-Software%20Engineer.pdf)

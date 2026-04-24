@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s | Tripto Afsin",
   },
   description:
-    "Software Engineer with 4+ years of experience specializing in AI agents, context engineering, and full-stack development. Building intelligent web experiences with TypeScript, React, Next.js, and Node.js.",
+    "Software Engineer with 5+ years of experience specializing in AI agents, context engineering, and full-stack development. Building intelligent web experiences with TypeScript, React, Next.js, and Node.js.",
   keywords: [
     "Tripto Afsin",
     "software engineer",
@@ -81,8 +81,16 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
-        <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+        <meta
+          name="theme-color"
+          content="#000000"
+          media="(prefers-color-scheme: dark)"
+        />
+        <meta
+          name="theme-color"
+          content="#fafafa"
+          media="(prefers-color-scheme: light)"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}

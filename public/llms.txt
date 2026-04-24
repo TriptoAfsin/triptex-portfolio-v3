@@ -4,7 +4,7 @@
 
 ## About
 
-Tripto Afsin is a Software Engineer with 4+ years of experience building intelligent web experiences with AI and modern technologies. He is passionate about AI agents, context engineering, and crafting scalable full-stack solutions.
+Tripto Afsin is a Software Engineer with 5+ years of experience building intelligent web experiences with AI and modern technologies. He is passionate about AI agents, context engineering, and crafting scalable full-stack solutions.
 
 - Location: Dhaka, Bangladesh
 - Email: AfsinTripto@gmail.com
@@ -24,11 +24,11 @@ Tripto Afsin is a Software Engineer with 4+ years of experience building intelli
 ## Projects
 
 - [BUTEX NoteBot](https://github.com/TriptoAfsin/notebot-engine-v1): A 24/7 Messenger chatbot serving thousands of students at Bangladesh University of Textiles with educational content delivery. Built with Node.js and MySQL.
+- [md-viewer-pwa](https://github.com/TriptoAfsin/md-viewer-pwa): A sleek, lightweight Progressive Web App for viewing Markdown files on any device.
 - [ts-stats](https://github.com/TriptoAfsin/ts-stats): TypeScript utility functions for statistical operations - mean, median, mode, standard deviation, and more. Available on [npm](https://www.npmjs.com/package/ts-stats).
 - [bang-utils](https://github.com/TriptoAfsin/bang-utils): A lightweight utility library for converting English numerals and dates to Bengali in TypeScript/JavaScript. Available on [npm](https://www.npmjs.com/package/bang-utils).
 - [chonkie-pdf](https://github.com/TriptoAfsin/chonkie-pdf): Python CLI tool for intelligent PDF chunking, optimized for RAG applications.
 - [docset-gen](https://github.com/t21dev/docset-gen): Documentation-to-dataset transformation tool for training AI models.
-- [notebot-analytics-go](https://github.com/TriptoAfsin/notebot-anlaytics-go): High-performance analytics service for the NoteBot platform, built with Go and MySQL.
 
 ## Experience
 

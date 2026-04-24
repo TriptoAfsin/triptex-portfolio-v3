@@ -81,6 +81,15 @@ export const projects = [
     featured: true,
   },
   {
+    title: "md-viewer-pwa",
+    description:
+      "A sleek, lightweight Progressive Web App for viewing Markdown files on any device.",
+    tags: ["PWA", "Markdown", "React"],
+    github: "https://github.com/TriptoAfsin/md-viewer-pwa",
+    stars: 18,
+    featured: true,
+  },
+  {
     title: "ts-stats",
     description:
       "TypeScript utility functions for statistical operations - mean, median, mode, standard deviation, and more.",
@@ -116,14 +125,6 @@ export const projects = [
     tags: ["Python", "AI", "Data"],
     github: "https://github.com/t21dev/docset-gen",
     stars: 1,
-    featured: true,
-  },
-  {
-    title: "notebot-analytics-go",
-    description:
-      "High-performance analytics service for the NoteBot platform, built with Go and MySQL.",
-    tags: ["Go", "Analytics", "API", "MySQL"],
-    github: "https://github.com/TriptoAfsin/notebot-anlaytics-go",
     featured: true,
   },
 ];

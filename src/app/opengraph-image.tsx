@@ -15,8 +15,8 @@ export default function Image() {
     stats: [
       { value: "5+ yrs", label: "experience" },
       { value: "5", label: "companies" },
-      { value: "30+", label: "projects shipped" },
-      { value: "Remote", label: "cross-cultural teams" },
+      { value: "5+", label: "SaaS products" },
+      { value: "Global", label: "cross-cultural teams" },
     ],
   });
 }

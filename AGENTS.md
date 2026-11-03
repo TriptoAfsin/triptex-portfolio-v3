@@ -7,3 +7,12 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+<!-- antislop:start -->
+## antislop
+For UI, copy, people, or code comments work, read the antislop core (`~/.claude/skills/antislop/SKILL.md`) and then the skill for the task:
+- Copy & text: `~/.claude/skills/antislop-copywriting/SKILL.md`
+- People (contrast, keyboard, focus, states): `~/.claude/skills/antislop-human/SKILL.md`
+- Code comments: `~/.claude/skills/antislop-code/SKILL.md`
+Before starting, ask the user when antislop applies: during the work, or after it is done.
+<!-- antislop:end -->

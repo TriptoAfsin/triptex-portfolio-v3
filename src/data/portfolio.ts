@@ -29,8 +29,9 @@ export const skills = {
   languages: [
     "TypeScript",
     "JavaScript",
-    "Go",
     "Python",
+    "Go",
+    "Rust",
     "Java",
   ],
   ai: [
@@ -42,6 +43,7 @@ export const skills = {
     "Vector DBs",
     "Fine-tuning",
     "LoRA",
+    "MCP",
   ],
   frontend: [
     "React",
@@ -72,59 +74,68 @@ export const skills = {
 
 export const projects = [
   {
-    title: "BUTEX NoteBot",
+    title: "Turbo Reader",
     description:
-      "A 24/7 Messenger chatbot serving thousands of students at Bangladesh University of Textiles with educational content delivery.",
-    tags: ["Node.js", "Chatbot", "MySQL"],
-    github: "https://github.com/TriptoAfsin/notebot-engine-v1",
-    stars: 22,
+      "A desktop RSS reader in Rust and React on Tauri 2. The installer is under 5 MB and it holds 20,000 articles in a 14 MB core process.",
+    tags: ["Rust", "Tauri", "React", "SQLite"],
+    github: "https://github.com/t21dev/turbo-reader",
+    stars: 26,
+    featured: true,
+  },
+  {
+    title: "Porter",
+    description:
+      "A cross-platform port monitor for developers. See what holds every port and kill the process in one click.",
+    tags: ["Tauri", "React 19", "TypeScript"],
+    github: "https://github.com/t21dev/porter-app",
+    stars: 27,
     featured: true,
   },
   {
     title: "md-viewer-pwa",
     description:
-      "A sleek, lightweight Progressive Web App for viewing Markdown files on any device.",
+      "A small, installable Markdown viewer that works offline on any device.",
     tags: ["PWA", "Markdown", "React"],
     github: "https://github.com/TriptoAfsin/md-viewer-pwa",
-    stars: 18,
+    stars: 23,
+    featured: true,
+  },
+  {
+    title: "Shapeshifting Software",
+    description:
+      "A reference design for apps that reshape their UI and workflows from natural-language intent while the core and its guardrails stay fixed.",
+    tags: ["AI Agents", "Architecture"],
+    github: "https://github.com/TriptoAfsin/shape-shifter",
+    stars: 12,
+    featured: true,
+  },
+  {
+    title: "BUTEX NoteBot",
+    description:
+      "A 24/7 Messenger chatbot and study platform serving students at Bangladesh University of Textiles.",
+    tags: ["Node.js", "Chatbot", "Go"],
+    github: "https://github.com/TriptoAfsin/notebot-engine-v1",
+    stars: 22,
     featured: true,
   },
   {
     title: "ts-stats",
     description:
-      "TypeScript utility functions for statistical operations - mean, median, mode, standard deviation, and more.",
-    tags: ["TypeScript", "NPM", "Statistics"],
+      "TypeScript utility functions for statistics: mean, median, mode, standard deviation and more.",
+    tags: ["TypeScript", "NPM"],
     github: "https://github.com/TriptoAfsin/ts-stats",
     npm: "https://www.npmjs.com/package/ts-stats",
-    stars: 5,
+    stars: 6,
     featured: true,
   },
   {
-    title: "bang-utils",
+    title: "simple-messenger-blocks",
     description:
-      "A lightweight utility library for converting English numerals and dates to Bengali in TypeScript/JavaScript.",
-    tags: ["TypeScript", "NPM", "i18n"],
-    github: "https://github.com/TriptoAfsin/bang-utils",
-    npm: "https://www.npmjs.com/package/bang-utils",
-    stars: 5,
-    featured: true,
-  },
-  {
-    title: "chonkie-pdf",
-    description:
-      "Python CLI tool for intelligent PDF chunking, optimized for RAG applications.",
-    tags: ["Python", "RAG", "CLI"],
-    github: "https://github.com/TriptoAfsin/chonkie-pdf",
-    stars: 2,
-    featured: true,
-  },
-  {
-    title: "docset-gen",
-    description:
-      "Documentation-to-dataset transformation tool for training AI models. Built for T21 Dev.",
-    tags: ["Python", "AI", "Data"],
-    github: "https://github.com/t21dev/docset-gen",
-    stars: 1,
+      "Builds Messenger chatbot blocks (buttons, cards, quick replies) from plain objects. Extracted from NoteBot.",
+    tags: ["Node.js", "NPM", "Chatbot"],
+    github: "https://github.com/TriptoAfsin/simple-messenger-blocks",
+    npm: "https://www.npmjs.com/package/simple-messenger-blocks",
+    stars: 6,
     featured: true,
   },
 ];
@@ -136,8 +147,8 @@ export const experience = [
     period: "Apr 2024 - Present",
     duration: "Current",
     description:
-      "Building AI-powered internal solutions with focus on AI Agents and Agentic AI Development for financial technology applications.",
-    tags: ["AI Agents", "Agentic AI", "Full-Stack"],
+      "I build the software a real estate investment firm and its operating companies run on, from investor-facing platforms to internal operations tools, usually as the engineer who scopes it with the team and takes it to production.",
+    tags: ["Next.js", "PostgreSQL", "BullMQ", "Stripe", "AI Agents"],
     logo: "/logos/provision-capital.png",
     logoFallback: "PC",
     current: true,
@@ -148,8 +159,8 @@ export const experience = [
     period: "Apr 2024 - Present",
     duration: "1+ Year",
     description:
-      "Building TrueBeep - AI powered marketing platform. Integrated 7+ third-party platforms, built real-time collaboration with WebSocket, delivered production-grade RAG applications.",
-    tags: ["Next.js", "TypeScript", "Redis", "BullMQ", "PostgreSQL"],
+      "Main author of the AI engines behind a marketing platform and a multi-tenant ERP: copilots with short- and long-term memory, retrieval over business documents, and agents that answer inboxes.",
+    tags: ["FastAPI", "ChromaDB", "Next.js", "Redis", "BullMQ"],
     logo: "/logos/redq.png",
     logoFallback: "RQ",
     current: true,
@@ -184,8 +195,8 @@ export const experience = [
     period: "Sep 2018 - Present",
     duration: "7+ Years",
     description:
-      "Founded educational chatbot serving thousands of students. Built backend with Node.js/Express, webhook-driven Messenger integration, and Go analytics APIs.",
-    tags: ["Node.js", "MySQL", "Go", "Messenger API"],
+      "Founded a study platform for textile engineering students: Messenger bot, web app, Go analytics and an MCP server for Claude and ChatGPT.",
+    tags: ["Bun", "PostgreSQL", "Go", "MCP"],
     logo: "/logos/notebot.jpg",
     logoFallback: "NB",
     current: true,

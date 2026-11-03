@@ -11,6 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...posts.map(p => ({ url: `${SITE_URL}/blog/${p.slug}`, lastModified: new Date(p.date), changeFrequency: "monthly" as const, priority: 0.7 })),
     { url: `${SITE_URL}/llms.txt`, lastModified: now, changeFrequency: "weekly", priority: 0.5 },
     { url: `${SITE_URL}/agents.md`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
-    { url: `${SITE_URL}/cv/Afshin%20Nahian%20Tripto-Software%20Engineer.pdf`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${SITE_URL}/cv/afshin-nahian-tripto-resume.pdf`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
   ];
 }

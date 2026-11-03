@@ -28,6 +28,8 @@ const nextConfig: NextConfig = {
     return [
       { source: "/writing", destination: "/blog", permanent: true },
       { source: "/writing/:slug", destination: "/blog/:slug", permanent: true },
+      // old resume filename, kept so links already shared still work
+      { source: "/cv/Afshin%20Nahian%20Tripto-Software%20Engineer.pdf", destination: "/cv/afshin-nahian-tripto-resume.pdf", permanent: true },
     ];
   },
   async headers() {

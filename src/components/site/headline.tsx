@@ -8,6 +8,7 @@ const useIsoLayoutEffect = typeof window === "undefined" ? useEffect : useLayout
 
 /**
  * Rotating hero headline. Each line arrives word by word (blur + rise), holds ~4s, then hands off.
+ * Hovering the line pauses the rotation so it can be read.
  * The box reserves the tallest line so nothing below moves. Pauses off screen and in hidden tabs;
  * reduced-motion users get the first line, static. Screen readers get one stable line.
  */
@@ -37,15 +38,18 @@ export function Headline({ lines }: { lines: Line[] }) {
     const el = ref.current; if (!el) return;
     const still = matchMedia("(prefers-reduced-motion: reduce)");
     if (still.matches) return;
-    let visible = true, timer = 0, out = 0;
+    let visible = true, hovered = false, timer = 0, out = 0;
     const tick = () => {
       setPhase("out");
       out = window.setTimeout(() => { setI(v => (v + 1) % lines.length); setPhase("in"); }, 420);
     };
-    const sync = () => { clearInterval(timer); timer = 0; if (visible && !document.hidden) timer = window.setInterval(tick, 4200); };
+    const sync = () => { clearInterval(timer); timer = 0; if (visible && !hovered && !document.hidden) timer = window.setInterval(tick, 4200); };
     const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; sync(); });
+    const enter = () => { hovered = true; sync(); };
+    const leave = () => { hovered = false; sync(); };
+    el.addEventListener("pointerenter", enter); el.addEventListener("pointerleave", leave);
     io.observe(el); document.addEventListener("visibilitychange", sync); sync();
-    return () => { clearInterval(timer); clearTimeout(out); io.disconnect(); document.removeEventListener("visibilitychange", sync); };
+    return () => { clearInterval(timer); clearTimeout(out); io.disconnect(); el.removeEventListener("pointerenter", enter); el.removeEventListener("pointerleave", leave); document.removeEventListener("visibilitychange", sync); };
   }, [lines.length]);
 
   const line = lines[i];

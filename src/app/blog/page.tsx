@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Blog",
   description: "How things got built: the architecture, the tradeoffs, and what broke along the way.",
   alternates: { canonical: "/blog" },
-  openGraph: { type: "website", url: "https://triptex.me/blog", siteName: "Afshin Nahian Tripto", title: "Blog · Afshin Nahian Tripto", description: "How things got built: the architecture, the tradeoffs, and what broke along the way." },
+  openGraph: { type: "website", url: "https://www.triptex.me/blog", siteName: "Afshin Nahian Tripto", title: "Blog · Afshin Nahian Tripto", description: "How things got built: the architecture, the tradeoffs, and what broke along the way." },
   twitter: { card: "summary_large_image", site: "@Tripto_Afsin", creator: "@Tripto_Afsin", title: "Blog · Afshin Nahian Tripto", description: "How things got built: the architecture, the tradeoffs, and what broke along the way." },
 };
 

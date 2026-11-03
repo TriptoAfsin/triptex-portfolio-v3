@@ -17,7 +17,7 @@ export const personalInfo = {
   bio: "I build intelligent web experiences with AI and modern technologies. Passionate about AI agents, context engineering, and crafting scalable full-stack solutions.",
   avatar: "/avatar.jpg",
   profileImage: "https://images.ctfassets.net/6t2jvd86tzzx/3L2dcQkfHXJmCWtHhgeAnP/7d84d6caa2fe165cd6a4b1c950850f5e/dev_new.jpg",
-  resume: "/cv/Afshin%20Nahian%20Tripto-Software%20Engineer.pdf",
+  resume: "/cv/afshin-nahian-tripto-resume.pdf",
   social: {
     github: "https://github.com/TriptoAfsin",
     linkedin: "https://www.linkedin.com/in/triptoafsin/",

@@ -5,7 +5,7 @@ import brac from "./work/brac.json";
 import edison from "./work/edison.json";
 import dh from "./work/dh.json";
 
-export const SITE_URL = "https://triptex.me";
+export const SITE_URL = "https://www.triptex.me";
 
 export const person = {
   name: "Afshin Nahian Tripto",
@@ -14,7 +14,7 @@ export const person = {
   location: "Dhaka, Bangladesh",
   email: "afsintripto@gmail.com",
   photo: "https://images.ctfassets.net/6t2jvd86tzzx/3L2dcQkfHXJmCWtHhgeAnP/7d84d6caa2fe165cd6a4b1c950850f5e/dev_new.jpg",
-  resume: "/cv/Afshin%20Nahian%20Tripto-Software%20Engineer.pdf",
+  resume: "/cv/afshin-nahian-tripto-resume.pdf",
   social: {
     github: "https://github.com/TriptoAfsin",
     linkedin: "https://www.linkedin.com/in/triptoafsin/",

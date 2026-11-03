@@ -128,6 +128,7 @@ export default async function Home() {
         <section id="offclock" aria-labelledby="h-off">
           <Head id="h-off" icon="i-game" title="Off the clock" />
           <div className="off">
+            <svg className="bx-bg" aria-hidden="true"><use href="#i-game" /></svg>
             <p>When I&apos;m not shipping, I&apos;m usually halfway through a TV series, catching a movie or playing a video game, all very casually. And I&apos;ll never say no to a game of cricket.</p>
             <ul className="off-tags" aria-label="Interests">
               <li><Icon id="i-tv" />TV series</li>

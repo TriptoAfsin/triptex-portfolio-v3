@@ -1,0 +1,199 @@
+{
+ "company": "BUTEX NoteBot",
+ "role": "Founder",
+ "period": "Sep 2018 - Present",
+ "summary": "I started NoteBot as a Messenger bot that sends study material to students at Bangladesh University of Textiles, and I still build and run all of it myself. It is now a web app, an Android app, a CMS, an analytics stack, a note submission pipeline and two MCP servers, and its analytics have recorded over 4.7 million requests.",
+ "projects": [
+  {
+   "title": "NoteBot Messenger Bot (Engine v1)",
+   "ownership": "Sole engineer",
+   "what": "The original NoteBot engine: a Facebook Messenger bot that answers students with notes, lab reports, question banks and routines at any hour. This codebase started in December 2020 and also served the first mobile and web apps.",
+   "built": [
+    "Built the bot on the Messenger Platform with Node.js and Express, matching keywords in a message to content flows.",
+    "Wrote helper functions for loose and exact keyword matching and a random picker for casual replies.",
+    "Wrote block generators for text, image, button and card messages, and later published them as a small npm package.",
+    "Grew the content to hundreds of flows and app routes covering every level and subject.",
+    "Added an app API on the same server so the Android app and website could read the same content."
+   ],
+   "stack": [
+    "Node.js",
+    "Express",
+    "Messenger Platform",
+    "JavaScript"
+   ]
+  },
+  {
+   "title": "NoteBot Engine v2",
+   "ownership": "Sole engineer",
+   "what": "In v1, about 83% of the code was content written as JavaScript, so every new note needed a deploy. v2 moves all content into PostgreSQL and serves the app API and the Messenger bot from the database.",
+   "built": [
+    "Moved 2,334 notes, 1,346 topics, 134 subjects, 466 lab reports and 57 question banks into PostgreSQL with Drizzle.",
+    "Cut the code from 2,043 files and 44,908 lines to 58 files and 4,825 lines, and from 794 hand-written routes to 32 slug-resolved ones.",
+    "Kept a compatibility API that returns the same format as v1, so the existing apps kept working.",
+    "Added a Redis cache with a one-hour TTL and targeted invalidation, plus an admin endpoint to flush it by scope.",
+    "Added ranked content search for the app and the bot, which v1 never had.",
+    "Ported every Messenger flow to the database, including human handover, and added webhook signature verification and batched event handling.",
+    "Wrote analytics events for subject views, lab views and daily app usage into the analytics tables.",
+    "Moved the runtime from Node with ts-node to Bun."
+   ],
+   "stack": [
+    "TypeScript",
+    "Bun",
+    "Express",
+    "PostgreSQL",
+    "Drizzle ORM",
+    "Redis",
+    "Swagger"
+   ]
+  },
+  {
+   "title": "NoteBot Web v2 and TexGPT",
+   "ownership": "Sole engineer",
+   "what": "A web app and PWA with all of NoteBot's notes, lab reports and question banks, plus TexGPT, a chat assistant that answers textile questions.",
+   "built": [
+    "Built the web app with React, routing, dark mode and PWA install with a service worker update prompt.",
+    "Built TexGPT on top of a Cloudflare AutoRAG index, sending earlier user messages with each query for context.",
+    "Added a daily message limit for TexGPT and PDF export of a chat.",
+    "Cut layout shift, preloaded the main image, self-hosted fonts and switched images to WebP.",
+    "Added route preloading, skeleton loading and a persisted query cache, later shortened from 24 hours to 6."
+   ],
+   "stack": [
+    "React",
+    "Vite",
+    "TypeScript",
+    "TanStack Query",
+    "Tailwind CSS",
+    "Radix UI",
+    "React PDF",
+    "Cloudflare AutoRAG"
+   ]
+  },
+  {
+   "title": "NoteBot CMS v2",
+   "ownership": "Sole engineer",
+   "what": "A dashboard to manage all NoteBot content without touching code, sharing the database and cache with Engine v2.",
+   "built": [
+    "Built CRUD for levels, subjects, topics, notes, lab reports, question banks, routines and results.",
+    "Built a one-screen add-content flow with a live preview of how the item will look in Messenger and the API.",
+    "Built an audit log that records every content change with a before and after diff.",
+    "Built a visual editor and flow map for the bot's Messenger flows, with broken-link detection.",
+    "Built a keyboard-driven review queue for student submissions with automatic checks and undo.",
+    "Built API keys with expiry and usage tracking, an authenticated ingest endpoint and signed outbound webhooks with a delivery log.",
+    "Ported the CMS from Next.js 16 to TanStack Start in November 2026."
+   ],
+   "stack": [
+    "TypeScript",
+    "TanStack Start",
+    "PostgreSQL",
+    "Drizzle ORM",
+    "Redis",
+    "Better Auth",
+    "Resend",
+    "Tailwind CSS",
+    "shadcn/ui",
+    "React Flow"
+   ]
+  },
+  {
+   "title": "Note Submission Pipeline",
+   "ownership": "Sole engineer",
+   "what": "Students submit notes through a Google Form, and for years I added each one by hand. Now n8n collects submissions, a Claude Code routine files them, and nothing goes live until I merge the pull request.",
+   "built": [
+    "Built an n8n workflow that copies each submitted Drive file into NoteBot's Drive, makes it public and leaves the student's original untouched.",
+    "Sorted submissions into ready, needs-access, folder, question bank and manual queues, with Telegram alerts for links that cannot be copied.",
+    "Staged every submission in a Postgres table keyed on the original link so the same file is never added twice.",
+    "Wrote a placement rulebook and a content map from every button title in v1 so the Claude agent places notes by topic name, not file name.",
+    "Set the agent to pick the lowest-risk placement and to flag anything ambiguous with a reason instead of guessing.",
+    "Built GitHub Actions that open the pull request and, on merge, insert notes into v2 and clear the cache.",
+    "Since May 2026 the pipeline has staged 186 submissions and published 139 (99 notes, 21 lab reports, 19 question banks) from 48 students."
+   ],
+   "stack": [
+    "n8n",
+    "Claude Code",
+    "GitHub Actions",
+    "PostgreSQL",
+    "Google Drive API",
+    "Google Sheets API",
+    "Telegram Bot API",
+    "Node.js"
+   ]
+  },
+  {
+   "title": "NoteBot MCP Servers",
+   "ownership": "Sole engineer",
+   "what": "MCP servers that let Claude, ChatGPT, Cursor and other AI clients search BUTEX notices and the NoteBot library, served from ai.butexnotebot.com with a free API key.",
+   "built": [
+    "Built a BUTEX server for the official university site: notices, routines, exam schedules, results, departments, teachers, offices and halls.",
+    "Passed scanned notice images to the client model to read and extracted text from notice PDFs, since most notices are scans.",
+    "Built a NoteBot server for notes, books, lab reports, question banks, syllabus, study plans and recommendations, and an owner-only analytics server.",
+    "Built a dashboard where students get a free key by email, copy client configs and install a matching skill.",
+    "Supported OAuth for Claude and ChatGPT custom connectors, with a retry-safe code exchange.",
+    "Added circuit breakers per upstream, retries with backoff, stale-cache fallback, an offline search archive and Redis falling back to memory.",
+    "Signed keys with HMAC so they still validate when Postgres is down, and set daily limits per key and per network."
+   ],
+   "stack": [
+    "TypeScript",
+    "Bun",
+    "MCP SDK",
+    "PostgreSQL",
+    "Redis",
+    "unpdf",
+    "Zod",
+    "Railway"
+   ]
+  },
+  {
+   "title": "NoteBot Analytics",
+   "ownership": "Sole engineer",
+   "what": "Usage tracking for every NoteBot platform, first as a Node API and then as a Go service, with a dashboard I use to see what students read.",
+   "built": [
+    "Built the first analytics API in Node.js with daily reports and MySQL support.",
+    "Rewrote it in Go with Fiber and GORM, with endpoints for academic views, daily reports, missed search words and users.",
+    "Migrated the analytics data from MySQL to the v2 Postgres database behind a driver flag.",
+    "Added an 'ai' platform so MCP tool calls count as AI usage, and locked personal data behind an admin key.",
+    "Built the analytics dashboard in React with charts per platform and an AI usage page."
+   ],
+   "stack": [
+    "Go",
+    "Fiber",
+    "GORM",
+    "PostgreSQL",
+    "MySQL",
+    "Node.js",
+    "React",
+    "Recharts"
+   ]
+  },
+  {
+   "title": "NoteBot Android App",
+   "ownership": "Contributor",
+   "what": "The Flutter app for NoteBot. In August 2026 I shipped NoteBot 2.0, the first release since May 2022.",
+   "built": [
+    "Moved routines to live schedules from the API and added a live results feed and global search.",
+    "Fixed a registration flow where affiliated college students got stuck, and improved guest handling.",
+    "Replaced skeleton loading with a custom shimmer and reworked lists into searchable rows.",
+    "Prepared the Play Store release, assets and publishing notes."
+   ],
+   "stack": [
+    "Flutter",
+    "Dart"
+   ]
+  }
+ ],
+ "operations": [
+  "Run the engine, MCP servers, analytics service, Postgres, Redis and n8n on Railway, the analytics dashboard on Netlify, and DNS through Cloudflare.",
+  "Keep a public status page for NoteBot.",
+  "Took a MySQL backup before moving analytics to Postgres.",
+  "Measured v1 against v2 on the live deployment: about 85 ms cold and about 72 ms warm from Redis, network included.",
+  "Log tool calls and auth events as structured JSON on the MCP servers."
+ ],
+ "ai": [
+  "Use a Claude Code routine to file student notes, but keep a human merge as the only way to publish.",
+  "Give the agent a written rulebook and a content map instead of letting it infer structure from cryptic file names.",
+  "Commit the pending queue to the repo before the agent runs, because the agent's sandbox can only reach GitHub.",
+  "Let the client model do OCR on scanned notices by passing it the image, instead of running OCR on the server.",
+  "Build TexGPT on a managed RAG index and cap daily messages per user to control cost.",
+  "Return readable errors from every MCP tool instead of throwing, so the assistant can explain an outage to the student.",
+  "Keep TexGPT out of the public MCP server."
+ ]
+}

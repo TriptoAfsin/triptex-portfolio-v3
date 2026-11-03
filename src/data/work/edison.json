@@ -1,0 +1,69 @@
+{
+ "company": "Edison Communication Ltd.",
+ "role": "Frontend Developer",
+ "period": "Jun 2023 - Apr 2024",
+ "summary": "I worked on the frontend of WebManza, a drag-and-drop builder that lets merchants set up an online store without code. Besides the builder, I set up the WebManza blog and portfolio site and a merchant sign-up landing page for a partner campaign.",
+ "projects": [
+  {
+   "title": "WebManza Store Builder",
+   "ownership": "Contributor",
+   "what": "A drag-and-drop e-commerce builder where merchants assemble a storefront from ready-made sections. I worked on the Next.js frontend of the builder and the stores it produces.",
+   "built": [
+    "Worked on the storefront section library: banners, parallax heroes, category grids, product sliders, testimonials, blog and service blocks.",
+    "Moved storefront pages to server-side rendering in Next.js so search engines could index store content.",
+    "Moved data fetching to Redux RTK Query so repeated requests were cached instead of sent again.",
+    "Built data hooks for products and campaign products used by the storefront sections."
+   ],
+   "stack": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Redux Toolkit",
+    "RTK Query",
+    "Tailwind CSS",
+    "React Bootstrap"
+   ]
+  },
+  {
+   "title": "WebManza Blog and Portfolio Site",
+   "ownership": "Sole engineer",
+   "what": "WebManza needed a blog and portfolio site. I built it on top of the store builder's section library so it shared the same look and components.",
+   "built": [
+    "Set up the project from the storefront codebase and removed everything not needed for a blog.",
+    "Built blog listing and detail layouts with a mobile sidebar and a table layout for posts.",
+    "Built a hero handler for blog pages and a new team card that supports four-column grids.",
+    "Added fade and hover animations for blog cards and tuned slider settings.",
+    "Fixed mobile issues with images inside text blocks and social share icons."
+   ],
+   "stack": [
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+    "React Bootstrap",
+    "Redux",
+    "i18next"
+   ]
+  },
+  {
+   "title": "Merchant Sign-up Landing Page",
+   "ownership": "Contributor",
+   "what": "A landing page for a partner campaign that invited merchants to open a WebManza store, with pricing, FAQ, merchant agreement and a get-started flow.",
+   "built": [
+    "Set up the Next.js App Router project for the landing page.",
+    "Included pages for about, pricing, FAQ, privacy policy and merchant agreement.",
+    "Included a contact API route that sends enquiries by email."
+   ],
+   "stack": [
+    "Next.js",
+    "TypeScript",
+    "Sass",
+    "React Bootstrap",
+    "Formik",
+    "Yup",
+    "Nodemailer"
+   ]
+  }
+ ],
+ "operations": [],
+ "ai": []
+}

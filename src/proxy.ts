@@ -1,45 +1,42 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-function acceptsMarkdown(accept: string): boolean {
-  return accept.split(",").some(entry => {
-    const mediaType = entry.trim().split(";")[0].toLowerCase();
-    return mediaType === "text/markdown";
-  });
+const LINKS = [
+  '</llms.txt>; rel="describedby"; type="text/plain"',
+  '</agents.md>; rel="describedby"; type="text/markdown"',
+  '</sitemap.xml>; rel="sitemap"; type="application/xml"',
+].join(", ");
+
+function wantsMarkdown(accept: string) {
+  return accept.split(",").some(e => e.trim().split(";")[0].toLowerCase() === "text/markdown");
 }
 
-export async function proxy(request: NextRequest) {
-  if (request.nextUrl.pathname !== "/") {
-    return NextResponse.next();
-  }
+/**
+ * Markdown for agents:
+ * - /writing/<slug>.md          -> the article as markdown
+ * - Accept: text/markdown on /  -> /llms.txt
+ * - Accept: text/markdown on /writing/<slug> -> the article as markdown
+ */
+export function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const md = pathname.match(/^\/writing\/([a-z0-9-]+)\.md$/);
+  if (md) return NextResponse.rewrite(new URL(`/md/writing/${md[1]}`, request.url));
 
   const accept = request.headers.get("accept") ?? "";
-
-  if (!acceptsMarkdown(accept)) {
-    const response = NextResponse.next();
-    response.headers.set("Vary", "Accept");
-    return response;
+  if (wantsMarkdown(accept)) {
+    if (pathname === "/") return withLinks(NextResponse.rewrite(new URL("/llms.txt", request.url)));
+    const post = pathname.match(/^\/writing\/([a-z0-9-]+)$/);
+    if (post) return withLinks(NextResponse.rewrite(new URL(`/md/writing/${post[1]}`, request.url)));
+    if (pathname === "/writing") return withLinks(NextResponse.rewrite(new URL("/llms.txt", request.url)));
   }
+  return withLinks(NextResponse.next());
+}
 
-  const markdownUrl = new URL("/llms.txt", request.nextUrl.origin);
-  const upstream = await fetch(markdownUrl, {
-    headers: { accept: "text/plain" },
-  });
-  const body = await upstream.text();
-
-  return new Response(body, {
-    status: 200,
-    headers: {
-      "Content-Type": "text/markdown; charset=utf-8",
-      "Vary": "Accept",
-      "Cache-Control": "public, max-age=300",
-      "Link": [
-        '</llms.txt>; rel="describedby"; type="text/plain"',
-        '</sitemap.xml>; rel="sitemap"; type="application/xml"',
-      ].join(", "),
-    },
-  });
+function withLinks(res: NextResponse) {
+  res.headers.set("Vary", "Accept");
+  res.headers.set("Link", LINKS);
+  return res;
 }
 
 export const config = {
-  matcher: ["/"],
+  matcher: ["/", "/writing", "/writing/:path*"],
 };

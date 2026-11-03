@@ -1,0 +1,160 @@
+{
+ "company": "REDQ Technologies Ltd.",
+ "role": "Software Engineer",
+ "period": "Apr 2024 - Present",
+ "summary": "I am the main author of the AI engines behind two REDQ products: TrueBeep, a marketing platform for e-commerce and local businesses, and PROA, a multi-tenant ERP. I also write a large share of the TrueBeep web app and its job processor, from inbox and campaigns to the workflow builder and the MCP server that lets ChatGPT and Claude work inside a TrueBeep account.",
+ "projects": [
+  {
+   "title": "TrueBeep AI Engine",
+   "ownership": "Lead engineer",
+   "what": "A Python service that holds every AI feature in TrueBeep: the in-app Copilot, the agent that answers customer messages on its own, content checks, image generation and workflow generation. I wrote most of it, from the first content validation endpoint to the routing layer that keeps each request on the cheapest model that can handle it.",
+   "built": [
+    "Built the Copilot, a streaming business assistant that reads a team's campaigns, customers, analytics, billing and docs through tools, and renders answers as KPI cards, sortable tables, content suggestions and campaign forms.",
+    "Built a tiered intent router that classifies each message, then loads only the instruction modules, tools and model that intent needs, falling back from a typed decision call to a small chat model to regex keywords.",
+    "Built an auto-reply agent for the unified inbox that answers customers with business documents and history, fills the team's forms from the conversation, adds new contact channels, and flags a human when it should not answer.",
+    "Built two-layer memory: a token-capped Redis window of recent turns that drops filler like 'ok' and 'thanks', and long-term memory in ChromaDB with embeddings kept in a separate collection per team.",
+    "Built document retrieval: PDF, CSV, Markdown and text parsers, Mistral OCR for scanned documents and invoices, chunking and embeddings into ChromaDB, and an LLM reranker before answering.",
+    "Built a conversation evaluator that scores agent replies with sentiment, strengths and weaknesses, which the web app shows as auto-reply analytics.",
+    "Built content scans for email, social posts and SMS/WhatsApp messages that check spam signals, phishing patterns, platform rules and unsubscribe links, and return scored suggestions.",
+    "Built image generation and editing across OpenAI and several FAL models, with next-edit suggestions, per-image cost lookups and upload to Cloudflare R2.",
+    "Built workflow generation that turns a plain request into a valid automation graph (triggers, conditions, delays, email, SMS, WhatsApp, tag and webhook steps) and can edit an existing one.",
+    "Built Redis-backed stream buffering so a Copilot reply that is cut off by a crash or deploy can be recovered instead of lost."
+   ],
+   "stack": [
+    "Python",
+    "FastAPI",
+    "OpenAI Agents SDK",
+    "OpenAI API",
+    "ChromaDB",
+    "Redis",
+    "PostgreSQL",
+    "Mistral OCR",
+    "FAL",
+    "tiktoken",
+    "Tinybird",
+    "Docker"
+   ]
+  },
+  {
+   "title": "TrueBeep Web App",
+   "ownership": "Lead engineer",
+   "what": "The main TrueBeep dashboard where businesses manage customers, campaigns, loyalty, social posts, the inbox and AI settings. I have been one of its core engineers since May 2024.",
+   "built": [
+    "Built the media manager with folders, Unsplash and Google Drive pickers, bulk actions and per-team storage quotas.",
+    "Built the unified inbox for Messenger, Instagram and WhatsApp with real-time updates over WebSockets, unread counts, attachments, story mentions and pause or resume controls for the AI auto-reply.",
+    "Built the AI screens: the Copilot chat with threads, to-dos, suggestions and feedback, AI document management, auto-reply analytics, and AI email and social scan modals inside the content editors.",
+    "Built a visual workflow builder with triggers, conditions, version history, undo and redo, test runs, execution logs, a template library with AI suggestions and an 'Edit with AI' mode.",
+    "Built coupons and loyalty: unique coupon codes, redemption analytics, loyalty points on customer profiles and a wallet pass script for storefronts.",
+    "Built the billing pieces: plans, a free plan, balance checks before campaigns and image generation, pending cost tracking and member add-ons.",
+    "Built social publishing editors with platform limits for X threads, LinkedIn, YouTube Shorts and Instagram Reels, plus social analytics views.",
+    "Built email setup with domain verification, SES configuration and double opt-in, and SMS 10DLC compliance checks.",
+    "Built the OAuth 2.1 server and AI Assistants settings that let ChatGPT, Claude and Codex connect to a TrueBeep account over MCP.",
+    "Fixed security issues from an internal review by scoping team data on every query and removing raw SQL sorting."
+   ],
+   "stack": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Drizzle ORM",
+    "PostgreSQL",
+    "TanStack Query",
+    "Lucia",
+    "Stripe",
+    "Socket.IO",
+    "Tailwind CSS",
+    "AWS S3",
+    "AWS SES"
+   ]
+  },
+  {
+   "title": "TrueBeep Processor, Public API and MCP Server",
+   "ownership": "Contributor",
+   "what": "The event-driven backend that runs campaigns, webhooks, social posting, analytics sync and workflows. I am its third largest contributor and I built its MCP server and public API.",
+   "built": [
+    "Built the MCP server with read tools for coupons, wallet cards, interactions, opt-in pages and connections, and write tools for drafts, content, tags, coupons and opt-in pages.",
+    "Added server-enforced confirmation for destructive tools and an SSRF guard after a pre-release security test of the MCP server.",
+    "Built public /v1 endpoints for workflows, campaigns and contents, and wrote their reference pages on the docs site.",
+    "Built the workflow interpreter with cron lifecycle, segment conditions, birthday triggers, API call, tag and update-field steps.",
+    "Built X/Twitter and YouTube posting and analytics processors, LinkedIn comment posting with retries, and hourly social analytics refresh.",
+    "Built WhatsApp opt-in verification, coupon code generation through loyalty queue events, and React Email templates for notifications."
+   ],
+   "stack": [
+    "TypeScript",
+    "Express",
+    "BullMQ",
+    "Redis",
+    "PostgreSQL",
+    "Socket.IO",
+    "MCP SDK",
+    "AWS SES",
+    "React Email"
+   ]
+  },
+  {
+   "title": "PROA Brain",
+   "ownership": "Lead engineer",
+   "what": "The AI engine for the PROA ERP, started in January 2026 from the TrueBeep engine. I restructured it for ERP use and added smart routing and modular instructions for the PROA Copilot.",
+   "built": [
+    "Restructured the engine for PROA and removed marketing-only parts.",
+    "Added the tiered intent router and modular instruction builder so the PROA Copilot loads only the tools and prompt sections a request needs.",
+    "Kept document retrieval with ChromaDB, reranking and Mistral OCR parsing for ERP documents.",
+    "Kept short-term Redis memory and long-term vector memory for Copilot threads.",
+    "Kept web search and documentation search tools for the Copilot."
+   ],
+   "stack": [
+    "Python",
+    "FastAPI",
+    "OpenAI Agents SDK",
+    "ChromaDB",
+    "Redis",
+    "PostgreSQL",
+    "Mistral OCR"
+   ]
+  },
+  {
+   "title": "PROA ERP: Projects, Contracts and Invoice OCR",
+   "ownership": "Contributor",
+   "what": "PROA is a multi-tenant ERP covering accounting, procurement, HR, projects and more. I worked mainly on project management and donor contracts, plus OCR for invoices.",
+   "built": [
+    "Integrated Mistral OCR to turn uploaded invoices into structured data with vendor, line items and validation.",
+    "Built project configuration: project levels, budget categories, activities, creatable tags and project code generation.",
+    "Built strategy revisions that clone outcomes and KRA targets, plus donor indicators and a disaggregation model for KRA targets.",
+    "Built donor contract features: version control for revisions, milestones and deliverables with payment percentages, and donor pledge activation on approval.",
+    "Built cost recovery with budget line selection and validation, and synced project commitment and spent values across payments, purchase invoices and blanket orders.",
+    "Built project closure readiness checks, deadline notifications and delayed approval notifications.",
+    "Built project analytics and outcome exports to Excel and PDF, and carbon footprint reporting in project summaries."
+   ],
+   "stack": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "PostgreSQL",
+    "Drizzle ORM",
+    "ORPC",
+    "BullMQ",
+    "Mistral OCR"
+   ]
+  }
+ ],
+ "operations": [
+  "Added structured JSON logging for Datadog and OpenTelemetry/Logfire instrumentation to the AI engine.",
+  "Kept the AI engine's Docker image and pinned dependencies current, including pinning FastAPI after a release broke tracing.",
+  "Updated the Node.js runtime in the web app's Dockerfile and AWS deploy workflow to fix a keep-alive regression.",
+  "Migrated AI call sites off OpenAI models scheduled for shutdown.",
+  "Wrote database migrations for AI conversations, Copilot threads, feedback, workflows and the MCP OAuth tables.",
+  "Wrote docs site sections for the Forms, Analytics, Workflows and Content APIs and the MCP setup guide."
+ ],
+ "ai": [
+  "Route each Copilot message by intent and complexity, then load only the matching instruction modules and tools, which keeps prompts short and puts simple requests on a smaller model.",
+  "Use a typed decision call for routing and reranking, with a chat model and then regex keywords as fallbacks, and skip the decision tier for a cooldown when it keeps failing instead of failing every message.",
+  "Track token usage and cost per agent run, record it against the team, and check the team's balance before auto-replies, image generation and campaigns.",
+  "Cache Copilot to-do suggestions in team metadata so they are not regenerated on every visit.",
+  "Keep short-term memory under a token budget and filter trivial messages before they take up context.",
+  "Isolate each team's vectors in its own ChromaDB collection.",
+  "Retrieve, then rerank chunks with an LLM before answering from business documents.",
+  "Give the auto-reply agent a human handover tool so it can stop and flag a person instead of guessing.",
+  "Build instructions at request time from the team's profile, timezone, branding, connections and email settings.",
+  "Guard against prompt injection in base instructions, and validate generated workflow graphs against the same node kinds the engine can run.",
+  "Score agent conversations with a fixed-temperature LLM evaluator for strengths, weaknesses and sentiment."
+ ]
+}

@@ -1,0 +1,39 @@
+{
+ "company": "BRAC",
+ "role": "Frontend Engineer (part-time), SDP program",
+ "period": "Mar 2023 - May 2025",
+ "summary": "I built the frontend of an internal operations platform for a BRAC program, working part-time alongside one backend engineer. Staff use it to sign up and get approved, manage projects, branches and learner cohorts, and send official requests through approval chains that end in a signed Bangla PDF..",
+ "projects": [
+  {
+   "title": "Program Operations Platform",
+   "ownership": "Lead engineer",
+   "what": "Program staff used to handle sign-ups, project records and approval paperwork by hand. The platform puts users, projects, cohorts, budgets and approvals in one place and generates the final documents as PDFs.",
+   "built": [
+    "Built login with email and Google, sign-up requests, OTP password reset and a profile completion step for new users.",
+    "Built user management: an all-users table with search and filters, a pending-users approval queue, a small dashboard, user detail pages and admin password resets.",
+    "Built role-based access with a role guard used across pages and actions, and later reworked role management with new roles and designations.",
+    "Built the approval system: create, edit and track requests, see pending and 'my approvals' tabs, search them, and view approval history and comments with file uploads.",
+    "Built ten approval form types, including invoice, discount for learners with disabilities, reimbursement and transfer bills, unpaid leave, insufficient learner enrollment and orientation requests.",
+    "Built Bangla PDF generation for approvals with BRAC branding, Bangla numerals and dates, PDF preview with fallback, and e-signature upload placed on the document.",
+    "Built project management for areas, branches and projects, with cohort lists, cohort details and cohort updates per project.",
+    "Built project budgets and expenditure tracking by year and cohort, plus research document uploads.",
+    "Built Excel exports for users, projects and cohorts with formatting and a watermark.",
+    "Built location dropdowns for division, district and upazila, a rich text editor, and responsive layouts for phones and tablets."
+   ],
+   "stack": [
+    "Next.js",
+    "React",
+    "Material UI",
+    "Tailwind CSS",
+    "TanStack Query",
+    "React Hook Form",
+    "Yup",
+    "React PDF",
+    "ExcelJS",
+    "Axios"
+   ]
+  }
+ ],
+ "operations": [],
+ "ai": []
+}

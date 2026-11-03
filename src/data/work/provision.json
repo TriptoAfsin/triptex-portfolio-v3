@@ -1,0 +1,499 @@
+{
+ "company": "Provision Capital",
+ "role": "Senior Full Stack Engineer",
+ "period": "Apr 2024 – now",
+ "summary": "I build and run the internal software for Provision Capital and the companies it works with: a seminary's learning platform, a property management company's operating system, an investor platform, an acquisitions tool, and inventory and ordering for a coffee company. Most of these I built alone, from the database schema up to the Railway deploys, backups and on-call fixes. Since mid 2026 a lot of that work has been AI features that have to stay correct and cheap: model routing, prompt caching, spend limits, and MCP access so staff can use Claude or ChatGPT against their own data.",
+ "projects": [
+  {
+   "title": "Seminary learning platform",
+   "client": "a seminary",
+   "ownership": "Sole engineer",
+   "period": "Jul 2026 – Oct 2026",
+   "what": "The seminary ran attendance, grades and materials across Canvas, an attendance app, Zoom and spreadsheets. I built one platform that owns all of that data, syncs both ways with Canvas, and is designed so Canvas can be retired later without a data migration.",
+   "built": [
+    "Passwordless, invite-only sign-in (email code, magic link, Microsoft SSO) with custom roles, per-permission RBAC, read-only 'view as' for support, session management and sign-in rate limits sized for a classroom behind Railway's proxy.",
+    "A Canvas integration behind an adapter: resumable background import of courses, pages, files, grades and submissions, nightly resync, roster drops logged per student, and preview-then-confirm pushes of grades and attendance back to Canvas.",
+    "Attendance with Zoom integration, campus geofenced check-in, auto-closing registers, absence limits per class, and an appeals and accommodations workflow for students and staff.",
+    "An assessment engine with nine question kinds including Arabic grammar markup, part marks, scheduled publishing and mark release, a speed grader, analytics, and grades that flow into the gradebook and Canvas.",
+    "AI grading with Claude that sends only the questions a human would have to mark, scales its token budget to that count, and raises a clear truncation error instead of a misleading parse failure (found on a 62-question paper, per the commit).",
+    "AI tools for teachers: question generation for every kind, Arabic paper transcription checked against the seminary's own grammar vocabulary, workbook drill generation, and schedule PDF import that drops low-confidence rows into a review mapper.",
+    "A staff AI assistant with read tools scoped to each person's role and courses, and write tools that only propose a change; the person reviews and edits a card, then the page's own server action runs as them.",
+    "Messaging, announcements, real-time notifications over SSE, a recycle bin, data cleanup with previews, a searchable audit log, and a system-failures view that emails the tech team when a Canvas sync fails.",
+    "Moved the project from ad-hoc schema pushes to versioned Drizzle migrations applied on deploy, with guards that block destructive changes and a drift check that found staging was missing all 59 tables (per the commit)."
+   ],
+   "stack": [
+    "Next.js 16",
+    "React 19",
+    "TypeScript",
+    "Postgres",
+    "Drizzle ORM",
+    "better-auth",
+    "Redis",
+    "Cloudflare R2",
+    "Resend",
+    "Claude API",
+    "Canvas API",
+    "Zoom API",
+    "PostHog",
+    "Railway"
+   ]
+  },
+  {
+   "title": "Institute operations hub",
+   "client": "a seminary's parent institute (all staff teams)",
+   "ownership": "Sole engineer",
+   "period": "Jun 2026 – Oct 2026",
+   "what": "Every team at the institute tracked requests in ClickUp, Slack, WhatsApp and email. I built a shared hub where tickets, tasks and room bookings all hang off the program or event they belong to, then folded the separate facility app into it.",
+   "built": [
+    "A facility app first (tickets, spaces, bookings, inventory) with automatic emails to the submitter on every status change, later migrated into the hub in phases without losing its data.",
+    "Events and programs as the central record: room requests with headcount, setup crews, a two-week change lock, readiness checks, recurring series, templates and bulk month imports.",
+    "Team workspaces with their own statuses, ticket forms, boards, SLAs in business days, goals with dependency timelines, projects, meeting minutes and per-team branding.",
+    "A capital projects module with a board governance workflow, bid levelling and funding targets for the facilities team.",
+    "Two-way Google Calendar sync, profile photos on R2, CSV import with column mapping, and a crew setup sheet for workers without a Hub account.",
+    "Single sign-on across the seminary platform and the hub using one shared auth schema in the same Postgres, with a check script that catches drift between apps.",
+    "A 'Report a problem' and 'Request a feature' inbox fed by every app in the family and filed into the project tracker.",
+    "The same role-aware AI assistant and API key system as the seminary platform, ported so both apps share one tool registry pattern."
+   ],
+   "stack": [
+    "Next.js 16",
+    "React 19",
+    "TypeScript",
+    "Postgres",
+    "Drizzle ORM",
+    "better-auth",
+    "Redis",
+    "Cloudflare R2",
+    "Resend",
+    "Google Calendar API",
+    "Railway"
+   ]
+  },
+  {
+   "title": "Shared notification service and AI/MCP gateway",
+   "client": "a seminary's app family",
+   "ownership": "Sole engineer",
+   "period": "Jul 2026 – Oct 2026",
+   "what": "Several apps needed notifications, email, scheduled jobs and, later, a safe way for AI tools to reach their data. I built one processor service that does all of it for every app.",
+   "built": [
+    "Notification fan-out (in-app row, SSE push across replicas over Redis pub/sub, optional branded email per opted-in recipient) with duplicate protection on retries.",
+    "BullMQ scheduling that drives each app's cron endpoints, plus one-off timed callbacks, with every job's lifecycle recorded in Postgres and a retention sweep.",
+    "Health and readiness endpoints that actually query Postgres and Redis, constant-time API key checks, and a split API or worker role per deploy.",
+    "A REST API and MCP server for all apps: hashed API keys, per-key limits, HMAC-signed forwarding so each app runs a tool with the caller's own permissions.",
+    "An OAuth 2.1 authorization server so Claude.ai, Claude Desktop and ChatGPT connectors can sign in, including Client ID Metadata Documents.",
+    "Usage endpoints (calls, errors, denials, p95 latency by day, key, user or tool) and a 10-minute alert job that flags unusual use such as token reuse.",
+    "A public docs site, OpenAPI spec and a self-updating agent skill generated from the tool catalogue, with end-to-end tests in Docker against throwaway Postgres and Redis."
+   ],
+   "stack": [
+    "Node.js",
+    "Express",
+    "BullMQ",
+    "Redis",
+    "Postgres",
+    "Resend",
+    "MCP",
+    "OAuth 2.1",
+    "Docker",
+    "Railway"
+   ]
+  },
+  {
+   "title": "Property management operating system",
+   "client": "a property management company",
+   "ownership": "Sole engineer",
+   "period": "Oct 2026 – Nov 2026",
+   "what": "The company's work lived across AppFolio, spreadsheets and Slack. I built a staff console, processor and AI agent that bring properties, money, people and field work into one place, with access rules enforced in the database.",
+   "built": [
+    "A foundation with email-code sign-in, fine-grained permissions, custom roles and Postgres row-level security, plus a deploy step that refuses to ship if any table is missing RLS.",
+    "Operational applets for properties and multi-unit buildings, work orders, inspections, field tech day plans, listings, move-ins, renewals and vendor onboarding.",
+    "Money applets for expenses and cards, bills with duplicate detection, rent and delinquency, owner payouts, and property taxes, insurance and loans with nightly due-date alerts.",
+    "People, onboarding and offboarding, time and mileage, and an interactive org chart, with HR data locked down like investor money at the database level.",
+    "Integrations with AppFolio (OAuth client credentials, work order creation, address matching with Jev), BambooHR, Boom showings and Slack DM alerts.",
+    "An import wizard for any applet that does a real run rolled back first, then the real import, and CSV exports that read through each screen's own service.",
+    "An AI assistant with generative UI record cards, role-based actions through a console action bridge, web search with source cards, and REST and MCP access over the same access model.",
+    "Fixed a subtle bug where activity logging committed the caller's transaction early and let later writes run outside RLS, by switching to explicit savepoints."
+   ],
+   "stack": [
+    "Next.js 16",
+    "TypeScript",
+    "Postgres (RLS)",
+    "Drizzle ORM",
+    "better-auth",
+    "Redis",
+    "BullMQ",
+    "Express",
+    "Cloudflare R2",
+    "Resend",
+    "Claude API",
+    "Jev (TypeSafe)",
+    "AppFolio API",
+    "Slack API",
+    "Railway"
+   ]
+  },
+  {
+   "title": "Investor relations platform",
+   "client": "a real estate investment firm's investor platform",
+   "ownership": "Contributor",
+   "period": "Jul 2026 – Nov 2026",
+   "what": "A CRM and investor portal for the firm's investor relations team. I set up the project and its processor, built the lead pipeline and auth pieces, and later handled backups and security hardening.",
+   "built": [
+    "The initial Next.js and Postgres project, the drizzle migration runner, and a separate processor service with BullMQ queues and Postgres job tracking.",
+    "CSV and Clay lead imports with custom fields, a public lead API with idempotent upserts that merge on email or phone, and bulk enrichment with rate limits.",
+    "Engagement scoring from email events (Resend webhooks verified with Svix), with a score breakdown staff can read.",
+    "Investor sync from the central data warehouse with dry runs, cooldowns and stale-job handling.",
+    "Passkey sign-in (Face ID, Touch ID, Windows Hello), staff sessions that end after 8 hours idle or 24 hours, hashed one-time codes, and stricter rate limits.",
+    "Nightly off-platform backups of the app and ledger databases to R2 with checksums, a restore check before upload, bucket-level retention and lock, and a monthly restore drill script.",
+    "Heartbeat pings to an uptime monitor after each scheduled job, a health check that returns 503 when Postgres or Redis is down, and weekly grouped dependency updates."
+   ],
+   "stack": [
+    "Next.js 16",
+    "TypeScript",
+    "Postgres",
+    "Drizzle ORM",
+    "better-auth",
+    "BullMQ",
+    "Redis",
+    "Resend",
+    "Cloudflare R2",
+    "Railway"
+   ]
+  },
+  {
+   "title": "Distressed property analyzer",
+   "client": "an acquisitions team",
+   "ownership": "Lead engineer",
+   "period": "Jun 2026 – Oct 2026",
+   "what": "The team needed to find distressed homes quickly from MLS and CRM data and send offers. I built a private tool that scores listing photos with a vision model, mirrors the MLS feed, and drafts and sends contract offers.",
+   "built": [
+    "AI distress scoring of listing photos on a 1 to 10 scale, with a fallback to the MLS photo feed when a CDN blocks the model's fetcher.",
+    "A nightly MLS mirror with remarks search, a distress keyword score, and auto-import of listings that match three or more distress words.",
+    "Salesforce and email intake with cursor-based sync, Zillow and asking-price enrichment, price-drop tracking and an underwriting panel.",
+    "Contract PDF generation with the right addenda, an offer email composer with attachments, and a guard that refuses an offer letter that greets the owner instead of the listing agent.",
+    "An Offers board synced from Gmail labels through an n8n workflow that respects API quotas.",
+    "A chat assistant over the property database with tiered model routing, file attachments, hourly rate limits and paginated threads.",
+    "Per-user accounts with email codes, passwords, invites and roles, and a fix that put every API route behind a session or token.",
+    "Runs on Cloudflare Pages Functions, D1 and queues, with a background worker and cron for sync and analysis."
+   ],
+   "stack": [
+    "React",
+    "Vite",
+    "Cloudflare Pages",
+    "Cloudflare D1",
+    "Cloudflare Workers",
+    "Claude API",
+    "OpenAI vision",
+    "Salesforce API",
+    "MLS RETS feed",
+    "Resend",
+    "n8n"
+   ]
+  },
+  {
+   "title": "Inventory and ordering system",
+   "client": "a multi-location coffee company",
+   "ownership": "Sole engineer",
+   "period": "Apr 2026 – Oct 2026",
+   "what": "Store inventory and ordering ran on a set of Google Sheets. I replaced them with a multi-location app that drives count, order, receive and reconcile, and later added syrup production and warehouse tracking.",
+   "built": [
+    "Count, order and receive cycles per location and supplier, par requests with bulk approval, and orders as PDF or CSV.",
+    "Email and Slack notification routes with test sends, and role-based dashboards that show each person what needs them.",
+    "A syrup production module with recipes, lot numbers per labelled box, QR case labels, scan-to-tick delivery checklists and weekly COGS statements.",
+    "Packing slip scanning that records who packed each order and how long it took, and production confirmation of deliveries.",
+    "Warehouse pars, kitchen orders by scanning case labels, and a daily Shopify sync for new products and sales.",
+    "End-of-week manager reports, a bar evaluation scorecard, in-app help, feedback to the admin inbox, and email-code sign-in.",
+    "Its own migration runner on Railway pre-deploy and a Friday COGS cron that posts exactly once in any season."
+   ],
+   "stack": [
+    "Next.js 16",
+    "React 19",
+    "TypeScript",
+    "Postgres",
+    "Drizzle ORM",
+    "Better Auth",
+    "Resend",
+    "Slack API",
+    "Shopify API",
+    "React-PDF",
+    "Railway"
+   ]
+  },
+  {
+   "title": "Café operations data warehouse and MCP server",
+   "client": "a multi-location coffee company",
+   "ownership": "Lead engineer",
+   "period": "Jun 2026 – Oct 2026",
+   "what": "Sales, accounting and online store data sat in three separate systems. I built a nightly pipeline into one Postgres warehouse with clean reporting tables and a read-only AI interface.",
+   "built": [
+    "Meltano pipelines for Shopify and QuickBooks, and a custom Singer tap for Toast with restaurant partitioning and incremental streams.",
+    "dbt models that turn raw tables into KPI and finance marts, with data quality notes on the raw tables.",
+    "Token refresh for QuickBooks persisted in Postgres, incremental windows to cut nightly run time, and a pipeline run history table.",
+    "A read-only MCP and REST server over the warehouse with key management and OAuth 2.1 for Claude.ai and ChatGPT connectors.",
+    "A QuickBooks write API for an n8n receipt workflow, including vendor coding history and HEIC receipt conversion.",
+    "Error alerts by email for the pipeline and the MCP server."
+   ],
+   "stack": [
+    "Python",
+    "Meltano",
+    "Singer",
+    "dbt",
+    "Postgres",
+    "FastMCP",
+    "Docker",
+    "Railway"
+   ]
+  },
+  {
+   "title": "Café ordering mobile app",
+   "client": "a multi-location coffee company",
+   "ownership": "Lead engineer",
+   "period": "Aug 2026 – Oct 2026",
+   "what": "A customer ordering app with an admin panel for menu and home screen content.",
+   "built": [
+    "A mobile app with guest ordering as the main path and optional email-code sign-in.",
+    "Stripe payments wired end to end but gated off by server config until approved, and Shopify checkout for shipped goods.",
+    "An admin panel with orders, item reordering, a curated home carousel, charts, password resets and hero photo cropping.",
+    "Photo uploads to R2 through a proxy after deciding presigned uploads were unsafe for this setup.",
+    "Research and write-ups on the point-of-sale vendor's order injection access and on moving the app to new store developer accounts."
+   ],
+   "stack": [
+    "Expo",
+    "React Native",
+    "Node.js",
+    "Stripe",
+    "Shopify API",
+    "Cloudflare R2"
+   ]
+  },
+  {
+   "title": "SynTech Suite: CRM, project management and docs",
+   "client": "SynTech Consulting",
+   "ownership": "Sole engineer",
+   "period": "Sep 2026 – Oct 2026",
+   "what": "SynTech Consulting wanted its own branded CRM and project tracker that it could also deploy for clients. I packaged open source Twenty and Plane with a branding layer, one-click Railway templates and the glue between them.",
+   "built": [
+    "Runtime branding layers over the official Twenty and Plane images (names, logos, emails, links), driven by environment variables so a client brand is a restart away.",
+    "Railway templates that deploy the full stack (Postgres, Redis, queues, object storage) with fresh secrets.",
+    "A PM sync service that hands won deals to the project tracker and syncs delivery progress back to the CRM.",
+    "CRM extensions: public web forms with a design editor, lead scoring rules stored as CRM records, quotes clients can accept or decline, and sales forecasting.",
+    "Time tracking and an MCP server for the project tracker with OAuth for ChatGPT and Claude connectors.",
+    "An end-to-end test suite on a local stack and a CI gate before deploy, plus a docs site with scoped search and product screenshots."
+   ],
+   "stack": [
+    "Twenty CRM",
+    "Plane",
+    "Docker",
+    "Node.js",
+    "Next.js",
+    "MCP",
+    "Postgres",
+    "Redis",
+    "Railway"
+   ]
+  },
+  {
+   "title": "Rental marketing pages and leasing automation",
+   "client": "a property management company",
+   "ownership": "Sole engineer",
+   "period": "Apr 2026 – Oct 2026",
+   "what": "Ad traffic needed to turn into qualified tours, and the construction team needed to know about move-outs early. I built the landing pages and the automation that feeds both into the property system and Slack.",
+   "built": [
+    "Ad landing pages with a pre-qualification form that creates a guest card in AppFolio and hands qualified visitors off to schedule a tour.",
+    "Per-property pages that read live rent and listings from AppFolio, with a generated listing registry refreshed daily.",
+    "Meta Pixel and per-building conversion events, with a fix for a race that was dropping conversions on the thank-you page.",
+    "A move-out notifier that scans AppFolio, dedupes in Postgres, routes each move-out to a Slack channel by portfolio, and threads a follow-up when the date changes or the notice is canceled.",
+    "Multi-unit routing, editable Slack message templates, and a cron health panel."
+   ],
+   "stack": [
+    "Next.js 16",
+    "TypeScript",
+    "Postgres",
+    "Drizzle ORM",
+    "AppFolio API",
+    "Slack API",
+    "Resend",
+    "Railway"
+   ]
+  },
+  {
+   "title": "Lab management system and lab website",
+   "client": "a lab-testing company",
+   "ownership": "Sole engineer",
+   "period": "Sep 2025 – Sep 2026",
+   "what": "The lab needed a system for customers, jobs, samples and invoices, and a website that books appointments and sells tests.",
+   "built": [
+    "A LIMS and ERP with customers, jobs, samples, QC, calibrations, quotes and a test catalogue, plus KPI and revenue dashboards.",
+    "A customer portal with email-code sign-in where clients submit jobs and see reports and invoices.",
+    "Stripe invoicing with webhook handling and product sync, PDF reports, and a Certificate of Analysis builder for several report types.",
+    "Legacy data import scripts and a public leads API.",
+    "A marketing and booking website with an MDX blog, Google Calendar booking, Stripe checkout and structured data, and a separate product shop with a cart."
+   ],
+   "stack": [
+    "Next.js 16",
+    "TypeScript",
+    "Postgres",
+    "Drizzle ORM",
+    "better-auth",
+    "Stripe",
+    "Google Calendar API",
+    "Resend",
+    "TanStack Table",
+    "pdfmake"
+   ]
+  },
+  {
+   "title": "Community center events platform",
+   "client": "community centers (a venture studio product)",
+   "ownership": "Sole engineer",
+   "period": "Sep 2025 – Aug 2026",
+   "what": "A multi-tenant platform for community centers to run events, registrations and memberships, with an admin panel, a public web app and iOS and Android apps.",
+   "built": [
+    "Multi-tenant data isolation with Postgres row-level security and email-code sign-in.",
+    "One-time, recurring and series events with capacity, waitlists, promo codes and feedback.",
+    "Stripe payments and subscriptions with the native payment sheet.",
+    "Push notifications through Firebase and email reminders through a separate BullMQ queue engine with scheduled cleanup.",
+    "An Expo mobile app with onboarding, infinite scrolling lists and session expiry handling, shipped to both stores."
+   ],
+   "stack": [
+    "Next.js",
+    "Supabase",
+    "Postgres (RLS)",
+    "Stripe",
+    "Firebase Cloud Messaging",
+    "Resend",
+    "BullMQ",
+    "Redis",
+    "Expo",
+    "React Native"
+   ]
+  },
+  {
+   "title": "AI support desk",
+   "client": "a venture studio product",
+   "ownership": "Sole engineer",
+   "period": "Sep 2025 – Feb 2026",
+   "what": "A support tool where an AI model triages requests first and hands off to a human through Jira and Slack when needed.",
+   "built": [
+    "AI analysis of incoming support requests and a chat with media attachments.",
+    "Jira connection and sync settings, with asynchronous ticket creation and email through a queue engine.",
+    "Human escalation to Slack, including private DMs, handled after the response is sent so Slack's timeout is met.",
+    "Admin views for threads, tickets (kanban and list) and users, and a move from Cloudinary to R2 for media."
+   ],
+   "stack": [
+    "Next.js",
+    "Supabase",
+    "Jira API",
+    "Slack API",
+    "BullMQ",
+    "Redis",
+    "Cloudflare R2"
+   ]
+  },
+  {
+   "title": "Internal Slack bots and data tools",
+   "client": "Provision Capital (internal)",
+   "ownership": "Contributor",
+   "period": "Jun 2026 – Nov 2026",
+   "what": "Slack bots and admin tools that answer staff questions and run approval workflows against the company's central data.",
+   "built": [
+    "Model routing for the Slack bots: each message goes to Haiku or Sonnet with an effort level chosen by Jev.",
+    "A gift request and approval workflow with approver groups and tracking in the database.",
+    "An acknowledgement letter workflow that runs natively in Slack and files the sent letter in the investor platform.",
+    "A company knowledge tool for SOPs and policies, retry logic for message creation, and an admin dashboard with custom widgets and data roles."
+   ],
+   "stack": [
+    "Node.js",
+    "Slack API",
+    "Claude API",
+    "Jev (TypeSafe)",
+    "Postgres",
+    "Next.js 16"
+   ]
+  },
+  {
+   "title": "Marketing sites and lead capture",
+   "client": "Provision Capital, SynTech Consulting, a venue and other clients",
+   "ownership": "Lead engineer",
+   "period": "Dec 2025 – Nov 2026",
+   "what": "Public websites that capture leads into the right CRM with clean attribution and without bot spam.",
+   "built": [
+    "Lead forms that post into the investor CRM with tags and campaign attribution.",
+    "Cloudflare Turnstile on every form, validating action and hostname and failing closed in production.",
+    "Meta Conversions API from the server, with UTM and click IDs carried through every form, and CRM tour and booking events sent back to Meta.",
+    "Structured data (JSON-LD), Open Graph images and legal pages."
+   ],
+   "stack": [
+    "Next.js 16",
+    "TypeScript",
+    "Tailwind CSS",
+    "Cloudflare Turnstile",
+    "Meta Conversions API",
+    "Resend"
+   ]
+  },
+  {
+   "title": "Renovation budgeting dashboard",
+   "client": "a real estate investment firm",
+   "ownership": "Lead engineer",
+   "period": "Apr 2024 – Jul 2025",
+   "what": "My first major project at the company: an admin dashboard for building and tracking renovation budgets per property.",
+   "built": [
+    "Long and short budget forms with tiers, bundles, cost types, region and percent-of-work validation.",
+    "Budget search and filtering, responsive tables and card layouts for mobile.",
+    "PDF exports of budgets and notes."
+   ],
+   "stack": [
+    "React",
+    "Refine",
+    "TypeScript",
+    "Ant Design"
+   ]
+  },
+  {
+   "title": "Early client products",
+   "client": "venture studio clients",
+   "ownership": "Lead engineer",
+   "period": "Jul 2024 – Feb 2025",
+   "what": "Frontends for a field checklist SaaS and a B2B auction marketplace, plus reusable starter kits for new client MVPs.",
+   "built": [
+    "A checklist and task SaaS with kanban, photo uploads with an image lightbox, assignments, subscriptions and Google sign-up.",
+    "An auction marketplace with SSO, role-based access, auctions, bids, company and partner pages and invoices.",
+    "Next.js and React starter kits with auth, content pagination and static rendering, and an invoice generator."
+   ],
+   "stack": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "React Query",
+    "Ant Design",
+    "Strapi"
+   ]
+  }
+ ],
+ "operations": [
+  "Deployed and ran nearly all of these on Railway, moving service config into infrastructure-as-code and keeping separate staging environments with a visible staging badge and a [STAGING] prefix on outgoing email.",
+  "Replaced schema pushes from laptops with versioned migrations applied as a pre-deploy step, so a failed or destructive migration refuses the deploy instead of shipping code against a stale schema.",
+  "Set up nightly off-platform Postgres backups to R2 with checksums, a pg_restore check before upload, bucket retention and object lock, and a monthly restore drill into a scratch database.",
+  "Added heartbeat monitoring after scheduled jobs, health checks that return 503 when Postgres or Redis is down, readiness probes that exercise the real query path, and cron health panels.",
+  "Built system-failure logs and audit trails into each app, emailed the tech team on failed syncs, and added PostHog (proxied through our own origin) and Microsoft Clarity for product analytics.",
+  "Patched critical Next.js RCE advisories across 20 repos on the same day (Oct 2026, per commits), plus earlier CVE fixes, and set up weekly grouped Dependabot updates.",
+  "Hardened auth across apps: passkeys, idle session limits, hashed one-time codes, constant-time API key checks, Content-Security-Policy headers, Cloudflare Turnstile on public forms, and Postgres row-level security with a deploy check that refuses a table without it.",
+  "Ran async work on BullMQ and Redis processors with every job's lifecycle stored in Postgres, retention sweeps, and SSE fan-out across replicas.",
+  "Wrote an hourly Slack bot that watches the company's AI providers and SaaS vendors for security incidents, and a daily GitHub Actions job that backs up the n8n workflows (126 at first snapshot, per the commit).",
+  "Turned off Turbopack's persistent build cache after it corrupted Railway builds."
+ ],
+ "ai": [
+  "Routed assistant traffic by difficulty instead of using one model: on the seminary platform it is Haiku first and Sonnet at most, with no Opus; on the property system Jev's probabilities decide, with Sonnet at P(complex) of 0.4 or more and Opus only at 0.8 or more, and a bare 'yes' keeps the previous turn's model.",
+  "Benchmarked the router before choosing it: on 30 labelled questions TypeSafe's Jev scored 27/30 at 303 ms median, against 29/30 at 1,481 ms for Haiku as the classifier at about 3.5 times the cost per decision, so Jev stayed, with regex rules as a fallback when it is off, slow or unsure (per the commit).",
+  "Ran Haiku without extended thinking after an A/B on staging: 28/28 correct with thinking off versus 27/28 on, 8% less model time, 10% fewer output tokens and a 6% cheaper median (per the commit).",
+  "Cut the cost of tool-heavy turns on the acquisitions assistant by 48% with prompt caching breakpoints on the newest message and the end of replayed history, plus shaping SQL tool output to a size budget while always reporting the true row count (per the commit).",
+  "Chose not to use server-side tool-result clearing there, because answers built from comps gathered over several rounds need those results and clearing would also break the cache.",
+  "Gave long chats layered memory: Redis holds each chat's ready-to-send history, while context editing clears old tool results past 30K input tokens and compaction summarises past 60K.",
+  "Cached 'Explain with AI' results by a hash of exactly what the model reads, so an explanation is reused until the data changes (19 s fresh versus 2.5 s cached, per the commit), and replaced names with ids so personal data never reaches the model.",
+  "Put spend controls in every assistant: a usage ledger per call, a monthly budget with an 80% notice and a pause at 100%, per-person rate limits on Redis, daily message limits and message length caps.",
+  "Kept AI writes safe: assistants only propose changes, a person reviews and can edit the card, and the app's own server action then runs as that person; API callers can never trigger model spend.",
+  "Exposed app data to Claude.ai, ChatGPT and coding agents through MCP servers with OAuth 2.1, per-tool risk levels, signed forwarding and usage alerts, across the seminary apps, the property system, the PM tool and the coffee company's warehouse.",
+  "Made AI grading and transcription honest: only non-objective answers go to the model, output budgets scale with the work, truncation is reported as truncation, and transcribed grammar keys are validated against the seminary's vocabulary and flagged for review instead of guessed.",
+  "Added prompt-injection defenses: control tags stripped from user text and tool data, suspicious patterns logged and the turn's instructions tightened."
+ ]
+}

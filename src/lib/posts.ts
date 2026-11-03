@@ -23,7 +23,9 @@ const DIR = join(process.cwd(), "content", "writing");
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function parse(file: string): Post {
-  const raw = readFileSync(join(DIR, file), "utf8");
+  const raw = readFileSync(join(DIR, file), "utf8").replace(/
+/g, "
+");
   const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!match) throw new Error(`Missing frontmatter in ${file}`);
   const meta: Record<string, string> = {};

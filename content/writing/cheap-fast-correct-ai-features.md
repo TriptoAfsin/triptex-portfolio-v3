@@ -1,7 +1,7 @@
 ---
 title: "Dynamic model routing: AI that stays cheap, fast and right"
 slug: cheap-fast-correct-ai-features
-date: 2026-07-08
+date: 2026-10-21
 summary: "What I do now to keep production AI features cheap and quick: route by difficulty, cache prompts and results, budget tokens, cap spend, benchmark first."
 readingMinutes: 7
 tags: [ai-engineering, llm-cost, prompt-caching, model-routing, production]

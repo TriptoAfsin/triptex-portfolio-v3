@@ -6,10 +6,10 @@ import { SiteHeader, type SearchItem } from "./site-header";
 
 /** Header (with search index) shared by every page. */
 export function Header() {
-  const sections: [string, string][] = [["What I do", "/#focus"], ["Activity", "/#activity"], ["Work", "/#work"], ["Projects", "/#projects"], ["Writing", "/#writing"], ["Log", "/#log"], ["Education", "/#education"], ["Certifications", "/#certifications"], ["Off the clock", "/#offclock"], ["Contact", "/#contact"]];
+  const sections: [string, string][] = [["What I do", "/#focus"], ["Activity", "/#activity"], ["Work", "/#work"], ["Projects", "/#projects"], ["Blog", "/#blog"], ["Log", "/#log"], ["Education", "/#education"], ["Certifications", "/#certifications"], ["Off the clock", "/#offclock"], ["Contact", "/#contact"]];
   const items: SearchItem[] = [
     ...sections.map(([label, href]) => ({ label, hint: "Section", icon: "i-right" as const, href })),
-    { label: "All writing", hint: "Page", icon: "i-pen", href: "/writing" },
+    { label: "All posts", hint: "Page", icon: "i-pen", href: "/blog" },
     ...getPosts().map(p => ({ label: p.title, hint: p.external ? `Press · ${p.source}` : "Article", icon: "i-pen" as const, href: postHref(p), external: Boolean(p.external), keywords: `${p.slug.replace(/-/g, " ")} ${p.tags.join(" ")}` })),
     { label: "Download resume", hint: "PDF", icon: "i-filedown", href: person.resume, external: true },
     { label: "Email me", hint: person.email, icon: "i-mail", href: person.mailto },
@@ -28,7 +28,7 @@ export function Footer() {
         <a href={person.social.github} target="_blank" rel="noopener"><Icon id="i-gh" fill />GitHub</a>
         <a href={person.social.linkedin} target="_blank" rel="noopener"><Icon id="i-in" fill />LinkedIn</a>
         <a href={person.social.x} target="_blank" rel="noopener"><Icon id="i-x-logo" fill />X</a>
-        <Link href="/writing">Writing</Link>
+        <Link href="/blog">Blog</Link>
       </span>
     </footer>
   );

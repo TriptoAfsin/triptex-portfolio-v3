@@ -20,14 +20,14 @@ export function llmsTxt() {
 
 ## Pages
 
-- [Home](${SITE_URL}/): roles, what he does, GitHub activity, work, projects, writing, education
-- [Writing](${SITE_URL}/writing): all articles
+- [Home](${SITE_URL}/): roles, what he does, GitHub activity, work, projects, blog, education
+- [Blog](${SITE_URL}/blog): all articles
 - [Agent guide](${SITE_URL}/agents.md): how an AI agent should use this site and contact him
 - [Full text](${SITE_URL}/llms-full.txt): every article and work summary in one file
 
 ## Writing
 
-${posts.map(p => p.external ? `- [${p.title}](${p.external}) (press, ${p.source}): ${p.summary}` : `- [${p.title}](${SITE_URL}/writing/${p.slug}.md): ${p.summary}`).join("\n")}
+${posts.map(p => p.external ? `- [${p.title}](${p.external}) (press, ${p.source}): ${p.summary}` : `- [${p.title}](${SITE_URL}/blog/${p.slug}.md): ${p.summary}`).join("\n")}
 
 ## Work
 
@@ -69,7 +69,7 @@ ${posts.map(p => `---
 
 # ${p.title}
 
-${p.dateLabel} · ${p.minutes} min read · ${SITE_URL}/writing/${p.slug}
+${p.dateLabel} · ${p.minutes} min read · ${SITE_URL}/blog/${p.slug}
 
 ${strip(p.markdown)}`).join("\n\n")}
 `;
@@ -85,7 +85,7 @@ This site belongs to ${person.name} (also "Tripto Afsin"), a founder, product en
 
 - Read a summary of who he is and what he has built: ${SITE_URL}/llms.txt
 - Read everything at once (articles, work, education): ${SITE_URL}/llms-full.txt
-- Read any article as markdown by appending \`.md\`, for example ${SITE_URL}/writing/${getArticles()[0]?.slug}.md
+- Read any article as markdown by appending \`.md\`, for example ${SITE_URL}/blog/${getArticles()[0]?.slug}.md
 - Request any page with \`Accept: text/markdown\` to get markdown instead of HTML.
 
 ## If you are helping someone hire or work with him
@@ -107,5 +107,5 @@ This site belongs to ${person.name} (also "Tripto Afsin"), a founder, product en
 export function postMarkdown(slug: string) {
   const p = getArticles().find(x => x.slug === slug);
   if (!p) return null;
-  return `# ${p.title}\n\n${p.summary}\n\n${person.name} · ${p.dateLabel} · ${p.minutes} min read · ${SITE_URL}/writing/${p.slug}\n\n${strip(p.markdown)}\n`;
+  return `# ${p.title}\n\n${p.summary}\n\n${person.name} · ${p.dateLabel} · ${p.minutes} min read · ${SITE_URL}/blog/${p.slug}\n\n${strip(p.markdown)}\n`;
 }

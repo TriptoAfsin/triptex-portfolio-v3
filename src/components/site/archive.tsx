@@ -5,7 +5,7 @@ import { useState } from "react";
 
 type Item = { slug: string; title: string; summary: string; date: string; dateLabel: string; minutes: number; tags: string[]; external?: string; source?: string };
 
-/** Writing archive: every post grouped by year, filterable by topic. */
+/** Blog archive: every post grouped by year, filterable by topic. */
 export function Archive({ posts }: { posts: Item[] }) {
   const [tag, setTag] = useState("all");
   // a few readable categories built from the posts' tags, instead of a wall of raw tags
@@ -29,15 +29,12 @@ export function Archive({ posts }: { posts: Item[] }) {
       {years.map(y => (
         <div className="arc-year" key={y}>
           <h2 className="arc-yh">{y}</h2>
-          <div className="wlist">
+          <div className="posts">
             {list.filter(p => p.date.startsWith(y)).map(p => (
-              <Link className="wpost" href={p.external ?? `/writing/${p.slug}`} key={p.slug} {...(p.external ? { target: "_blank", rel: "noopener" } : {})}>
-                <span className="wp-date"><b>{p.dateLabel.split(" ")[0]}</b><span>{p.minutes} min</span></span>
-                <span className="wp-body">
-                  {p.external && <span className="press">Press · {p.source}</span>}
-                  <span className="wp-t">{p.title}</span>
-                  <span className="wp-s">{p.summary}</span>
-                </span>
+              <Link className="post" href={p.external ?? `/blog/${p.slug}`} key={p.slug} {...(p.external ? { target: "_blank", rel: "noopener" } : {})}>
+                <time dateTime={p.date}>{p.dateLabel}</time>
+                <div><h3>{p.external && <span className="press">Press · {p.source}</span>}{p.title}</h3><p>{p.summary}</p></div>
+                <span className="m">{p.minutes} min</span>
               </Link>
             ))}
           </div>

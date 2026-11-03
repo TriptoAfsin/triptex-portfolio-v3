@@ -93,24 +93,18 @@ export default async function Home() {
           <a className="viewall" href={`${person.social.github}?tab=repositories`} target="_blank" rel="noopener"><Icon id="i-gh" fill />View all repositories on GitHub<Icon id="i-arrow" /></a>
         </section>
 
-        <section id="writing" aria-labelledby="h-writing">
-          <Head id="h-writing" icon="i-pen" title="Writing" aside="how things got built" />
-          <div className="wlist">
-            {posts.slice(0, 3).map(p => {
-              const [mon, yr] = p.dateLabel.split(" ");
-              return (
-                <Link className="wpost" href={postHref(p)} key={p.slug} {...(p.external ? { target: "_blank", rel: "noopener" } : {})}>
-                  <span className="wp-date"><b>{mon}</b><span>{yr} · {p.minutes} min</span></span>
-                  <span className="wp-body">
-                    {p.external && <span className="press">Press · {p.source}</span>}
-                    <span className="wp-t">{p.title}</span>
-                    <span className="wp-s">{p.summary}</span>
-                  </span>
-                </Link>
-              );
-            })}
+        <section id="blog" aria-labelledby="h-blog">
+          <Head id="h-blog" icon="i-pen" title="Blog" aside="how things got built" />
+          <div className="posts">
+            {posts.slice(0, 3).map(p => (
+              <Link className="post" href={postHref(p)} key={p.slug} {...(p.external ? { target: "_blank", rel: "noopener" } : {})}>
+                <time dateTime={p.date}>{p.dateLabel}</time>
+                <div><h3>{p.external && <span className="press">Press · {p.source}</span>}{p.title}</h3><p>{p.summary}</p></div>
+                <span className="m"><Icon id="i-clock" />{p.minutes} min<Icon id="i-right" className="go" /></span>
+              </Link>
+            ))}
           </div>
-          <Link className="viewall" href="/writing"><Icon id="i-pen" />All writing <span className="vc">({posts.length})</span><Icon id="i-right" /></Link>
+          <Link className="viewall" href="/blog"><Icon id="i-pen" />All posts <span className="vc">({posts.length})</span><Icon id="i-right" /></Link>
         </section>
 
         <section id="log" aria-labelledby="h-log">

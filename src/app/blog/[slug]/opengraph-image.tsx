@@ -12,8 +12,8 @@ export function generateStaticParams() {
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const post = getPost((await params).slug);
   return ogImage({
-    kicker: "Writing",
-    title: post?.title ?? "Writing",
+    kicker: "Blog",
+    title: post?.title ?? "Blog",
     footer: post ? `Afshin Nahian Tripto · ${post.dateLabel} · ${post.minutes} min read` : "Afshin Nahian Tripto",
   });
 }

@@ -1,7 +1,7 @@
 ---
 title: "Shapeshifting software: apps that change form and keep their spine"
 slug: shapeshifting-software
-date: 2025-11-18
+date: 2026-02-11
 summary: "My reference design for existing apps that reshape their UI and workflows from plain language, while permissions and rules stay locked."
 readingMinutes: 8
 tags: [ai, software-architecture, product, malleable-software]

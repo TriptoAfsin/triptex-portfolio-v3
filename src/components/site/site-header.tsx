@@ -30,7 +30,7 @@ export function SiteHeader({ items }: { items: SearchItem[] }) {
       <header className="nav">
         <Link className="mark" href="/#top" aria-label="Afshin Nahian Tripto, home"><i aria-hidden="true" />triptex.</Link>
         <nav aria-label="Sections">
-          <Link href="/#work">Work</Link><Link href="/#projects">Projects</Link><Link href="/writing">Writing</Link><Link href="/#contact">Contact</Link>
+          <Link href="/#work">Work</Link><Link href="/#projects">Projects</Link><Link href="/blog">Blog</Link><Link href="/#contact">Contact</Link>
         </nav>
         <button className="kbtn" type="button" onClick={() => setOpen(true)} aria-haspopup="dialog" aria-keyshortcuts={mac ? "Meta+K" : "Control+K"}>
           <Icon id="i-search" />Search <kbd suppressHydrationWarning>{mac ? "⌘ K" : "Ctrl K"}</kbd>
@@ -78,7 +78,7 @@ function CommandPalette({ items, onClose }: { items: SearchItem[]; onClose: () =
           <li key={it.href + it.label} id={`o${i}`} role="option" aria-selected={i === sel} onMouseMove={() => setSel(i)} onClick={() => run(it)}>
             <Icon id={it.icon} fill={it.icon === "i-gh" || it.icon === "i-in" || it.icon === "i-x-logo"} />{it.label}<small>{it.hint}</small>
           </li>
-        )) : <li className="empty" role="option" aria-selected="false" aria-disabled="true">Nothing matches that. Try &quot;resume&quot; or &quot;writing&quot;.</li>}
+        )) : <li className="empty" role="option" aria-selected="false" aria-disabled="true">Nothing matches that. Try &quot;resume&quot; or &quot;blog&quot;.</li>}
       </ul>
     </dialog>
   );

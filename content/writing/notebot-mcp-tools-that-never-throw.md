@@ -1,7 +1,7 @@
 ---
 title: "NoteBot MCP: putting BUTEX notices inside Claude and ChatGPT"
 slug: notebot-mcp-tools-that-never-throw
-date: 2026-10-14
+date: 2026-09-28
 summary: "How I built MCP servers that let BUTEX students ask Claude or ChatGPT about official notices and NoteBot notes, and why no tool ever throws."
 readingMinutes: 8
 tags: [mcp, typescript, bun, oauth, resilience, notebot]
@@ -12,7 +12,7 @@ Every BUTEX student I know has the same morning routine during exam season. Open
 
 <figure><img src="/writing/notebot-mcp-tools-that-never-throw/1.webp" alt="A real question about an official BUTEX notice, answered in Claude." width="1400" height="1750" loading="lazy" decoding="async"><figcaption>A real question about an official BUTEX notice, answered in Claude.</figcaption></figure>
 
-I've run BUTEX NoteBot for eight years. It has notes, books and lab reports, but it never had a good answer to "is there a new routine?", because the notice board isn't ours. This October I fixed that by building NoteBot MCP: a set of MCP servers at ai.butexnotebot.com that let Claude, ChatGPT and other clients read the official notices and NoteBot's study material directly.
+I've run BUTEX NoteBot for eight years. It has notes, books and lab reports, but it never had a good answer to "is there a new routine?", because the notice board isn't ours. This September I fixed that by building NoteBot MCP: a set of MCP servers at ai.butexnotebot.com that let Claude, ChatGPT and other clients read the official notices and NoteBot's study material directly.
 
 This post is about the engineering, and mostly about the parts that exist because things break.
 
@@ -139,7 +139,7 @@ ChatGPT connectors and deep research look for two tools by exact name: `search` 
 
 ## What the site audit showed
 
-Before writing tools I audited butex.edu.bd on 11 October. The good news: the WordPress REST API at `/wp-json/wp/v2/` is open, with server-side search, date filters and pagination. That's 3,458 notices across 56 categories, going back to 2017, with no HTML scraping. Academic Notices alone holds 1,109 posts and Published Results 479.
+Before writing any tools I audited butex.edu.bd. The good news: the WordPress REST API at `/wp-json/wp/v2/` is open, with server-side search, date filters and pagination. That's 3,458 notices across 56 categories, going back to 2017, with no HTML scraping. Academic Notices alone holds 1,109 posts and Published Results 479.
 
 The bad news was more interesting. There's no structured routine, timetable or exam calendar anywhere. Routines are just notices. Level and term are spelled every way possible (`L-2 T-1`, `L2-T1`, `Level-2 Term-I`, even `L3-Tl`), so matching normalises them, and because WordPress search matches whole words, `L2T1` finds nothing and the server retries fuzzily over the newest ~300 notices. Titles come HTML-encoded. Body links use `http://`. Asking for a page past the end returns HTTP 400, which I treat as an empty page rather than an outage.
 

@@ -12,21 +12,21 @@ function wantsMarkdown(accept: string) {
 
 /**
  * Markdown for agents:
- * - /writing/<slug>.md          -> the article as markdown
+ * - /blog/<slug>.md          -> the article as markdown
  * - Accept: text/markdown on /  -> /llms.txt
- * - Accept: text/markdown on /writing/<slug> -> the article as markdown
+ * - Accept: text/markdown on /blog/<slug> -> the article as markdown
  */
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const md = pathname.match(/^\/writing\/([a-z0-9-]+)\.md$/);
-  if (md) return NextResponse.rewrite(new URL(`/md/writing/${md[1]}`, request.url));
+  const md = pathname.match(/^\/blog\/([a-z0-9-]+)\.md$/);
+  if (md) return NextResponse.rewrite(new URL(`/md/blog/${md[1]}`, request.url));
 
   const accept = request.headers.get("accept") ?? "";
   if (wantsMarkdown(accept)) {
     if (pathname === "/") return withLinks(NextResponse.rewrite(new URL("/llms.txt", request.url)));
-    const post = pathname.match(/^\/writing\/([a-z0-9-]+)$/);
-    if (post) return withLinks(NextResponse.rewrite(new URL(`/md/writing/${post[1]}`, request.url)));
-    if (pathname === "/writing") return withLinks(NextResponse.rewrite(new URL("/llms.txt", request.url)));
+    const post = pathname.match(/^\/blog\/([a-z0-9-]+)$/);
+    if (post) return withLinks(NextResponse.rewrite(new URL(`/md/blog/${post[1]}`, request.url)));
+    if (pathname === "/blog") return withLinks(NextResponse.rewrite(new URL("/llms.txt", request.url)));
   }
   return withLinks(NextResponse.next());
 }
@@ -38,5 +38,5 @@ function withLinks(res: NextResponse) {
 }
 
 export const config = {
-  matcher: ["/", "/writing", "/writing/:path*"],
+  matcher: ["/", "/blog", "/blog/:path*"],
 };

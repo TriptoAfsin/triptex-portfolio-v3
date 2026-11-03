@@ -7,8 +7,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getArticles();
   return [
     { url: SITE_URL, lastModified: now, changeFrequency: "weekly", priority: 1 },
-    { url: `${SITE_URL}/writing`, lastModified: posts[0] ? new Date(posts[0].date) : now, changeFrequency: "weekly", priority: 0.8 },
-    ...posts.map(p => ({ url: `${SITE_URL}/writing/${p.slug}`, lastModified: new Date(p.date), changeFrequency: "monthly" as const, priority: 0.7 })),
+    { url: `${SITE_URL}/blog`, lastModified: posts[0] ? new Date(posts[0].date) : now, changeFrequency: "weekly", priority: 0.8 },
+    ...posts.map(p => ({ url: `${SITE_URL}/blog/${p.slug}`, lastModified: new Date(p.date), changeFrequency: "monthly" as const, priority: 0.7 })),
     { url: `${SITE_URL}/llms.txt`, lastModified: now, changeFrequency: "weekly", priority: 0.5 },
     { url: `${SITE_URL}/agents.md`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
     { url: `${SITE_URL}/cv/Afshin%20Nahian%20Tripto-Software%20Engineer.pdf`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },

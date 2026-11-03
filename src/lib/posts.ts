@@ -59,7 +59,7 @@ export const getArticles = cache(() => getPosts().filter(p => !p.external));
 export const getPost = cache((slug: string) => getArticles().find(p => p.slug === slug));
 
 /** Where a list item should link. */
-export const postHref = (p: Pick<Post, "slug" | "external">) => p.external ?? `/writing/${p.slug}`;
+export const postHref = (p: Pick<Post, "slug" | "external">) => p.external ?? `/blog/${p.slug}`;
 
 const LANGS = ["ts", "tsx", "js", "jsx", "json", "rust", "bash", "sh", "yaml", "sql", "python", "go", "css", "html"];
 const escapeHtml = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");

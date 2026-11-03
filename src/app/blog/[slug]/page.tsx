@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: post.title,
     description: post.summary,
-    alternates: { canonical: `/writing/${post.slug}`, types: { "text/markdown": `/writing/${post.slug}.md` } },
-    openGraph: { type: "article", url: `${SITE_URL}/writing/${post.slug}`, siteName: person.name, locale: "en_US", title: post.title, description: post.summary, publishedTime: post.date, authors: [person.name], tags: post.tags },
+    alternates: { canonical: `/blog/${post.slug}`, types: { "text/markdown": `/blog/${post.slug}.md` } },
+    openGraph: { type: "article", url: `${SITE_URL}/blog/${post.slug}`, siteName: person.name, locale: "en_US", title: post.title, description: post.summary, publishedTime: post.date, authors: [person.name], tags: post.tags },
     twitter: { card: "summary_large_image", title: post.title, description: post.summary, creator: "@Tripto_Afsin", site: "@Tripto_Afsin" },
   };
 }
@@ -32,12 +32,12 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const ld = {
     "@context": "https://schema.org", "@type": "BlogPosting", headline: post.title, description: post.summary,
     datePublished: post.date, author: { "@type": "Person", name: person.name, url: SITE_URL },
-    url: `${SITE_URL}/writing/${post.slug}`, keywords: post.tags.join(", "), image: post.cover ? `${SITE_URL}${post.cover}` : undefined,
+    url: `${SITE_URL}/blog/${post.slug}`, keywords: post.tags.join(", "), image: post.cover ? `${SITE_URL}${post.cover}` : undefined,
   };
 
   return (
     <main id="top" className="post-page">
-      <div className="post-top"><Link className="back" href="/writing"><Icon id="i-left" />All writing</Link><span>{post.dateLabel} · {post.minutes} min read</span></div>
+      <div className="post-top"><Link className="back" href="/blog"><Icon id="i-left" />All posts</Link><span>{post.dateLabel} · {post.minutes} min read</span></div>
       <article className="md">
         <h1>{post.title}</h1>
         <p className="lead">{post.summary}</p>
@@ -49,13 +49,12 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         <div className="md-body" dangerouslySetInnerHTML={{ __html: await renderPost(post) }} />
         <ArticleFx />
       </article>
-      <nav className="post-next" aria-label="More writing">
+      <nav className="post-next" aria-label="More posts">
         <h2>Keep reading</h2>
-        <div className="wlist">
+        <div className="posts">
           {others.map(o => (
-            <Link className="wpost" href={postHref(o)} key={o.slug} {...(o.external ? { target: "_blank", rel: "noopener" } : {})}>
-              <span className="wp-date"><b>{o.dateLabel.split(" ")[0]}</b><span>{o.dateLabel.split(" ")[1]} · {o.minutes} min</span></span>
-              <span className="wp-body"><span className="wp-t">{o.title}</span><span className="wp-s">{o.summary}</span></span>
+            <Link className="post" href={postHref(o)} key={o.slug} {...(o.external ? { target: "_blank", rel: "noopener" } : {})}>
+              <time dateTime={o.date}>{o.dateLabel}</time><div><h3>{o.title}</h3><p>{o.summary}</p></div><span className="m">{o.minutes} min</span>
             </Link>
           ))}
         </div>

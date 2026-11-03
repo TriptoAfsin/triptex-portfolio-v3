@@ -51,10 +51,11 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       </article>
       <nav className="post-next" aria-label="More writing">
         <h2>Keep reading</h2>
-        <div className="posts">
+        <div className="wlist">
           {others.map(o => (
-            <Link className="post" href={postHref(o)} key={o.slug} {...(o.external ? { target: "_blank", rel: "noopener" } : {})}>
-              <time dateTime={o.date}>{o.dateLabel}</time><div><h3>{o.title}</h3><p>{o.summary}</p></div><span className="m">{o.minutes} min</span>
+            <Link className="wpost" href={postHref(o)} key={o.slug} {...(o.external ? { target: "_blank", rel: "noopener" } : {})}>
+              <span className="wp-date"><b>{o.dateLabel.split(" ")[0]}</b><span>{o.dateLabel.split(" ")[1]} · {o.minutes} min</span></span>
+              <span className="wp-body"><span className="wp-t">{o.title}</span><span className="wp-s">{o.summary}</span></span>
             </Link>
           ))}
         </div>

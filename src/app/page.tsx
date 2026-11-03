@@ -81,11 +81,12 @@ export default async function Home() {
 
         <section id="projects" aria-labelledby="h-projects">
           <Head id="h-projects" icon="i-layers" title="Projects" aside="open source and side projects" />
-          <div className="rows">
+          <div className="pgrid">
             {projects.map(p => (
-              <a className="row" href={p.url} target="_blank" rel="noopener" key={p.name}>
-                <span className="n">{p.name} <span className="star"><Icon id="i-star" fill />{p.stars}</span><Icon id="i-arrow" className="go" /></span>
-                <span className="t">{p.stack}</span><span className="d">{p.text}</span>
+              <a className="pcard" href={p.url} target="_blank" rel="noopener" key={p.name}>
+                <span className="pc-top"><b>{p.name}</b><span className="star"><Icon id="i-star" fill />{p.stars}</span></span>
+                <span className="pc-d">{p.text}</span>
+                <span className="pc-k">{p.stack}<Icon id="i-arrow" className="go" /></span>
               </a>
             ))}
           </div>
@@ -94,14 +95,20 @@ export default async function Home() {
 
         <section id="writing" aria-labelledby="h-writing">
           <Head id="h-writing" icon="i-pen" title="Writing" aside="how things got built" />
-          <div className="posts">
-            {posts.slice(0, 3).map(p => (
-              <Link className="post" href={postHref(p)} key={p.slug} {...(p.external ? { target: "_blank", rel: "noopener" } : {})}>
-                <time dateTime={p.date}>{p.dateLabel}</time>
-                <div><h3>{p.external && <span className="press">Press · {p.source}</span>}{p.title}</h3><p>{p.summary}</p></div>
-                <span className="m"><Icon id="i-clock" />{p.minutes} min<Icon id="i-right" className="go" /></span>
-              </Link>
-            ))}
+          <div className="wlist">
+            {posts.slice(0, 3).map(p => {
+              const [mon, yr] = p.dateLabel.split(" ");
+              return (
+                <Link className="wpost" href={postHref(p)} key={p.slug} {...(p.external ? { target: "_blank", rel: "noopener" } : {})}>
+                  <span className="wp-date"><b>{mon}</b><span>{yr} · {p.minutes} min</span></span>
+                  <span className="wp-body">
+                    {p.external && <span className="press">Press · {p.source}</span>}
+                    <span className="wp-t">{p.title}</span>
+                    <span className="wp-s">{p.summary}</span>
+                  </span>
+                </Link>
+              );
+            })}
           </div>
           <Link className="viewall" href="/writing"><Icon id="i-pen" />All writing <span className="vc">({posts.length})</span><Icon id="i-right" /></Link>
         </section>

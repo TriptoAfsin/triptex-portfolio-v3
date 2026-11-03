@@ -661,3 +661,26 @@ dialog.cmd{margin:14vh auto auto;max-width:calc(100vw - 24px)}
   .bx-auto.tap .bx-flow b:nth-of-type(3){animation-delay:.8s}
 }
 @media (hover:none) and (prefers-reduced-motion:reduce){.bx.tap .bx-steps b,.bx.tap .bx-stack span,.bx.tap .bars i,.bx.tap .bx-flow b{animation:none}}
+
+/* ===== option A: projects as a card grid, writing as an editorial list, log stays a timeline ===== */
+.pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pcard{display:grid;grid-template-rows:auto 1fr auto;gap:6px;padding:15px 16px;border:1px solid var(--rule);border-radius:14px;background:var(--card);transition:border-color .2s ease,transform .2s var(--ease-out)}
+.pcard:active{transform:scale(.985)}
+@media (hover:hover){.pcard:hover{border-color:color-mix(in oklch,var(--viz) 45%,var(--rule));transform:translateY(-2px)}.pcard:hover .go{opacity:1;transform:none;color:var(--viz)}.pcard:hover .pc-top b{color:var(--viz)}}
+.pc-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.pc-top b{font-weight:600;font-size:15.5px;letter-spacing:-.01em;transition:color .15s ease;min-width:0;overflow-wrap:anywhere}
+.pc-d{font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+.pc-k{display:flex;justify-content:space-between;align-items:center;gap:8px;font:400 11.5px var(--f-mono);color:var(--mute)}
+.pc-k .go{width:14px;height:14px;opacity:0;transform:translate(-3px,3px);transition:opacity .15s ease,transform .2s var(--ease-out)}
+.wlist{display:grid;border-top:1px solid var(--rule)}
+.wpost{display:grid;grid-template-columns:110px minmax(0,1fr);gap:18px;padding:16px 2px;border-bottom:1px solid var(--rule)}
+.wp-date{display:grid;gap:2px;align-content:start}
+.wp-date b{font:600 22px var(--f-display);letter-spacing:-.02em;color:var(--viz);line-height:1.1}
+.wp-date span{font:400 12px var(--f-mono);color:var(--mute)}
+.wp-body{display:grid;gap:4px;min-width:0}
+.wp-t{font:600 17px/1.3 var(--f-display);letter-spacing:-.01em;color:var(--ink);transition:color .15s ease}
+.wp-s{font-size:14px;color:var(--ink-2)}
+@media (hover:hover){.wpost:hover .wp-t{color:var(--viz)}}
+@media (max-width:640px){.pgrid{grid-template-columns:minmax(0,1fr)}.wpost{grid-template-columns:minmax(0,1fr);gap:4px}.wp-date{display:flex;align-items:baseline;gap:8px}.wp-date b{font-size:15px}}
+.ent[data-ship]::before{background:var(--viz);border-color:var(--viz)}
+.arc-year .wlist{margin-top:4px}

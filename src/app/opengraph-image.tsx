@@ -11,10 +11,12 @@ export default function Image() {
     roles: ["Founder", "Product Engineer", "AI Engineer"],
     pitch: "AI-native software for people and their agents, built and run at scale.",
     photo: `${person.photo}?w=336&h=336&fit=fill&f=face&fm=jpg&q=85`,
+    // career-wide figures only (no single-project numbers)
     stats: [
-      { value: "4.7M+", label: "requests served" },
-      { value: "8 yrs", label: "running in production" },
-      { value: "5+ yrs", label: "shipping products" },
+      { value: "5+ yrs", label: "experience" },
+      { value: "5", label: "companies" },
+      { value: "30+", label: "projects shipped" },
+      { value: "Remote", label: "cross-cultural teams" },
     ],
   });
 }

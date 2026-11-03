@@ -24,16 +24,17 @@ export const person = {
 
 /** Rotating hero headline. The part inside `accent` is highlighted. */
 export const headlines: { lead: string; accent: string }[] = [
+  // Kept to a similar length on purpose: the box reserves the tallest line, so equal lengths mean no gap.
   { lead: "Built for people.", accent: "Ready for their agents." },
-  { lead: "I build products that do real work,", accent: "and I own what they do." },
-  { lead: "Founder and engineer.", accent: "I ship software people rely on." },
-  { lead: "From the first conversation", accent: "to production, and everything after." },
-  { lead: "I turn messy operations", accent: "into software teams use every day." },
-  { lead: "Products with AI inside,", accent: "built to be fast, cheap and right." },
+  { lead: "I build products", accent: "that do real work." },
+  { lead: "Founder at heart.", accent: "Engineer by trade." },
+  { lead: "First conversation to launch,", accent: "and beyond." },
+  { lead: "Messy operations,", accent: "turned into software." },
+  { lead: "AI inside.", accent: "Fast, cheap and right." },
 ];
 
 export const bio = [
-  "I start with the people who'll use the software and the problem they're stuck on, cut it to what actually moves it, then build it end to end and stay with it after launch.",
+  "I build AI-native software: one product, two kinds of users. People get an interface they enjoy, their agents get APIs and MCP tools they can actually call, and I stay with it long after launch.",
   "More than half a decade in, I build platforms that hold up at scale: NoteBot alone has served over 4.7 million requests, and I've been the only engineer on systems a whole company runs on.",
 ];
 

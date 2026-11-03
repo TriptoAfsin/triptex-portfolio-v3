@@ -33,6 +33,10 @@ ${posts.map(p => p.external ? `- [${p.title}](${p.external}) (press, ${p.source}
 
 ${work.map(w => `- ${w.role}, ${w.company} (${w.when})${w.partTime ? ", part-time" : ""}: ${w.blurb}`).join("\n")}
 
+## Off the clock
+
+He casually watches TV series and movies, plays video games, and plays cricket.
+
 ## Open source
 
 ${projects.map(p => `- [${p.name}](${p.url}) (${p.stack}): ${p.text}`).join("\n")}

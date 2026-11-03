@@ -632,3 +632,12 @@ dialog.cmd{margin:14vh auto auto;max-width:calc(100vw - 24px)}
 @media (min-width:1600px){.intro .lede{max-width:36ch}}
 @media (max-width:359px){.intro .lede{font-size:28px}.who h1{font-size:22px}.role{font-size:12.5px;gap:2px 6px}.av{width:92px;height:92px}}
 @media (min-width:360px) and (max-width:374px){.intro .lede{font-size:31px}}
+
+/* off the clock */
+.off{display:grid;gap:12px;padding:16px 18px;border:1px solid var(--rule);border-radius:14px;background:var(--card)}
+.off p{margin:0;color:var(--ink-2);max-width:66ch}
+.off-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.off-tags li{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;color:var(--ink);background:var(--paper-2);border:1px solid var(--rule);border-radius:999px;padding:5px 12px 5px 9px;transition:border-color .2s ease,transform .2s var(--ease-out)}
+.off-tags li svg{color:var(--viz);transition:transform .35s var(--ease-out)}
+@media (hover:hover){.off-tags li:hover{border-color:color-mix(in oklch,var(--viz) 45%,var(--rule));transform:translateY(-1px)}.off-tags li:hover svg{transform:rotate(-12deg) scale(1.12)}}
+@media (prefers-reduced-motion:reduce){.off-tags li,.off-tags li svg{transition:none}}

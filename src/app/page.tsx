@@ -124,6 +124,18 @@ export default async function Home() {
             {certifications.map(c => <div className="row" key={c.name}><span className="n">{c.name} <small>{c.issuer}</small></span><span className="t">{c.year}</span></div>)}
           </div>
         </section>
+        <section id="offclock" aria-labelledby="h-off">
+          <Head id="h-off" icon="i-game" title="Off the clock" />
+          <div className="off">
+            <p>When I&apos;m not shipping, I&apos;m usually halfway through a TV series, catching a movie or playing a video game, all very casually. And I&apos;ll never say no to a game of cricket.</p>
+            <ul className="off-tags" aria-label="Interests">
+              <li><Icon id="i-tv" />TV series</li>
+              <li><Icon id="i-film" />Movies</li>
+              <li><Icon id="i-game" />Video games</li>
+              <li><Icon id="i-cricket" />Cricket</li>
+            </ul>
+          </div>
+        </section>
       </div>
 
       <section className="contact-cta" id="contact" aria-labelledby="h-contact">

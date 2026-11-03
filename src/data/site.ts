@@ -34,8 +34,8 @@ export const headlines: { lead: string; accent: string }[] = [
 ];
 
 export const bio = [
-  "I build AI-native software: one product, two kinds of users. People get an interface they enjoy, their agents get APIs and MCP tools they can actually call, and I stay with it long after launch.",
-  "More than half a decade in, I build platforms that hold up at scale: NoteBot alone has served over 4.7 million requests, and I've been the only engineer on systems a whole company runs on.",
+  "Product engineer first: I start with the people and the problem they're stuck on, then cut it down to what actually moves it. What I build is AI-native, one product with two kinds of users: people get an interface they enjoy, and their agents get APIs and MCP tools they can actually call.",
+  "More than half a decade in, I build platforms that hold up at scale and stay with them long after launch: NoteBot alone has served over 4.7 million requests, and I've been the only engineer on systems a whole company runs on.",
 ];
 
 /** Verified scale figures (NoteBot analytics, Sep 2026). */

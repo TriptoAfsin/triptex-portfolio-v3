@@ -641,3 +641,23 @@ dialog.cmd{margin:14vh auto auto;max-width:calc(100vw - 24px)}
 .off-tags li svg{color:var(--viz);transition:transform .35s var(--ease-out)}
 @media (hover:hover){.off-tags li:hover{border-color:color-mix(in oklch,var(--viz) 45%,var(--rule));transform:translateY(-1px)}.off-tags li:hover svg{transform:rotate(-12deg) scale(1.12)}}
 @media (prefers-reduced-motion:reduce){.off-tags li,.off-tags li svg{transition:none}}
+
+/* bento on touch screens: a tap plays the same animation as hover on desktop */
+@media (hover:none){
+  .bx{cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .2s ease,transform .2s var(--ease-out)}
+  .bx:active{transform:scale(.985)}
+  .bx.tap{border-color:color-mix(in oklch,var(--viz) 45%,var(--rule))}
+  .bx.tap::before{opacity:1}
+  .bx.tap .bx-ic{transform:rotate(-6deg) scale(1.06)}
+  .bx.tap .bx-bg{transform:rotate(-8deg) scale(1.06);opacity:.1}
+  .bx-founder.tap .bx-badge .a{transform:translateY(-110%);opacity:0}
+  .bx-founder.tap .bx-badge .b{transform:none;opacity:1}
+  .bx-pe.tap .bx-steps b{animation:tick 2.4s var(--ease-out) infinite}
+  .bx-fs.tap .bx-stack span{animation:wave 1.6s var(--ease-out) both}
+  .bx-prod.tap .bars i{animation:bar 1.2s ease-in-out infinite;animation-delay:calc(var(--k,0) * 40ms)}
+  .bx-auto.tap .bx-flow i::after{animation-duration:.8s}
+  .bx-auto.tap .bx-flow b{animation:node 1.6s ease-in-out infinite}
+  .bx-auto.tap .bx-flow b:nth-of-type(2){animation-delay:.4s}
+  .bx-auto.tap .bx-flow b:nth-of-type(3){animation-delay:.8s}
+}
+@media (hover:none) and (prefers-reduced-motion:reduce){.bx.tap .bx-steps b,.bx.tap .bx-stack span,.bx.tap .bars i,.bx.tap .bx-flow b{animation:none}}

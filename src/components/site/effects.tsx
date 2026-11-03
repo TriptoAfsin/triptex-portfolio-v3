@@ -40,9 +40,17 @@ export function Effects() {
         grid.addEventListener("pointermove", move, { passive: true });
         cleanups.push(() => grid.removeEventListener("pointermove", move));
       } else {
-        const io = new IntersectionObserver(es => es.forEach(e => { e.target.classList.toggle("inview", e.isIntersecting); e.target.classList.toggle("auto", e.isIntersecting); }), { threshold: 0.6 });
-        grid.querySelectorAll(".bx").forEach(c => io.observe(c));
-        cleanups.push(() => io.disconnect());
+        // touch screens: a tap plays the card's hover animation; tap again (or another card) to switch
+        const tap = (e: MouseEvent) => {
+          const c = (e.target as HTMLElement).closest<HTMLElement>(".bx"); if (!c) return;
+          const r = c.getBoundingClientRect();
+          c.style.setProperty("--mx", `${e.clientX - r.left}px`); c.style.setProperty("--my", `${e.clientY - r.top}px`);
+          const on = c.classList.contains("tap");
+          grid.querySelectorAll(".bx.tap").forEach(x => x.classList.remove("tap"));
+          if (!on) { void c.offsetWidth; c.classList.add("tap"); }
+        };
+        grid.addEventListener("click", tap);
+        cleanups.push(() => grid.removeEventListener("click", tap));
       }
     }
     return () => cleanups.forEach(f => f());

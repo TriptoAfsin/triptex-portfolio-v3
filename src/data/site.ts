@@ -35,7 +35,7 @@ export const headlines: { lead: string; accent: string }[] = [
 
 export const bio = [
   "I've been building products since my first year of university, and I still care most about the person on the other side of the screen. I turn messy problems into products people actually use, then run them in production. What I build is AI-native, one product with two kinds of users: people get an interface they enjoy, and their agents get APIs and MCP tools they can actually call.",
-  "NoteBot, the platform I started in 2018, has served over 4.7 million requests. At work I take products from the first conversation to launch and keep them healthy at scale.",
+  "More than half a decade in, I take products from the first conversation to launch and keep them healthy at scale. NoteBot, the platform I started in 2018, has served over 4.7 million requests.",
 ];
 
 /** Verified scale figures (NoteBot analytics, Sep 2026). */

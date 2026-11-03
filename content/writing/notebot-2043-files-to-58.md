@@ -1,7 +1,7 @@
 ---
 title: "From 2,043 files to 58: taking NoteBot's content out of the code"
 slug: notebot-2043-files-to-58
-date: 2026-09-14
+date: 2026-09-08
 summary: "Rewriting NoteBot's backend so a new note is a database row instead of a deploy, and what the numbers said once it was done."
 readingMinutes: 8
 tags: [notebot, backend, postgresql, redis, migrations]

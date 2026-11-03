@@ -1,7 +1,7 @@
 ---
 title: "How NoteBot ingests student notes: n8n collects, Claude files, I merge"
 slug: notebot-ai-ingestion
-date: 2026-09-12
+date: 2026-09-21
 summary: "How a Google Form became a pipeline that secures files, lets Claude place notes in the right spot, and still waits for a human to merge."
 readingMinutes: 8
 tags: [automation, n8n, ai-agents, human-in-the-loop, notebot]

@@ -1,7 +1,7 @@
 ---
 title: "Building an RSS reader that fits under 5 MB"
 slug: turbo-reader-under-5mb
-date: 2026-10-24
+date: 2026-04-15
 summary: "How I built Turbo Reader with a Rust core, SQLite and Tauri 2, kept the installer under 5 MB, and what broke along the way."
 readingMinutes: 8
 tags: [rust, tauri, sqlite, desktop, rss]

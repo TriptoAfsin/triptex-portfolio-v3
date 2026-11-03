@@ -1,7 +1,7 @@
 ---
 title: "Who is sitting on port 3000? Building Porter, a desktop port monitor"
 slug: porter-port-monitor
-date: 2026-10-12
+date: 2025-12-09
 summary: "How I built Porter with Tauri and React: reading socket tables on three OSes, killing processes safely, and cutting idle CPU by a factor of ten."
 readingMinutes: 7
 tags: [tauri, rust, react, desktop, devtools]

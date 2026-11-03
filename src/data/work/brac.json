@@ -2,7 +2,7 @@
  "company": "BRAC",
  "role": "Frontend Engineer (part-time), SDP program",
  "period": "Mar 2023 - May 2025",
- "summary": "I built the frontend of an internal operations platform for a BRAC program, working part-time alongside one backend engineer. Staff use it to sign up and get approved, manage projects, branches and learner cohorts, and send official requests through approval chains that end in a signed Bangla PDF..",
+ "summary": "I built the frontend of an internal operations platform for a BRAC program, working part-time alongside one backend engineer. Staff use it to sign up and get approved, manage projects, branches and learner cohorts, and send official requests through approval chains that end in a signed Bangla PDF.",
  "projects": [
   {
    "title": "Program Operations Platform",

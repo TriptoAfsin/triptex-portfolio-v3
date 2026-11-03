@@ -2,7 +2,7 @@
  "company": "Provision Capital",
  "role": "Senior Full Stack Engineer",
  "period": "Apr 2024 – now",
- "summary": "I build and run the internal software for Provision Capital and the companies it works with: a seminary's learning platform, a property management company's operating system, an investor platform, an acquisitions tool, and inventory and ordering for a coffee company. Most of these I built alone, from the database schema up to the Railway deploys, backups and on-call fixes. Since mid 2026 a lot of that work has been AI features that have to stay correct and cheap: model routing, prompt caching, spend limits, and MCP access so staff can use Claude or ChatGPT against their own data.",
+ "summary": "I'm building and running the internal software for Provision Capital and the companies it works with: a seminary's learning platform, a property management company's operating system, an investor platform, an acquisitions tool, and inventory and ordering for a coffee company. I'm building most of it alone, from the database schema up to the Railway deploys, backups and on-call fixes. Since mid 2026 a lot of that work has been AI features that have to stay correct and cheap: model routing, prompt caching, spend limits, and MCP access so staff can use Claude or ChatGPT against their own data.",
  "projects": [
   {
    "title": "Seminary learning platform",

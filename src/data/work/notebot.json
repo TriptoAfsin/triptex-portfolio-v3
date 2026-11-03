@@ -2,7 +2,7 @@
  "company": "BUTEX NoteBot",
  "role": "Founder",
  "period": "Sep 2018 - Present",
- "summary": "I started NoteBot as a Messenger bot that sends study material to students at Bangladesh University of Textiles, and I still build and run all of it myself. It is now a web app, an Android app, a CMS, an analytics stack, a note submission pipeline and two MCP servers, and its analytics have recorded over 4.7 million requests.",
+ "summary": "I started NoteBot as a Messenger bot that sends study material to students at Bangladesh University of Textiles, and I'm still building and running all of it myself. It is now a web app, an Android app, a CMS, an analytics stack, a note submission pipeline and two MCP servers, and its analytics have recorded over 4.7 million requests.",
  "projects": [
   {
    "title": "NoteBot Messenger Bot (Engine v1)",

@@ -2,7 +2,7 @@
  "company": "REDQ Technologies Ltd.",
  "role": "Software Engineer",
  "period": "Apr 2024 - Present",
- "summary": "I am the main author of the AI engines behind two REDQ products: TrueBeep, a marketing platform for e-commerce and local businesses, and PROA, a multi-tenant ERP. I also write a large share of the TrueBeep web app and its job processor, from inbox and campaigns to the workflow builder and the MCP server that lets ChatGPT and Claude work inside a TrueBeep account.",
+ "summary": "I'm leading the AI engines behind two REDQ products: TrueBeep, a marketing platform for e-commerce and local businesses, and PROA, a multi-tenant ERP. I'm also building a large share of the TrueBeep web app and its job processor, from inbox and campaigns to the workflow builder and the MCP server that lets ChatGPT and Claude work inside a TrueBeep account.",
  "projects": [
   {
    "title": "TrueBeep AI Engine",

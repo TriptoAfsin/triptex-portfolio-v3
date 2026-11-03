@@ -1,0 +1,38 @@
+{
+ "company": "Delivery Hobe",
+ "role": "JavaScript Developer",
+ "period": "Oct 2021 - May 2023",
+ "summary": "My first engineering job. I spent most of my time on the two products customers and riders used every day: the DeliveryHobe storefront and the React Native app delivery riders work from. Later I moved to AdsHobe, the company's ads platform, and built its frontend from scratch.",
+ "projects": [
+  {
+   "title": "DeliveryHobe Storefront",
+   "ownership": "Contributor",
+   "what": "The customer-facing web store where people browse products and place delivery orders. I worked heavily on its frontend.",
+   "built": [
+    "Built and maintained storefront pages for browsing products and placing orders.",
+    "Connected the frontend to the ordering and delivery APIs."
+   ],
+   "stack": ["React", "Next.js", "JavaScript"]
+  },
+  {
+   "title": "Delivery Rider App",
+   "ownership": "Contributor",
+   "what": "A React Native app riders use to pick up and deliver orders.",
+   "built": [
+    "Built rider screens for receiving, picking up and completing deliveries.",
+    "Shipped releases of the app to riders in the field."
+   ],
+   "stack": ["React Native", "JavaScript"]
+  },
+  {
+   "title": "AdsHobe Ads Platform",
+   "ownership": "Lead engineer",
+   "what": "A B2B platform where businesses create and manage ad campaigns. I joined after the storefront and rider app work and architected its frontend from scratch.",
+   "built": [
+    "Set up the frontend architecture, project structure and shared components.",
+    "Built the screens businesses use to set up and manage their campaigns."
+   ],
+   "stack": ["Next.js", "React", "TypeScript"]
+  }
+ ]
+}

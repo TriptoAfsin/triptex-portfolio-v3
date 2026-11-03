@@ -6,7 +6,7 @@ import { SiteHeader, type SearchItem } from "./site-header";
 
 /** Header (with search index) shared by every page. */
 export function Header() {
-  const sections: [string, string][] = [["What I do", "/#focus"], ["Activity", "/#activity"], ["Work", "/#work"], ["Projects", "/#projects"], ["Blog", "/#blog"], ["Log", "/#log"], ["Education", "/#education"], ["Certifications", "/#certifications"], ["Off the clock", "/#offclock"], ["Contact", "/#contact"]];
+  const sections: [string, string][] = [["What I do", "/#focus"], ["Activity", "/#activity"], ["Work", "/#work"], ["Projects", "/#projects"], ["Blog", "/#blog"], ["Log", "/#log"], ["Education", "/#education"], ["Certifications", "/#certifications"], ["Contact", "/#contact"]];
   const items: SearchItem[] = [
     ...sections.map(([label, href]) => ({ label, hint: "Section", icon: "i-right" as const, href })),
     { label: "All posts", hint: "Page", icon: "i-pen", href: "/blog" },

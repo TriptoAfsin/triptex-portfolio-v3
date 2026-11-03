@@ -9,6 +9,7 @@ import { Photo } from "@/components/site/photo";
 import { Activity } from "@/components/site/activity";
 import { Work } from "@/components/site/work";
 import { Effects, Log } from "@/components/site/effects";
+import { OffClock } from "@/components/site/off-clock";
 
 export const revalidate = 21600;
 
@@ -114,8 +115,15 @@ export default async function Home() {
 
         <section id="education" aria-labelledby="h-edu">
           <Head id="h-edu" icon="i-cap" title="Education" />
-          <div className="rows">
-            {education.map(e => <div className="row" key={e.degree}><span className="n">{e.degree} <small>{e.school}</small></span><span className="t">{e.when}</span><span className="d">{e.note}</span></div>)}
+          <div className="edu">
+            {education.map(e => (
+              <div className="edu-c" key={e.degree}>
+                <span className="edu-k">{e.level} · {e.when}</span>
+                <h3>{e.field}</h3>
+                <span className="edu-s">{e.school}</span>
+                <div className="edu-f"><span className="edu-g">{e.gpa}<small>CGPA</small></span><span className="edu-n">{e.tag}</span></div>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -123,19 +131,6 @@ export default async function Home() {
           <Head id="h-cert" icon="i-award" title="Certifications" />
           <div className="rows">
             {certifications.map(c => <div className="row" key={c.name}><span className="n">{c.name} <small>{c.issuer}</small></span><span className="t">{c.year}</span></div>)}
-          </div>
-        </section>
-        <section id="offclock" aria-labelledby="h-off">
-          <Head id="h-off" icon="i-game" title="Off the clock" />
-          <div className="off">
-            <svg className="bx-bg" aria-hidden="true"><use href="#i-game" /></svg>
-            <p>When I&apos;m not shipping, I&apos;m usually halfway through a TV series, catching a movie or playing a video game, all very casually. And I&apos;ll never say no to a game of cricket.</p>
-            <ul className="off-tags" aria-label="Interests">
-              <li><Icon id="i-tv" />TV series</li>
-              <li><Icon id="i-film" />Movies</li>
-              <li><Icon id="i-game" />Video games</li>
-              <li><Icon id="i-cricket" />Cricket</li>
-            </ul>
           </div>
         </section>
       </div>
@@ -153,6 +148,17 @@ export default async function Home() {
         </div>
         <p className="cc-mail">{person.email} · <a href={person.social.x} target="_blank" rel="noopener">@Tripto_Afsin</a></p>
       </section>
+      <OffClock>
+        <div className="egg-b">
+            <p>When I&apos;m not shipping, I&apos;m usually halfway through a TV series, catching a movie or playing a video game, all very casually. And I&apos;ll never say no to a game of cricket.</p>
+            <ul className="off-tags" aria-label="Interests">
+              <li><Icon id="i-tv" />TV series</li>
+              <li><Icon id="i-film" />Movies</li>
+              <li><Icon id="i-game" />Video games</li>
+              <li><Icon id="i-cricket" />Cricket</li>
+            </ul>
+          </div>
+      </OffClock>
     </main>
   );
 }

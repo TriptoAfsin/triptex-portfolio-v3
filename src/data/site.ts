@@ -3,6 +3,7 @@ import redq from "./work/redq.json";
 import notebot from "./work/notebot.json";
 import brac from "./work/brac.json";
 import edison from "./work/edison.json";
+import dh from "./work/dh.json";
 
 export const SITE_URL = "https://triptex.me";
 
@@ -88,8 +89,8 @@ export const work: WorkCard[] = [
     blurb: "Built WebManza, a drag-and-drop store builder. Moving storefronts to server rendering fixed their SEO, and RTK Query caching cut about 40% of redundant network calls.",
     tags: ["Next.js", "Redux", "RTK Query"], detail: edison as WorkDetail },
   { key: "dh", logo: "/logos/delivery-hobe.ico", company: "Delivery Hobe", role: "JavaScript Developer", place: "Dhaka", when: "Oct 2021 – May 2023",
-    blurb: "My first engineering job. I architected the AdsHobe ads platform frontend from scratch, worked on the DeliveryHobe storefront, and shipped a React Native rider app.",
-    tags: ["Next.js", "React Native", "TypeScript"] },
+    blurb: "My first engineering job. I worked heavily on the DeliveryHobe storefront and the React Native app delivery riders use, then moved to AdsHobe and built its ads platform frontend from scratch.",
+    tags: ["Next.js", "React Native", "TypeScript"], detail: dh as WorkDetail },
 ];
 
 export const projects = [
@@ -120,8 +121,8 @@ export const log = [
 ];
 
 export const education = [
-  { degree: "M.S. Computer Science", school: "United International University", when: "2024 – 2025", note: "Graduated with a 3.97 CGPA while working full time." },
-  { degree: "B.S. Industrial Engineering", school: "Bangladesh University of Textiles", when: "2018 – 2023", note: "CGPA 3.75. Where NoteBot started." },
+  { level: "M.S.", field: "Computer Science", gpa: "3.97", tag: "Graduated while working full time.", degree: "M.S. Computer Science", school: "United International University", when: "2024 – 2025", note: "Graduated with a 3.97 CGPA while working full time." },
+  { level: "B.S.", field: "Industrial Engineering", gpa: "3.75", tag: "Where NoteBot started.", degree: "B.S. Industrial Engineering", school: "Bangladesh University of Textiles", when: "2018 – 2023", note: "CGPA 3.75. Where NoteBot started." },
 ];
 
 export const certifications = [

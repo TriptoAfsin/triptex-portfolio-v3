@@ -26,15 +26,15 @@ The cost is three webviews with three sets of quirks. The Linux AppImage once ab
 
 The question is "which sockets are listening, and which process owns each one?" Every OS answers it differently.
 
-```
-            get_network_connections(include_connections)
-                              |
-      +-----------------------+------------------------+
-      |                       |                        |
-   Windows                  macOS                    Linux
- GetExtendedTcpTable        lsof            /proc/net/tcp{,6} + /proc/<pid>/fd
- (IPv4 + IPv6, owner PID)   (-iTCP -sTCP:LISTEN)    (inode -> PID match)
-                                                   Flatpak: host `ss` via flatpak-spawn
+```mermaid
+flowchart TD
+  G["get_network_connections(include_connections)"] --> W[Windows]
+  G --> MA[macOS]
+  G --> LI[Linux]
+  W --> W1["GetExtendedTcpTable<br/>IPv4 + IPv6, owner PID"]
+  MA --> M1["lsof -iTCP -sTCP:LISTEN"]
+  LI --> L1["/proc/net/tcp + /proc/pid/fd<br/>inode to PID match"]
+  LI -.->|Flatpak| L2["host ss via flatpak-spawn"]
 ```
 
 On Windows I call `GetExtendedTcpTable` from IP Helper through the `windows` crate. The table can grow between the size query and the read, so the code retries on `ERROR_INSUFFICIENT_BUFFER`. The buffer is a `Vec<u32>` instead of `Vec<u8>` so it stays aligned for the table structs. Small detail, easy to miss.

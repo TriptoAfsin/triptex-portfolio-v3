@@ -68,12 +68,12 @@ export function Activity({ calendars, today }: { calendars: Calendars; today: st
         </div>
       </div>
       <div className="gh">
-        <div className={`gh-stats${animate ? " swap" : ""}`} key={`s-${key}`}>
+        <div className={`gh-stats${animate ? " is-switching" : ""}`} key={`s-${key}`}>
           {s.map(([v, l]) => <div key={l}><b>{v}</b><span>{l}</span></div>)}
         </div>
         <div className="heat-wrap">
           <div className="months" aria-hidden="true">{months.map((m, i) => <span key={i} style={{ gridColumn: i + 1 }}>{m}</span>)}</div>
-          <div className={`heat${animate ? " swap" : ""}`} key={`h-${key}`} role="img"
+          <div className={`heat${animate ? " is-switching" : ""}`} key={`h-${key}`} role="img"
             aria-label={`GitHub contributions, ${key === "12m" ? "last 12 months" : key}: ${s[0][0]} contributions.`}
             onPointerOver={onOver} onPointerLeave={() => { clearTimeout(tipTimer.current); setTip(null); }}>
             {cal.map((w, wi) => w.map(([d, c, l]) => (

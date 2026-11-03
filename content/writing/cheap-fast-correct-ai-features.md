@@ -1,5 +1,5 @@
 ---
-title: "Keeping AI features cheap, fast and correct after the demo"
+title: "Dynamic model routing: AI that stays cheap, fast and right"
 slug: cheap-fast-correct-ai-features
 date: 2026-10-28
 summary: "What I do now to keep production AI features cheap and quick: route by difficulty, cache prompts and results, budget tokens, cap spend, benchmark first."
@@ -17,24 +17,16 @@ The first mistake is picking one model for everything. Most messages are easy. "
 
 So every assistant I run now starts with a classifier. Mine is Jev, a small typed-judgment model from TypeSafe AI: instead of chatting, it returns a probability I can branch on. It decides how hard the request is, and that decision picks the model, the tools and the instruction modules for the turn. If Jev is down, slow or unsure, the router degrades gracefully to plain regex pattern matching, so a sick dependency never blocks a message.
 
-```
-user message
-     |
-     v
-+-----------------+   unsure / slow / down   +----------------+
-| Jev (TypeSafe)  | -----------------------> | regex patterns |
-+-----------------+                          +----------------+
-     |  P(complex)                                  |
-     v                                              v
-+------------------------------------------------------------+
-| < 0.4  -> small model, few tools, short prompt             |
-| >= 0.4 -> mid model, full tool set for the intent          |
-| >= 0.8 -> top model (rare)                                 |
-| bare "yes"/"ok" -> keep the previous turn's model          |
-+------------------------------------------------------------+
-     |
-     v
- cache check -> model call -> usage ledger
+```mermaid
+flowchart TD
+  U[User message] --> J{"Jev (TypeSafe)<br/>typed judgment"}
+  J -->|unsure, slow or down| R[Regex patterns]
+  J -->|"P(complex) < 0.4"| S[Small model<br/>few tools, short prompt]
+  J -->|"P(complex) >= 0.4"| Mi[Mid model<br/>full tool set for the intent]
+  J -->|"P(complex) >= 0.8"| T[Top model, rare]
+  R --> S
+  U -.->|bare yes / ok| P[Keep the previous turn's model]
+  S & Mi & T & P --> C[Cache check] --> MC[Model call] --> L[(Usage ledger)]
 ```
 
 Those thresholds are the ones I use on the property system. On the learning platform the ceiling is lower: small model first, mid model at most, and the top tier is not on the menu at all. Teachers asking about rosters do not need it, and taking it off the menu means nobody can get there by accident.

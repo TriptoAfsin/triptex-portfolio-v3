@@ -111,22 +111,15 @@ Two more principles carry a lot of weight. Hide, never reveal: redaction happens
 
 Say Ana, a sales rep, types "add manager approval before won" into the demo CRM.
 
-```
- "add manager approval before won"
-            │
-            ▼
-   ┌─────────────────┐   unclear? ──► question back to Ana
-   │ harness + brain │
-   └────────┬────────┘
-            │ patch { scope: personal, ops }
-            ▼
-   ┌─────────────────┐   violation? ──► blocked, rule explained
-   │      guard      │
-   └────────┬────────┘
-            ▼
-   preview + plain-language diff ──► Ana confirms
-            ▼
-   re-guard on current base ──► commit vN ──► app re-renders
+```mermaid
+flowchart TD
+  RQ["'add manager approval before won'"] --> HB[Harness + brain]
+  HB -.->|unclear?| Q[Question back to Ana]
+  HB -->|"patch { scope: personal, ops }"| GU[Guard]
+  GU -.->|violation?| BL[Blocked, rule explained]
+  GU --> PV[Preview + plain-language diff]
+  PV -->|Ana confirms| RG[Re-guard on current base]
+  RG --> CM[Commit vN] --> RR[App re-renders]
 ```
 
 The harness assembles context (the current shape, the vocabulary, no secrets, no bulk records), runs the brain, and checks the output. If the request had been vague about which stage, the brain would ask, and in the demo you answer with one tap. Here the brain proposes a personal patch adding a gate. The guard checks that a rep may change her personal scope, that `/workflow/gates` is reshapeable, and that the compliance gate is still in place. It passes. Ana sees a preview with a plain diff, confirms, and the guard re-runs before committing a new version.

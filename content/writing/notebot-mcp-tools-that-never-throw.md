@@ -34,21 +34,17 @@ There are three servers behind one domain:
 
 The stack is small on purpose: Bun, TypeScript, the official MCP SDK in stateless mode with JSON responses, zod and unpdf. No framework. Each request gets a fresh `McpServer`, which means there is no session state to lose when Railway restarts the container.
 
-```
- Claude / ChatGPT / Cursor
-          |
-          v
-  ai.butexnotebot.com --- auth: HMAC key or OAuth token (no DB needed)
-          |                rate limit: Redis, else memory
-   +------+--------+-----------------+
-   |               |                 |
- /butex/mcp    /notebot/mcp    /analytics/mcp (admin)
-   |               |                 |
- fetchJson: timeout, retry, breaker  |
-   |               |                 |
- butex.edu.bd  engine-v2       analytics-go
-   |
- cachedFetch: last good copy (7 days) + warm 300-notice archive
+```mermaid
+flowchart TD
+  CL["Claude / ChatGPT / Cursor"] --> GW["ai.butexnotebot.com<br/>auth: HMAC key or OAuth token, no DB needed<br/>rate limit: Redis, else memory"]
+  GW --> B["/butex/mcp"]
+  GW --> NB["/notebot/mcp"]
+  GW --> AN["/analytics/mcp (admin)"]
+  B & NB --> FJ["fetchJson: timeout, retry, circuit breaker"]
+  FJ --> BU[butex.edu.bd]
+  FJ --> E2[engine-v2]
+  AN --> AG[analytics-go]
+  BU -.->|on failure| CF["cachedFetch: last good copy (7 days)<br/>+ warm 300-notice archive"]
 ```
 
 ## Auth that doesn't need the database

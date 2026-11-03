@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { getArticles, getPost, getPosts, postHref, renderPost } from "@/lib/posts";
 import { person, SITE_URL } from "@/data/site";
 import { Icon } from "@/components/site/icons";
+import { ArticleFx } from "@/components/site/article-fx";
 
 export const dynamicParams = false;
 
@@ -45,7 +46,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           <span><b>{person.name}</b><small><time dateTime={post.date}>{post.dateLabel}</time> · {post.minutes} min read</small></span>
         </div>
         <div className="tags">{post.tags.map(t => <span className="tag" key={t}>{t}</span>)}</div>
-        <div dangerouslySetInnerHTML={{ __html: renderPost(post) }} />
+        <div className="md-body" dangerouslySetInnerHTML={{ __html: await renderPost(post) }} />
+        <ArticleFx />
       </article>
       <nav className="post-next" aria-label="More writing">
         <h2>Keep reading</h2>

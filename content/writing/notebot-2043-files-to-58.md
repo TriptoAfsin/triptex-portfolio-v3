@@ -56,18 +56,18 @@ Then there's the boot cost. Loading the content graph took 751 ms and added 24 M
 
 v2 runs on Bun with Express, PostgreSQL through Drizzle, and Redis through ioredis. The core is a plain hierarchy:
 
-```
- v1: content is code                      v2: content is rows
-
- web.js (794 routes)                      /app/notes/:level/:subject/:topic
-   -> appController wrapper (x872)          -> slug lookup
-     -> flow file (x921)                      -> Redis (notebot:notes:<id>)
-       -> textBlockGen("...url")                -> Postgres on a miss
-                                                     levels
- new note = edit file, commit,                        └─< subjects
-            push, redeploy                                 └─< topics
-                                                                └─< notes
-                                          new note = INSERT, bust one key
+```mermaid
+flowchart LR
+  subgraph v1["v1: content is code"]
+    W["web.js<br/>794 routes"] --> A["appController wrapper<br/>x872"] --> F["flow file<br/>x921"] --> TB["textBlockGen(url)"]
+    N1["New note = edit file, commit, push, redeploy"]
+  end
+  subgraph v2["v2: content is rows"]
+    R2["/app/notes/:level/:subject/:topic"] --> SL[Slug lookup] --> RD[("Redis<br/>notebot:notes:id")]
+    RD -->|miss| PG[(Postgres)]
+    PG --- H["levels → subjects → topics → notes"]
+    N2["New note = INSERT, bust one key"]
+  end
 ```
 
 A note is a row with a `topicId`, a title, a URL, a sort order and a `jsonb` metadata column for author, batch, year and department. Routes resolve by slug, so v2 has 32 route registrations where v1 had 794. The `src/` directory is 58 files and 4,825 lines, and all of it is mechanism. The content adds zero lines because it isn't in the repo anymore.

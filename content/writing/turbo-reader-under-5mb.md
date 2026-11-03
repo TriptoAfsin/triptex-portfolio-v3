@@ -20,11 +20,11 @@ You can't catch that with `try/catch` or an error boundary. When the engine kill
 
 That decided the shape of the app before I had picked a framework. Fetching, parsing and sanitising all happen in Rust, through `ammonia` with an explicit tag allowlist, and only clean HTML is stored. The webview renders it and does nothing else. There's a test in the repo whose whole job is to check that `<geolocation>` and `<script>` cannot survive `sanitise()`.
 
-```
- feeds ──> reqwest (12 at a time) ──> feed-rs ──> ammonia allowlist
-                                                       │
-                                                       v
- React shell <── typed Tauri commands <── SQLite + FTS5 (paged)
+```mermaid
+flowchart LR
+  FE[Feeds] --> RQ["reqwest<br/>12 at a time"] --> FR[feed-rs] --> AM[ammonia allowlist]
+  AM --> DB[("SQLite + FTS5<br/>paged")]
+  DB --> TC[Typed Tauri commands] --> UI[React shell]
 ```
 
 Once the important work lives in a native process, Electron makes less sense. Shipping a second copy of Chromium to draw a list of headlines felt silly. Tauri 2 uses the webview the operating system already has (WebView2 on Windows, WebKit on macOS and Linux), so the binary is mostly my code.

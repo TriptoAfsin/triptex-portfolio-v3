@@ -20,24 +20,14 @@ This post walks through what replaced me, where the AI sits in it, and the one s
 
 There are three lanes, joined by a Postgres staging table and a GitHub pull request.
 
-```
-Google Form ──> Responses sheet
-                     │
-   10:00 BDT   n8n on Railway
-                     │  read new rows, route by link host
-                     │  copy Drive file into NoteBot's Drive, make public
-                     │  upsert into `submissions` (keyed on original_url)
-                     │  Telegram summary, email authors of private files
-                     ▼
-   11:00 BDT   Claude Code routine
-                     │  read queue + rulebook + content map
-                     │  edit v1 flow files, write manifest, push branch
-                     ▼
-               GitHub Action opens PR  ──>  I read the diff
-                                                 │ merge
-                                                 ▼
-               Action mirrors notes into v2 Postgres, busts Redis,
-               emails the author, deploy goes out
+```mermaid
+flowchart TD
+  GF[Google Form] --> RS[Responses sheet]
+  RS --> N8["n8n on Railway · 10:00 BDT<br/>route by link host, copy Drive file,<br/>upsert submissions by original_url,<br/>Telegram summary, email private-file authors"]
+  N8 --> CC["Claude Code routine · 11:00 BDT<br/>read queue, rulebook and content map,<br/>edit v1 flow files, write manifest, push branch"]
+  CC --> PR[GitHub Action opens PR]
+  PR --> ME{I read the diff}
+  ME -->|merge| GA["Action mirrors notes into v2 Postgres,<br/>busts Redis, emails the author, deploys"]
 ```
 
 The first version ran weekly. Now n8n stages every morning at 10:00 Dhaka time and the Claude routine runs an hour later.

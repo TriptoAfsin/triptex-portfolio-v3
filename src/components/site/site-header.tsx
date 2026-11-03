@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "reac
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Icon, type IconId } from "./icons";
+import { closeDialog, onCancelAnimated } from "./close-dialog";
 
 export type SearchItem = { label: string; hint: string; icon: IconId; href: string; external?: boolean; keywords?: string };
 
@@ -61,7 +62,7 @@ function CommandPalette({ items, onClose }: { items: SearchItem[]; onClose: () =
   };
 
   return (
-    <dialog ref={ref} className="cmd" aria-label="Search the site" onClose={onClose} onClick={e => { if (e.target === ref.current) onClose(); }}>
+    <dialog ref={ref} className="cmd" aria-label="Search the site" onClose={onClose} onCancel={onCancelAnimated} onClick={e => { if (e.target === ref.current) closeDialog(ref.current); }}>
       <div className="cmd-in">
         <Icon id="i-search" />
         <input autoFocus value={q} placeholder="Jump to a section, article or link" aria-controls="cmd-list" aria-activedescendant={hits.length ? `o${sel}` : undefined}

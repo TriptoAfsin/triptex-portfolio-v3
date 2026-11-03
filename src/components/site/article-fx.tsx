@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
+import { closeDialog, onCancelAnimated } from "./close-dialog";
 
 /**
  * Article enhancements, mounted once per post:
@@ -64,13 +65,13 @@ export function ArticleFx() {
   useEffect(() => { if (img) dlg.current?.showModal(); }, [img]);
 
   return (
-    <dialog ref={dlg} className="lightbox" aria-label={img?.alt || "Image"} onClose={() => setImg(null)} onClick={() => dlg.current?.close()}>
+    <dialog ref={dlg} className="lightbox" aria-label={img?.alt || "Image"} onClose={() => setImg(null)} onCancel={onCancelAnimated} onClick={() => closeDialog(dlg.current)}>
       {img && (
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={img.src} alt={img.alt} />
           {img.alt && <p>{img.alt}</p>}
-          <button className="wk-x" type="button" aria-label="Close image" onClick={() => dlg.current?.close()}>
+          <button className="wk-x" type="button" aria-label="Close image" onClick={e => { e.stopPropagation(); closeDialog(dlg.current); }}>
             <svg className="i" aria-hidden="true"><use href="#i-x" /></svg>
           </button>
         </>

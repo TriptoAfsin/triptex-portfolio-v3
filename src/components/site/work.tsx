@@ -4,8 +4,12 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import type { WorkCard, WorkDetail } from "@/data/site";
 import { Icon } from "./icons";
+import { closeDialog, onCancelAnimated } from "./close-dialog";
 
 type Card = Omit<WorkCard, "detail"> & { hasDetail: boolean };
+
+// The bundler caches each chunk, so calling this on hover warms it for the click.
+const load = (key: string) => import(`@/data/work/${key}.json`);
 
 /** Work cards; "View details" opens a modal whose write-up is loaded only when asked for. */
 export function Work({ cards }: { cards: Card[] }) {
@@ -15,7 +19,7 @@ export function Work({ cards }: { cards: Card[] }) {
   async function show(card: Card) {
     setOpen({ card, detail: null });
     dlg.current?.showModal();
-    const mod = await import(`@/data/work/${card.key}.json`);
+    const mod = await load(card.key);
     setOpen({ card, detail: mod.default as WorkDetail });
   }
 
@@ -32,28 +36,45 @@ export function Work({ cards }: { cards: Card[] }) {
               <p className="d">{w.blurb}</p>
               <div className="foot">
                 <div className="tags">{w.tags.map(t => <span className="tag" key={t}>{t}</span>)}</div>
-                {w.hasDetail && <button className="more-btn" type="button" aria-haspopup="dialog" onClick={() => show(w)}>View details<Icon id="i-right" /></button>}
+                {w.hasDetail && <button className="more-btn" type="button" aria-haspopup="dialog" onPointerEnter={() => load(w.key)} onFocus={() => load(w.key)} onClick={() => show(w)}>View details<Icon id="i-right" /></button>}
               </div>
             </div>
           </article>
         ))}
       </div>
 
-      <dialog ref={dlg} className="wk" aria-labelledby="wk-title" onClose={() => setOpen(null)} onClick={e => { if (e.target === dlg.current) dlg.current?.close(); }}>
+      <dialog ref={dlg} className="wk" aria-labelledby="wk-title" onClose={() => setOpen(null)} onCancel={onCancelAnimated} onClick={e => { if (e.target === dlg.current) closeDialog(dlg.current); }}>
         {open && (
           <>
             <div className="wk-h">
               {open.card.logo && <Image src={open.card.logo} alt="" width={40} height={40} sizes="40px" unoptimized={/\.(svg|ico)$/.test(open.card.logo)} />}
               <div><h3 id="wk-title">{open.card.company}</h3><p>{open.card.role} · {open.card.when}</p></div>
-              <button className="wk-x" type="button" aria-label="Close details" onClick={() => dlg.current?.close()}><Icon id="i-x" /></button>
+              <button className="wk-x" type="button" aria-label="Close details" onClick={() => closeDialog(dlg.current)}><Icon id="i-x" /></button>
             </div>
             <div className="wk-b">
-              {!open.detail ? <p className="wk-loading">Loading the details…</p> : <Detail d={open.detail} />}
+              {!open.detail ? <Skeleton /> : <Detail d={open.detail} />}
             </div>
           </>
         )}
       </dialog>
     </>
+  );
+}
+
+/** Placeholder shaped like the write-up: summary, then two project blocks. */
+function Skeleton() {
+  return (
+    <div className="wk-sk" role="status" aria-label="Loading details">
+      <div className="sk-lines"><i /><i /><i style={{ width: "62%" }} /></div>
+      {[0, 1].map(n => (
+        <div className="sk-p" key={n}>
+          <div className="sk-t"><i /><i /></div>
+          <div className="sk-lines"><i /><i style={{ width: "48%" }} /></div>
+          <div className="sk-li"><i /><i style={{ width: "84%" }} /><i style={{ width: "70%" }} /></div>
+          <div className="sk-tags"><i /><i /><i /><i /></div>
+        </div>
+      ))}
+    </div>
   );
 }
 

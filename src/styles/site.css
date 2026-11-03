@@ -731,3 +731,26 @@ dialog.wk[open]{display:flex;flex-direction:column;overflow:hidden}
 .egg-b{display:grid;gap:12px}
 .egg-b p{margin:0;color:var(--ink-2);font-size:14.5px}
 @media (prefers-reduced-motion:reduce){.egg-btn,.egg{transition:opacity .2s ease}.egg-btn[data-shown] svg{animation:none}}
+
+/* work modal skeleton */
+.wk-sk{display:grid;gap:22px}
+.wk-sk i{display:block;height:12px;border-radius:6px;background:linear-gradient(90deg,var(--paper-2) 0%,color-mix(in oklch,var(--ink) 9%,var(--paper-2)) 50%,var(--paper-2) 100%) 0 0/200% 100%;animation:skShine 1.4s ease-in-out infinite}
+.sk-lines{display:grid;gap:9px}
+.sk-p{display:grid;gap:12px}
+.sk-t{display:flex;align-items:center;gap:8px}
+.sk-t i:first-child{height:16px;width:38%}
+.sk-t i:last-child{height:16px;width:72px;border-radius:999px}
+.sk-li{display:grid;gap:9px;padding-left:24px}
+.sk-tags{display:flex;flex-wrap:wrap;gap:6px}
+.sk-tags i{height:22px;width:64px;border-radius:7px}
+.sk-tags i:nth-child(2){width:52px}.sk-tags i:nth-child(3){width:84px}
+@keyframes skShine{from{background-position:100% 0}to{background-position:-100% 0}}
+@media (prefers-reduced-motion:reduce){.wk-sk i{animation:none}}
+
+/* exit animations: closeDialog() sets [data-closing], waits for this, then closes */
+dialog[data-closing]{opacity:0!important;pointer-events:none}
+dialog.wk[data-closing]{transform:scale(.97) translateY(6px)}
+dialog.cmd[data-closing]{transform:translateY(-6px) scale(.98)}
+dialog.lightbox[data-closing]{transform:scale(.96)}
+dialog.photo-dlg[data-closing]{transform:scale(.9)}
+dialog[data-closing]::backdrop{background:oklch(0% 0 0 / 0)!important;backdrop-filter:blur(0)!important}

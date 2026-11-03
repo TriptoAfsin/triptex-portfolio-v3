@@ -515,7 +515,7 @@ main, .stack, .stack > *, .intro > *, .jobs > *, .gh, .heat-wrap{min-width:0}
 .bx-bg.sm{width:110px;height:110px;right:-14px;bottom:-20px}
 @media (hover:hover){.bx:hover .bx-bg{transform:rotate(-8deg) scale(1.06);opacity:.1}}
 /* founder: badge flips */
-.bx-badge{display:grid;overflow:hidden}
+.bx-badge{display:grid;overflow:hidden;justify-items:center;text-align:center}
 .bx-badge > span{grid-area:1/1;transition:transform .35s var(--ease-out),opacity .25s ease}
 .bx-badge .b{transform:translateY(110%);opacity:0}
 @media (hover:hover){.bx-founder:hover .bx-badge .a{transform:translateY(-110%);opacity:0}.bx-founder:hover .bx-badge .b{transform:none;opacity:1}}

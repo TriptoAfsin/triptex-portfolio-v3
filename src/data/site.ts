@@ -34,8 +34,8 @@ export const headlines: { lead: string; accent: string }[] = [
 ];
 
 export const bio = [
-  "Product engineer first: I start with the people and the problem they're stuck on, then cut it down to what actually moves it. What I build is AI-native, one product with two kinds of users: people get an interface they enjoy, and their agents get APIs and MCP tools they can actually call.",
-  "More than half a decade in, I build platforms that hold up at scale and stay with them long after launch: NoteBot alone has served over 4.7 million requests, and I've been the only engineer on systems a whole company runs on.",
+  "I've been building products since my first year of university, and I still care most about the person on the other side of the screen. I turn messy problems into products people actually use, then run them in production. What I build is AI-native, one product with two kinds of users: people get an interface they enjoy, and their agents get APIs and MCP tools they can actually call.",
+  "NoteBot, the platform I started in 2018, has served over 4.7 million requests. At work I take products from the first conversation to launch and keep them healthy at scale.",
 ];
 
 /** Verified scale figures (NoteBot analytics, Sep 2026). */

@@ -11,7 +11,7 @@ const geist = Geist({ variable: "--font-geist-sans", subsets: ["latin"], display
 const mono = JetBrains_Mono({ variable: "--font-jetbrains-mono", subsets: ["latin"], weight: ["400", "500"], display: "swap" });
 
 const description =
-  "Founder, product engineer and AI engineer. I build AI-native software that people and their agents can both use, and I own it from the first conversation to production.";
+  "Founder, product engineer and AI engineer. I turn messy problems into AI-native products that people and their agents can both use, and run them at scale.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   creator: person.name,
   alternates: { canonical: "/", types: { "text/plain": "/llms.txt", "text/markdown": "/agents.md" } },
   openGraph: { type: "website", locale: "en_US", url: SITE_URL, siteName: person.name, title: `${person.name} · Founder, Product & AI Engineer`, description },
-  twitter: { card: "summary_large_image", creator: "@Tripto_Afsin", title: `${person.name} · Founder, Product & AI Engineer`, description },
+  twitter: { card: "summary_large_image", creator: "@Tripto_Afsin", site: "@Tripto_Afsin", title: `${person.name} · Founder, Product & AI Engineer`, description },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   icons: { icon: "/favicon.png", apple: "/favicon.png" },
 };

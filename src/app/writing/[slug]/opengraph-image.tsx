@@ -3,7 +3,7 @@ import { ogImage, OG_SIZE } from "@/lib/og";
 
 export const size = OG_SIZE;
 export const contentType = "image/png";
-export const alt = "Article by Afshin Nahian Tripto";
+export const alt = "Article by Afshin Nahian Tripto on triptex.me";
 
 export function generateStaticParams() {
   return getArticles().map(p => ({ slug: p.slug }));

@@ -20,8 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: post.title,
     description: post.summary,
     alternates: { canonical: `/writing/${post.slug}`, types: { "text/markdown": `/writing/${post.slug}.md` } },
-    openGraph: { type: "article", title: post.title, description: post.summary, publishedTime: post.date, authors: [person.name], tags: post.tags },
-    twitter: { card: "summary_large_image", title: post.title, description: post.summary, creator: "@Tripto_Afsin" },
+    openGraph: { type: "article", url: `${SITE_URL}/writing/${post.slug}`, siteName: person.name, locale: "en_US", title: post.title, description: post.summary, publishedTime: post.date, authors: [person.name], tags: post.tags },
+    twitter: { card: "summary_large_image", title: post.title, description: post.summary, creator: "@Tripto_Afsin", site: "@Tripto_Afsin" },
   };
 }
 

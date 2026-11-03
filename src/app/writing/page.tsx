@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   title: "Writing",
   description: "How things got built: the architecture, the tradeoffs, and what broke along the way.",
   alternates: { canonical: "/writing" },
+  openGraph: { type: "website", url: "https://triptex.me/writing", siteName: "Afshin Nahian Tripto", title: "Writing · Afshin Nahian Tripto", description: "How things got built: the architecture, the tradeoffs, and what broke along the way." },
+  twitter: { card: "summary_large_image", site: "@Tripto_Afsin", creator: "@Tripto_Afsin", title: "Writing · Afshin Nahian Tripto", description: "How things got built: the architecture, the tradeoffs, and what broke along the way." },
 };
 
 export default function WritingPage() {

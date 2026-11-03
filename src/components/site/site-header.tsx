@@ -28,7 +28,7 @@ export function SiteHeader({ items }: { items: SearchItem[] }) {
   return (
     <>
       <header className="nav">
-        <Link className="mark" href="/#top" aria-label="Afshin Nahian Tripto, home"><i aria-hidden="true" />tripto.</Link>
+        <Link className="mark" href="/#top" aria-label="Afshin Nahian Tripto, home"><i aria-hidden="true" />triptex.</Link>
         <nav aria-label="Sections">
           <Link href="/#work">Work</Link><Link href="/#projects">Projects</Link><Link href="/writing">Writing</Link><Link href="/#contact">Contact</Link>
         </nav>

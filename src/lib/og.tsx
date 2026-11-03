@@ -54,7 +54,7 @@ export async function ogProfile({ name, roles, pitch, photo, stats }: { name: st
         {rainLayer()}
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <div style={{ width: 13, height: 13, borderRadius: 4, background: MINT, boxShadow: `0 0 18px ${MINT}` }} />
-          <span style={{ color: WHITE, fontSize: 26, fontWeight: 700 }}>tripto.</span>
+          <span style={{ color: WHITE, fontSize: 26, fontWeight: 700 }}>triptex.</span>
           <span style={{ color: MUTE, fontSize: 22, marginLeft: 10, fontWeight: 500 }}>triptex.me</span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 40 }}>
@@ -90,7 +90,7 @@ export async function ogImage({ kicker, title, accent, footer }: { kicker: strin
         {rainLayer({ from: 700, cols: 24, strength: 0.8 })}
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <div style={{ width: 13, height: 13, borderRadius: 4, background: MINT, boxShadow: `0 0 18px ${MINT}` }} />
-          <span style={{ color: WHITE, fontSize: 26, fontWeight: 700 }}>tripto.</span>
+          <span style={{ color: WHITE, fontSize: 26, fontWeight: 700 }}>triptex.</span>
           <span style={{ color: MINT, fontSize: 20, marginLeft: 12, fontWeight: 500, border: `1px solid ${RULE}`, borderRadius: 999, padding: "4px 14px" }}>{kicker}</span>
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", maxWidth: 840, fontSize: title.length > 60 ? 56 : 66, fontWeight: 700, lineHeight: 1.08, letterSpacing: "-0.035em", color: WHITE }}>

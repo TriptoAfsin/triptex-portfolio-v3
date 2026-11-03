@@ -47,7 +47,10 @@ export function Activity({ calendars, today }: { calendars: Calendars; today: st
 
   const onOver = (e: React.PointerEvent) => {
     const c = (e.target as HTMLElement).closest("i"); if (!c) return;
-    const n = Number(c.dataset.c), r = c.getBoundingClientRect();
+    // on large screens the page is scaled with CSS zoom; fixed-position offsets are in unzoomed px
+    const z = parseFloat(getComputedStyle(c.closest(".page") ?? document.body).zoom) || 1;
+    const n = Number(c.dataset.c), b = c.getBoundingClientRect();
+    const r = { left: b.left / z, top: b.top / z, width: b.width / z };
     const text = `${n === 0 ? "No" : n} contribution${n === 1 ? "" : "s"} on ${fmtDay.format(new Date(c.dataset.d + "T00:00"))}`;
     clearTimeout(tipTimer.current);
     if (tip) setTip({ x: r.left + r.width / 2, y: r.top, text, instant: true });

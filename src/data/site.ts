@@ -33,8 +33,15 @@ export const headlines: { lead: string; accent: string }[] = [
 ];
 
 export const bio = [
-  "I start with the people who'll use the thing and the problem they're stuck on. Then I cut it down to what actually moves that problem, build it end to end, and stay with it after launch. Sometimes that's an AI agent. More often it's the platform around it: payments, permissions, queues, the dashboard someone checks every morning.",
-  "More than half a decade in, I've founded a product that's still serving students eight years later, been the only engineer on platforms a whole company runs on, and written the AI behind two SaaS products.",
+  "I start with the people who'll use the software and the problem they're stuck on, cut it to what actually moves it, then build it end to end and stay with it after launch.",
+  "More than half a decade in, I build platforms that hold up at scale: NoteBot alone has served over 4.7 million requests, and I've been the only engineer on systems a whole company runs on.",
+];
+
+/** Verified scale figures (NoteBot analytics, Sep 2026). */
+export const scale = [
+  { value: "4.7M+", label: "requests served by NoteBot" },
+  { value: "2.1M", label: "requests in the last year" },
+  { value: "8 yrs", label: "in production, still running" },
 ];
 
 export const facts = [

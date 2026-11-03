@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { bio, certifications, education, facts, headlines, log, person, projects, work } from "@/data/site";
+import { bio, certifications, education, facts, headlines, log, person, projects, scale, work } from "@/data/site";
 import { getCalendars } from "@/lib/github";
 import { getPosts, postHref } from "@/lib/posts";
 import { Icon, type IconId } from "@/components/site/icons";
@@ -58,12 +58,13 @@ export default async function Home() {
               <svg className="bx-bg" aria-hidden="true"><use href="#i-flag" /></svg>
               <div className="bx-top"><span className="bx-ic big sq"><Icon id="i-flag" /></span><span className="bx-badge"><span className="a">since 2018</span><span className="b">8 years running</span></span></div>
               <h3>Founder and product owner</h3>
-              <p>Started BUTEX NoteBot and still run it. I take products from the first conversation to launch, and keep owning them.</p>
+              <p>Started BUTEX NoteBot in 2018 and still run it. I take products from the first conversation to launch, and keep owning them.</p>
+              <div className="bx-scale">{scale.map(x => <span key={x.label}><b>{x.value}</b>{x.label}</span>)}</div>
             </article>
             <article className="bx bx-pe"><span className="bx-ic round"><Icon id="i-target" /></span><h3>Product engineering</h3><p>Scope with the team, cut to what matters, ship what people use.</p><span className="bx-steps" aria-hidden="true"><b>scope</b><b>cut</b><b>ship</b></span></article>
             <article className="bx bx-ai"><span className="bx-ic plain"><Icon id="i-cpu" /></span><h3>AI-native software</h3><p>Built for people and agents. Routed and cached to stay fast and cheap.</p><span className="bx-who" aria-hidden="true"><b>Human</b><b>Agent</b><b>MCP</b></span><span className="bx-dots" aria-hidden="true"><i /><i /><i /></span></article>
             <article className="bx bx-fs"><span className="bx-ic round"><Icon id="i-layers" /></span><h3>Full-stack</h3><p className="bx-stack">{["Next.js", "React", "Node", "Bun", "Go", "Python", "Postgres", "Redis"].map(t => <span key={t}>{t}</span>)}</p></article>
-            <article className="bx bx-prod"><svg className="bx-bg sm" aria-hidden="true"><use href="#i-server" /></svg><span className="bx-ic plain"><Icon id="i-server" /></span><h3>In production</h3><p>Deploys, monitoring, backups, patches. I&apos;m the one who gets paged.</p><span className="bx-up" aria-hidden="true"><span className="st"><i />all systems normal</span><span className="bars">{Array.from({ length: 24 }, (_, i) => <i key={i} />)}</span></span></article>
+            <article className="bx bx-prod"><svg className="bx-bg sm" aria-hidden="true"><use href="#i-server" /></svg><span className="bx-ic plain"><Icon id="i-server" /></span><h3>Built to scale</h3><p>Queues, caching and graceful fallbacks for millions of requests. Deploys, monitoring and patches too: I&apos;m the one who gets paged.</p><span className="bx-up" aria-hidden="true"><span className="st"><i />all systems normal</span><span className="bars">{Array.from({ length: 24 }, (_, i) => <i key={i} />)}</span></span></article>
             <article className="bx bx-auto">
               <svg className="bx-bg" aria-hidden="true"><use href="#i-zap" /></svg>
               <div className="bx-top"><span className="bx-ic big sq"><Icon id="i-zap" /></span><span className="bx-flow" aria-hidden="true"><b>Form</b><i /><b>n8n</b><i /><b>Slack</b></span></div>

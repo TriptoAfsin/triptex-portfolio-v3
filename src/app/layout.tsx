@@ -47,9 +47,15 @@ const personLd = {
   knowsAbout: ["AI agents", "Model Context Protocol", "RAG", "Product engineering", "Next.js", "TypeScript", "Automation"],
 };
 
+const revealScript = `(function(){var d=document.documentElement;if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;d.classList.add("js");setTimeout(function(){if(!d.classList.contains("reveal-ready"))d.classList.remove("js")},4000)})()`;
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${geist.variable} ${mono.variable}`}>
+      <head>
+        {/* runs before first paint so home sections start hidden instead of flashing; shows them anyway if hydration never lands */}
+        <script dangerouslySetInnerHTML={{ __html: revealScript }} />
+      </head>
       <body>
         <a href="#top" className="skip">Skip to content</a>
         <IconSprite />

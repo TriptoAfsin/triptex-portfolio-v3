@@ -13,19 +13,33 @@ export function Effects() {
     const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const cleanups: (() => void)[] = [];
 
-    if (!still) {
-      document.querySelectorAll<HTMLElement>("main > .intro > :not(.rain)").forEach((el, i) => {
-        el.style.animationDelay = `${i * 55}ms`; el.classList.add("hero-in");
-      });
-      document.documentElement.classList.add("reveal-on");
-      const vh = innerHeight;
+    const root = document.documentElement;
+    root.classList.add("reveal-ready");
+    const pending = new Set(document.querySelectorAll<HTMLElement>(".stack > section, main > .contact-cta"));
+    if (still || !root.classList.contains("js")) pending.forEach(el => el.classList.add("shown"));
+    else {
+      // sections on screen at load follow the hero's stagger, timed from navigation start so a slow
+      // hydration doesn't stack extra delay on top; later ones fade up as they scroll in
+      let batch = 0;
+      const show = (el: HTMLElement, rise: boolean, delay = 0) => {
+        if (!pending.delete(el)) return;
+        io.unobserve(el);
+        if (rise) { el.style.animationDelay = `${delay}ms`; el.classList.add("rise"); }
+        el.classList.add("shown");
+      };
       const io = new IntersectionObserver(es => es.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.remove("pre"); e.target.classList.add("shown"); io.unobserve(e.target); }
-      }), { rootMargin: "0px 0px -8% 0px" });
-      document.querySelectorAll<HTMLElement>(".stack > section").forEach(el => {
-        if (el.getBoundingClientRect().top > vh * 0.92) { el.classList.add("pre"); io.observe(el); }
-      });
-      cleanups.push(() => io.disconnect());
+        const el = e.target as HTMLElement;
+        if (e.isIntersecting) show(el, true, Math.max(0, 380 + batch++ * 110 - performance.now()));
+        else if (e.boundingClientRect.bottom < 0) show(el, false);
+      }), { rootMargin: "0px 0px -6% 0px" });
+      pending.forEach(el => io.observe(el));
+      // a restored scroll position can jump past sections without them ever intersecting
+      const passed = () => {
+        pending.forEach(el => { if (el.getBoundingClientRect().bottom < 0) show(el, false); });
+        if (!pending.size) removeEventListener("scroll", passed);
+      };
+      addEventListener("scroll", passed, { passive: true });
+      cleanups.push(() => { io.disconnect(); removeEventListener("scroll", passed); });
     }
 
     const grid = document.getElementById("bento");

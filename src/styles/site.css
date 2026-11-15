@@ -183,6 +183,10 @@ a.row:active{transform:scale(.995)}
 .f:active{transform:scale(.96)}
 .f span{font:400 11.5px var(--f-mono);opacity:.7;margin-left:3px}
 .f[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.f{position:relative;isolation:isolate}
+.f > b{font-weight:inherit;position:relative;z-index:1}
+.f-pill{position:absolute;inset:-1px;border-radius:inherit;background:var(--ink);z-index:0;pointer-events:none}
+.f[aria-pressed="true"]:has(.f-pill){background:transparent}
 @media (hover:hover){.f:not([aria-pressed="true"]):hover{border-color:var(--mute);color:var(--ink)}}
 .log{display:grid;border-left:1px solid var(--rule);margin-left:5px}
 .ent{position:relative;display:grid;grid-template-columns:84px minmax(0,1fr);gap:16px;padding:10px 0 10px 20px}
@@ -722,6 +726,11 @@ dialog.cmd{margin:14vh auto auto;max-width:calc(100vw - 24px)}
 @media (max-width:640px){.pgrid{grid-template-columns:minmax(0,1fr)}.wpost{grid-template-columns:minmax(0,1fr);gap:4px}.wp-date{display:flex;align-items:baseline;gap:8px}.wp-date b{font-size:15px}}
 .ent[data-ship]::before{background:var(--viz);border-color:var(--viz)}
 .arc-year .wlist{margin-top:4px}
+.archive-page .arc-h > *{animation:arc-in .55s var(--ease-out) both}
+.archive-page .arc-h > p{animation-delay:.06s}
+.archive-page .post-top{animation:arc-in .45s var(--ease-out) both}
+@keyframes arc-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.archive-page .arc-h > *,.archive-page .post-top{animation:none}}
 .off{position:relative;overflow:hidden;isolation:isolate}
 .off .bx-bg{width:170px;height:170px;right:-10px;bottom:-44px;opacity:.07}
 @media (hover:hover){.off:hover .bx-bg{transform:rotate(-10deg) scale(1.06);opacity:.11}}

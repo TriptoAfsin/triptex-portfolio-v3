@@ -93,15 +93,17 @@ export const work: WorkCard[] = [
     tags: ["Next.js", "React Native", "TypeScript"], detail: dh as WorkDetail },
 ];
 
+/** `stars` is the fallback; the live count comes from GitHub (see getProjects in lib/github). */
 export const projects = [
-  { name: "Porter", stars: 27, stack: "Tauri · React 19", url: "https://github.com/t21dev/porter-app", text: "See which process is holding a port and stop it in one click, on Windows, macOS and Linux." },
-  { name: "Turbo Reader", stars: 26, stack: "Rust · Tauri 2", url: "https://github.com/t21dev/turbo-reader", text: "An RSS reader built to stay small and fast: under 5 MB to install and opens in under a second." },
+  { name: "Kitab", stars: 136, stack: "Rust · GPUI", url: "https://github.com/t21dev/kitab", text: "A desktop reader for PDFs, books and Markdown, drawn on the GPU with no browser engine inside." },
+  { name: "Porter", stars: 109, stack: "Tauri · React 19", url: "https://github.com/t21dev/porter-app", text: "See which process is holding a port and stop it in one click, on Windows, macOS and Linux." },
+  { name: "Turbo Reader", stars: 72, stack: "Rust · Tauri 2", url: "https://github.com/t21dev/turbo-reader", text: "An RSS reader built to stay small and fast: under 5 MB to install and opens in under a second." },
   { name: "md-viewer-pwa", stars: 23, stack: "PWA · React", url: "https://github.com/TriptoAfsin/md-viewer-pwa", text: "An installable Markdown viewer that works offline on any device." },
-  { name: "BUTEX NoteBot", stars: 22, stack: "Node.js · Messenger", url: "https://github.com/TriptoAfsin/notebot-engine-v1", text: "The chatbot that started it all in 2018, delivering study material to university students around the clock." },
+  { name: "BUTEX NoteBot", stars: 23, stack: "Node.js · Messenger", url: "https://github.com/TriptoAfsin/notebot-engine-v1", text: "The chatbot that started it all in 2018, delivering study material to university students around the clock." },
   { name: "Shapeshifting Software", stars: 12, stack: "AI agents · Essay", url: "https://github.com/TriptoAfsin/shape-shifter", text: "How an app could reshape its own UI and workflows from plain-language requests while its core logic and permissions stay locked." },
   { name: "ts-stats", stars: 6, stack: "TypeScript · npm", url: "https://github.com/TriptoAfsin/ts-stats", text: "Small, typed statistics helpers: mean, median, mode, deviation and more." },
   { name: "simple-messenger-blocks", stars: 6, stack: "Node.js · npm", url: "https://github.com/TriptoAfsin/simple-messenger-blocks", text: "Builds Messenger chatbot blocks (buttons, cards, quick replies) from plain objects. Extracted from NoteBot." },
-  { name: "chonkie-pdf", stars: 2, stack: "Python · RAG", url: "https://github.com/TriptoAfsin/chonkie-pdf", text: "Splits large PDFs into clean chunks for retrieval pipelines, from the command line." },
+  { name: "chonkie-pdf", stars: 3, stack: "Python · RAG", url: "https://github.com/TriptoAfsin/chonkie-pdf", text: "Splits large PDFs into clean chunks for retrieval pipelines, from the command line." },
 ];
 
 export const log = [

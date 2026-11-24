@@ -1,5 +1,6 @@
 import "server-only";
 import snapshot from "@/data/github-snapshot.json";
+import { projects } from "@/data/site";
 
 /** One week of [date, count, level 0-4] days. */
 export type CalWeek = [string, number, number][];
@@ -43,5 +44,37 @@ export async function getCalendars(): Promise<Calendars> {
     return out;
   } catch {
     return fallback;
+  }
+}
+
+export type Project = (typeof projects)[number];
+
+/**
+ * Projects with live star counts, most-starred first. One GraphQL call for every repo, refreshed every
+ * 6 hours; any repo GitHub doesn't answer for keeps the star count written in data/site.
+ */
+export async function getProjects(): Promise<Project[]> {
+  const token = process.env.GITHUB_PAT_TOKEN || process.env.GITHUB_TOKEN;
+  const sorted = (list: Project[]) => [...list].sort((a, b) => b.stars - a.stars);
+  if (!token) return sorted(projects);
+  const repos = projects.map(p => new URL(p.url).pathname.split("/").filter(Boolean));
+  const query = `{${repos.map(([owner, name], i) =>
+    `r${i}:repository(owner:${JSON.stringify(owner)},name:${JSON.stringify(name)}){stargazerCount}`).join(" ")}}`;
+  try {
+    const res = await fetch("https://api.github.com/graphql", {
+      method: "POST",
+      headers: { Authorization: `bearer ${token}`, "Content-Type": "application/json", "User-Agent": "triptex.me" },
+      body: JSON.stringify({ query }),
+      next: { revalidate: 21600 },
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!res.ok) return sorted(projects);
+    const data = (await res.json())?.data ?? {};
+    return sorted(projects.map((p, i) => {
+      const live = data[`r${i}`]?.stargazerCount;
+      return typeof live === "number" ? { ...p, stars: live } : p;
+    }));
+  } catch {
+    return sorted(projects);
   }
 }

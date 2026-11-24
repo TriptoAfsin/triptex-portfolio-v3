@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { bio, certifications, education, facts, headlines, log, person, projects, scale, work } from "@/data/site";
-import { getCalendars } from "@/lib/github";
+import { bio, certifications, education, facts, headlines, log, person, scale, work } from "@/data/site";
+import { getCalendars, getProjects } from "@/lib/github";
 import { getPosts, postHref } from "@/lib/posts";
 import { Icon, type IconId } from "@/components/site/icons";
 import { Rain } from "@/components/site/rain";
@@ -18,7 +18,7 @@ function Head({ id, icon, title, aside }: { id: string; icon: IconId; title: str
 }
 
 export default async function Home() {
-  const [calendars, posts] = await Promise.all([getCalendars(), Promise.resolve(getPosts())]);
+  const [calendars, projects, posts] = await Promise.all([getCalendars(), getProjects(), Promise.resolve(getPosts())]);
   const today = new Date().toISOString().slice(0, 10);
   const cards = work.map(({ detail, ...w }) => ({ ...w, hasDetail: Boolean(detail) }));
 
